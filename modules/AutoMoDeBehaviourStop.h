@@ -1,0 +1,27 @@
+/*
+ * File: AutoMoDeBehaviourStop.h
+ *
+ */
+ 
+#ifndef AUTOMODE_BEHAVIOUR_STOP_H
+#define AUTOMODE_BEHAVIOUR_STOP_H
+
+#include "AutoMoDeBehaviour.h"
+
+namespace argos {
+	class AutoMoDeBehaviourStop: public AutoMoDeBehaviour {
+		public: 
+			AutoMoDeBehaviourStop();
+			AutoMoDeBehaviourStop(AutoMoDeBehaviourStop* pc_behaviour);
+			virtual ~AutoMoDeBehaviourStop();
+			
+			virtual void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);
+			virtual void Reset();
+			virtual void ResumeStep();
+			
+			virtual AutoMoDeBehaviourStop* Clone();
+	};
+}
+
+
+#endif
