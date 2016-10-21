@@ -8,7 +8,9 @@
 
 namespace argos {
 	
-	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {}
+	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
+		Reset();
+	}
 	
 	AutoMoDeRobotDAO::~AutoMoDeRobotDAO() {}
 	

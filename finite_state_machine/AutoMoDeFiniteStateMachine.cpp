@@ -47,7 +47,6 @@ namespace argos {
 		 * 5. Update internal variables 
 		 */
 		 
-		std::cout << "ControlStep FSM " << m_unTimeStep << std::endl;
 		/*
 		 * 1. Dealing with behaviours
 		 */

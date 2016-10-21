@@ -24,7 +24,7 @@ namespace argos {
 			void Init();
 			
 		private:
-			UInt32 m_unTurnSteps;
+			SInt32 m_unTurnSteps;
 			
 			enum ExplorationState {
 				RANDOM_WALK,
