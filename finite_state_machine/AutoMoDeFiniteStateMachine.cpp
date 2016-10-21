@@ -106,6 +106,19 @@ namespace argos {
 		m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
 	}
 	
+	void AutoMoDeFiniteStateMachine::Reset() {
+		m_unCurrentBehaviourIndex = 0;
+		m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
+		std::vector<AutoMoDeCondition*>::iterator itC;
+		for (itC = m_vecConditions.begin(); itC != m_vecConditions.end(); ++itC) {
+			(*itC)->Reset();
+		}
+		std::vector<AutoMoDeBehaviour*>::iterator itB;
+		for (itB = m_vecBehaviours.begin(); itB != m_vecBehaviours.end(); ++itB) {
+			(*itB)->Reset();
+		}
+	}
+	
 	std::vector<AutoMoDeCondition*> AutoMoDeFiniteStateMachine::GetOutgoingConditions() {
 		std::vector<AutoMoDeCondition*>::iterator it;
 		std::vector<AutoMoDeCondition*> vecResult;

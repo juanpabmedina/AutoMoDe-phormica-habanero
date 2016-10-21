@@ -38,6 +38,7 @@ namespace argos {
 			
 			void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);  // Add AutoMoDeRobotDAO* pc_robot_dao 
 			void Init();
+			void Reset();
 			
 			std::string GetReadableFormat();
 			void MaintainHistory();

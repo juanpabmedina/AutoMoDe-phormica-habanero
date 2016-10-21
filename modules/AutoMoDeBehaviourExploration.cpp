@@ -78,7 +78,7 @@ namespace argos {
 	}
 	
 	void AutoMoDeBehaviourExploration::Reset() {
-		//TODO
+		Init();
 		m_bOperational = false;
 	}
 	
