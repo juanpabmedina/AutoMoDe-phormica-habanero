@@ -30,8 +30,6 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeBehaviour.cpp
 	modules/AutoMoDeBehaviourAntiPhotoaxis.cpp
 	modules/AutoMoDeBehaviourPhotoaxis.cpp
-	modules/AutoMoDeBehaviourAntiPhotoaxis.cpp
-	modules/AutoMoDeBehaviourPhotoaxis.cpp
 	modules/AutoMoDeBehaviourAttraction.cpp
 	modules/AutoMoDeBehaviourRepulsion.cpp
 	modules/AutoMoDeBehaviourStop.cpp

@@ -22,7 +22,7 @@
                         library="/home/aligot/Desktop/E-puck/argos3-aligot/build/controllers/argos3-AutoMoDe/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default"/>
-        <epuck_range_and_bearing implementation="medium" show_rays="false" medium="rab" data_size="4"/>
+        <!--epuck_range_and_bearing implementation="medium" show_rays="false" medium="rab" data_size="4"/-->
       </actuators>
       <sensors>
 		<epuck_proximity implementation="default" show_rays="false"/>
