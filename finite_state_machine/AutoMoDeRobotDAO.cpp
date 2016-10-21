@@ -72,4 +72,9 @@ namespace argos {
 	Real AutoMoDeRobotDAO::GetLeftWheelVelocity() {
 		return m_fLeftWheelVelocity;
 	}
+	
+	void AutoMoDeRobotDAO::Reset() {
+		m_fLeftWheelVelocity = 0;
+		m_fRightWheelVelocity = 0;
+	}
 }

@@ -39,6 +39,8 @@ namespace argos {
 			Real GetRightWheelVelocity();
 			Real GetLeftWheelVelocity();
 			
+			void Reset();
+			
 		private:
 			CCI_EPuckProximitySensor::TReadings m_sProximityInput;
 			std::vector<UInt8> m_vecLightInput;

@@ -102,6 +102,7 @@ namespace argos {
 	
 	void AutoMoDeController::Reset() {
 		m_pcFiniteStateMachine->Reset();
+		m_pcRobotState->Reset();
 	}
 	
 	void AutoMoDeController::SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_finite_state_machine) {
