@@ -6,8 +6,11 @@
 #ifndef AUTOMODEBEHAVIOUR_H
 #define AUTOMODEBEHAVIOUR_H
 
+#include <argos3/core/utility/math/rng.h> 
 #include <argos3/core/utility/math/vector2.h>
 #include <argos3/core/utility/logging/argos_log.h>
+
+#include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_proximity_sensor.h>
 
 #include "../finite_state_machine/AutoMoDeRobotDAO.h"
 
@@ -22,11 +25,13 @@ namespace argos {
 			std::string m_strLabel;
 			UInt8 m_unIndex;
 			UInt8 m_unIdentifier;
+			CRandom::CRNG* m_pcRng;
 		
 		public:
-			virtual void ControlStep(AutoMoDeRobotDAO* pc_robot_dao) = 0;     //TODO: Add EPuckDAO as parameter
+			virtual void ControlStep(AutoMoDeRobotDAO* pc_robot_dao) = 0;
 			virtual void Reset() = 0;
 			virtual void ResumeStep() = 0; 			// Step before ControlStep to prepare 
+			//virtual void Init() = 0;
 			
 			virtual AutoMoDeBehaviour* Clone() = 0;
 			
@@ -48,7 +53,7 @@ namespace argos {
 			const bool IsOperational();
 			
 			CVector2 ComputeVectorToFollow(CVector2 c_sum);
-			CVector2 ParseProximity(CVector2 c_prox);
+			CVector2 SumProximityReadings(CCI_EPuckProximitySensor::TReadings s_prox);
 			CVector2 ParseLight(CVector2 c_light);
 	};
 }

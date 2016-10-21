@@ -20,6 +20,30 @@ namespace argos {
 			virtual void ResumeStep();
 			
 			virtual AutoMoDeBehaviourExploration* Clone();
+			
+			void Init();
+			
+		private:
+			UInt32 m_unTurnSteps;
+			
+			enum ExplorationState {
+				RANDOM_WALK,
+				OBSTACLE_AVOIDANCE
+			};
+			
+			enum TurnDirection {
+				LEFT,
+				RIGHT
+			};
+			
+			ExplorationState m_eExplorationState;
+			TurnDirection m_eTurnDirection;
+			
+			Real m_fWheelSpeed;
+			Real m_fProximityThreshold;
+			CRange<UInt32> m_cRandomStepsRange;
+			
+			bool IsObstacleInFront(CCI_EPuckProximitySensor::TReadings s_prox_input);
 	};
 }
 

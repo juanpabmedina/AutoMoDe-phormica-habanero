@@ -45,8 +45,12 @@ namespace argos {
 	}
 
 
-	CVector2 AutoMoDeBehaviour::ParseProximity(CVector2 c_prox) {
-		LOG << "ParseProximity: Todo" << std::endl;
+	CVector2 AutoMoDeBehaviour::SumProximityReadings(CCI_EPuckProximitySensor::TReadings s_prox) {
+		CVector2 cSum(0, 0);
+		for (UInt8 i = 0; i < s_prox.size(); i++) {
+			cSum += CVector2(s_prox[i].Value, s_prox[i].Angle);
+		}
+		return cSum;
 	}
 
 

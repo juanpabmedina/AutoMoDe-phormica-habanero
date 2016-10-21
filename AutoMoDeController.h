@@ -16,6 +16,7 @@
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_wheels_actuator.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_sensor.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_actuator.h>
+#include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_proximity_sensor.h>
 
 namespace argos{
 	class AutoMoDeController: public CCI_Controller {
@@ -42,9 +43,10 @@ namespace argos{
 			
 			AutoMoDeFsmBuilder* m_pcFsmBuilder;
 			
-			//CCI_EPuckWheelsActuator* m_pcWheelsActuator;
+			CCI_EPuckWheelsActuator* m_pcWheelsActuator;
 			//CCI_EPuckRangeAndBearingActuator* m_pcRabActuator;
-			
+
+			CCI_EPuckProximitySensor* m_pcProximitySensor;
 			//CCI_EPuckRangeAndBearingSensor* m_pcRabSensor;
 	};
 }

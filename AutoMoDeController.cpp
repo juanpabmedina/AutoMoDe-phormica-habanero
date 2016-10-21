@@ -49,13 +49,14 @@ namespace argos {
 		try{
 			// TODO: add all sensors
 			//m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
+			m_pcProximitySensor = GetSensor<CCI_EPuckProximitySensor>("epuck_proximity");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing a Sensor!\n";
 		}
 	
 		try{
 			// TODO: add all actuators
-			//m_pcWheelsActuator = GetActuator<CCI_EPuckWheelsActuator>("epuck_wheels");
+			m_pcWheelsActuator = GetActuator<CCI_EPuckWheelsActuator>("epuck_wheels");
 			//m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
@@ -74,6 +75,10 @@ namespace argos {
 			m_pcRabSensor->ClearPackets();
 		}
 		*/
+		if (m_pcProximitySensor != NULL) {
+			const CCI_EPuckProximitySensor::TReadings& readings = m_pcProximitySensor->GetReadings();
+			m_pcRobotState->SetProximityInput(readings);
+		}
 	 
 		
 		/*
@@ -85,9 +90,9 @@ namespace argos {
 		/*
 		 * 3. Update Actuators
 		 */ 
-		//if (m_pcWheelsActuator != NULL) {
-		//	m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetRightWheelVelocity(),m_pcRobotState->GetLeftWheelVelocity());
-		//}
+		if (m_pcWheelsActuator != NULL) {
+			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetRightWheelVelocity(), m_pcRobotState->GetLeftWheelVelocity());
+		}
 		m_unTimeStep++;
 	}
 	

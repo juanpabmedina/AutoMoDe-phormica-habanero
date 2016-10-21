@@ -12,12 +12,12 @@ namespace argos {
 	
 	AutoMoDeRobotDAO::~AutoMoDeRobotDAO() {}
 	
-	std::vector<UInt8> AutoMoDeRobotDAO::GetProximityInput() {
-		return m_vecProximityInput;
+	CCI_EPuckProximitySensor::TReadings AutoMoDeRobotDAO::GetProximityInput() {
+		return m_sProximityInput;
 	}
 	
-	void AutoMoDeRobotDAO::SetProximityInput(std::vector<UInt8> vec_prox_input) {
-		m_vecProximityInput = vec_prox_input;
+	void AutoMoDeRobotDAO::SetProximityInput(CCI_EPuckProximitySensor::TReadings s_prox_input) {
+		m_sProximityInput = s_prox_input;
 	}
 	
 	std::vector<UInt8> AutoMoDeRobotDAO::GetLightInput() {

@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <argos3/core/utility/logging/argos_log.h> 
+#include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_proximity_sensor.h>
 
 namespace argos {
 	class AutoMoDeRobotDAO {
@@ -16,8 +17,8 @@ namespace argos {
 			AutoMoDeRobotDAO();
 			virtual ~AutoMoDeRobotDAO();
 			
-			std::vector<UInt8> GetProximityInput();
-			void SetProximityInput(std::vector<UInt8> vec_prox_input);
+			CCI_EPuckProximitySensor::TReadings GetProximityInput();
+			void SetProximityInput(CCI_EPuckProximitySensor::TReadings vec_prox_input);
 			
 			std::vector<UInt8> GetLightInput();
 			void SetLightInput(std::vector<UInt8> vec_light_input);
@@ -39,7 +40,7 @@ namespace argos {
 			Real GetLeftWheelVelocity();
 			
 		private:
-			std::vector<UInt8> m_vecProximityInput;
+			CCI_EPuckProximitySensor::TReadings m_sProximityInput;
 			std::vector<UInt8> m_vecLightInput;
 			std::vector<UInt8> m_vecGroundInput;
 			
