@@ -7,11 +7,17 @@
 
 
 namespace argos { 
+	
+	/****************************************/
+	/****************************************/
 
 	AutoMoDeBehaviourExploration::AutoMoDeBehaviourExploration() {
 		m_strLabel = "Exploration";
 		Init();
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourExploration::AutoMoDeBehaviourExploration(AutoMoDeBehaviourExploration* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
@@ -23,11 +29,20 @@ namespace argos {
 		Init();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeBehaviourExploration::~AutoMoDeBehaviourExploration() {}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourExploration* AutoMoDeBehaviourExploration::Clone() {
 		return new AutoMoDeBehaviourExploration(*this);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourExploration::Init() {
 		m_unTurnSteps = 0;
@@ -40,6 +55,9 @@ namespace argos {
 		//TODO: Initialize parameters from m_mapParameters
 		m_cRandomStepsRange.SetMax(20);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourExploration::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
 		switch (m_eExplorationState) {
@@ -78,15 +96,24 @@ namespace argos {
 		m_bLocked = false;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourExploration::Reset() {
 		Init();
 		m_bOperational = false;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourExploration::ResumeStep() {
 		//TODO
 		m_bOperational = true;
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	bool AutoMoDeBehaviourExploration::IsObstacleInFront(CCI_EPuckProximitySensor::TReadings s_prox_input) {
 		if (s_prox_input[0].Value >= m_fProximityThreshold || 

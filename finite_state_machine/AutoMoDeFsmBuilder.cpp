@@ -7,10 +7,18 @@
 
 namespace argos {
 	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeFsmBuilder::AutoMoDeFsmBuilder() {}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeFsmBuilder::~AutoMoDeFsmBuilder() {}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(std::string str_fsm_config) {
 		std::istringstream iss(str_fsm_config);
@@ -20,6 +28,9 @@ namespace argos {
 			std::back_inserter(tokens));
 		return BuildFiniteStateMachine(tokens);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config) {
 		AutoMoDeFiniteStateMachine* cFiniteStateMachine = new AutoMoDeFiniteStateMachine();
@@ -53,6 +64,9 @@ namespace argos {
 		return cFiniteStateMachine;
 		
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeFsmBuilder::HandleState(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_state_config) {
 		AutoMoDeBehaviour* cNewBehaviour;
@@ -103,13 +117,6 @@ namespace argos {
 		// Add the constructed Behaviour to the FSM
 		c_fsm->AddBehaviour(cNewBehaviour);		
 		
-			
-		//std::cout << " * * * State * * * " << std::endl;
-		//for (std::vector<std::string>::iterator it = vec_fsm_state_config.begin(); it != vec_fsm_state_config.end(); it++) {
-		//	std::cout << *it << " ";
-		//}
-		//std::cout << std::endl;
-	
 		/*
 		 * Extract the transitions starting from the state and 
 		 * pass them to the transition handler.
@@ -137,14 +144,11 @@ namespace argos {
 			HandleTransition(c_fsm, vecTransitionConfig, unBehaviourIndex, i);
 		}
 	}
+	
+	/****************************************/
+	/****************************************/
 
 	void AutoMoDeFsmBuilder::HandleTransition(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_transition_config, UInt8 un_initial_state_index, UInt8 un_condition_index) {
-		//std::cout << " * * * Transition * * * " << std::endl;
-		//for (std::vector<std::string>::iterator i = vec_fsm_transition_config.begin(); i != vec_fsm_transition_config.end(); i++) {
-		//	std::cout << *i << " ";
-		//}
-		//std::cout << std::endl;
-		
 		AutoMoDeCondition* cNewCondition;
 		
 		std::stringstream ss;

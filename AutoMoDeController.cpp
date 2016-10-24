@@ -7,6 +7,9 @@
 
 namespace argos {
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeController::AutoMoDeController() {
 		m_pcRobotState = new AutoMoDeRobotDAO();
 		m_unTimeStep = 0;
@@ -15,9 +18,15 @@ namespace argos {
 		m_bPrintReadableFsm = false;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeController::~AutoMoDeController() {
 		
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeController::Init(TConfigurationNode& t_node) {
 		// Parsing parameters
@@ -48,8 +57,11 @@ namespace argos {
 		 */
 		try{
 			// TODO: add all sensors
-			//m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
 			m_pcProximitySensor = GetSensor<CCI_EPuckProximitySensor>("epuck_proximity");
+			m_pcLightSensor = GetSensor<CCI_EPuckLightSensor>("epuck_light");
+			m_pcGroundSensor = GetSensor<CCI_EPuckGroundSensor>("epuck_ground");
+			m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
+			m_pcCameraSensor = GetSensor<CCI_EPuckOmnidirectionalCameraSensor>("epuck_omnidirectional_camera");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing a Sensor!\n";
 		}
@@ -57,24 +69,35 @@ namespace argos {
 		try{
 			// TODO: add all actuators
 			m_pcWheelsActuator = GetActuator<CCI_EPuckWheelsActuator>("epuck_wheels");
-			//m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
+			m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
+			m_pcLEDsActuator = GetActuator<CCI_EPuckRGBLEDsActuator>("epuck_rgb_leds");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
 		}
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeController::ControlStep() {
 		/*
 		 * 1. Update RobotDAO
-		 *
+		 */
 		//TODO update all fields of RobotDAO
-		if(m_pcRabSensor!= NULL){
+		if(m_pcRabSensor != NULL){
 			const CCI_EPuckRangeAndBearingSensor::TPackets& packets = m_pcRabSensor->GetPackets();
 			m_pcRobotState->SetNumberNeighbors(packets.size());
 			
 			m_pcRabSensor->ClearPackets();
 		}
-		*/
+		if (m_pcGroundSensor != NULL) {
+			const CCI_EPuckGroundSensor::SReadings& readings = m_pcGroundSensor->GetReadings();
+			m_pcRobotState->SetGroundInput(readings);
+		}
+		if (m_pcLightSensor != NULL) {
+			const CCI_EPuckLightSensor::TReadings& readings = m_pcLightSensor->GetReadings();
+			m_pcRobotState->SetLightInput(readings);
+		}
 		if (m_pcProximitySensor != NULL) {
 			const CCI_EPuckProximitySensor::TReadings& readings = m_pcProximitySensor->GetReadings();
 			m_pcRobotState->SetProximityInput(readings);
@@ -96,14 +119,23 @@ namespace argos {
 		m_unTimeStep++;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeController::Destroy() {
 		
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeController::Reset() {
 		m_pcFiniteStateMachine->Reset();
 		m_pcRobotState->Reset();
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeController::SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_finite_state_machine) {
 		m_pcFiniteStateMachine = pc_finite_state_machine;

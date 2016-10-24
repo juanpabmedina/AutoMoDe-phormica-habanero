@@ -7,6 +7,8 @@
 
 namespace argos {
 	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeFiniteStateMachine::AutoMoDeFiniteStateMachine() {
 		m_unCurrentBehaviourIndex = 0;
@@ -15,7 +17,13 @@ namespace argos {
 		m_unTimeStep = 0;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeFiniteStateMachine::~AutoMoDeFiniteStateMachine() {}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeFiniteStateMachine::AutoMoDeFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_fsm) {
 		m_unCurrentBehaviourIndex = pc_fsm->GetCurrentBehaviourIndex();
@@ -37,6 +45,9 @@ namespace argos {
 		}
 		m_pcHistory = new AutoMoDeFsmHistory(pc_fsm->GetHistory());
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeFiniteStateMachine::ControlStep(AutoMoDeRobotDAO* pc_robot_dao){ 
 		/*
@@ -101,9 +112,15 @@ namespace argos {
 		m_unTimeStep += 1;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeFiniteStateMachine::Init() {
 		m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeFiniteStateMachine::Reset() {
 		LOG << "FSM Reset" << std::endl;
@@ -118,6 +135,9 @@ namespace argos {
 			(*itB)->Reset();
 		}
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	std::vector<AutoMoDeCondition*> AutoMoDeFiniteStateMachine::GetOutgoingConditions() {
 		std::vector<AutoMoDeCondition*>::iterator it;
@@ -134,6 +154,9 @@ namespace argos {
 		return vecResult;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	std::string AutoMoDeFiniteStateMachine::GetReadableFormat(){
 		std::stringstream ssUrl;
 		ssUrl << "http://chart.googleapis.com/chart?cht=gv:dot&chl=digraph finite_state_machine{rankir=LR;" ;
@@ -146,18 +169,30 @@ namespace argos {
 		return strUrl;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeFiniteStateMachine::MaintainHistory() {
 		m_bMaintainHistory = true;
 		m_pcHistory = new AutoMoDeFsmHistory("./fsm_history/fsm_history.txt");
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeFiniteStateMachine::AddCondition(AutoMoDeCondition* pc_new_condition){
 		m_vecConditions.push_back(pc_new_condition);
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeFiniteStateMachine::AddBehaviour(AutoMoDeBehaviour* pc_new_behaviour){
 		m_vecBehaviours.push_back(pc_new_behaviour);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	std::string AutoMoDeFiniteStateMachine::FillWithInitialState() {
 		std::stringstream ssUrl;
@@ -172,6 +207,9 @@ namespace argos {
 		return ssUrl.str();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	std::string AutoMoDeFiniteStateMachine::FillWithNonInitialStates() {
 		std::stringstream ssUrl;
 		ssUrl << "node [shape = circle];" ;
@@ -184,6 +222,9 @@ namespace argos {
 		ssUrl << ";"; 
 		return ssUrl.str();
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	std::string AutoMoDeFiniteStateMachine::FillWithConditions() {
 		std::stringstream ssUrl;
@@ -204,29 +245,50 @@ namespace argos {
 		return ssUrl.str();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	UInt8 AutoMoDeFiniteStateMachine::GetCurrentBehaviourIndex() {
 		return m_unCurrentBehaviourIndex;
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	bool AutoMoDeFiniteStateMachine::GetMaintainHistoryFlag() {
 		return m_bMaintainHistory;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	bool AutoMoDeFiniteStateMachine::GetEnteringNewStateFlag() {
 		return m_bEnteringNewState;
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	UInt32 AutoMoDeFiniteStateMachine::GetTimeStep() {
 		return m_unTimeStep;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	std::vector<AutoMoDeBehaviour*> AutoMoDeFiniteStateMachine::GetBehaviours() {
 		return m_vecBehaviours;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	std::vector<AutoMoDeCondition*> AutoMoDeFiniteStateMachine::GetConditions() {
 		return m_vecConditions;
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeFsmHistory* AutoMoDeFiniteStateMachine::GetHistory() {
 		return m_pcHistory;
