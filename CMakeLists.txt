@@ -46,4 +46,12 @@ set(AUTOMODE_SOURCES
 if(ARGOS_BUILD_FOR_SIMULATOR)
 	add_library(automode SHARED ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 	target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)
+elseif(ARGOS_BUILD_FOR_EPUCK)
+	add_executable(automode
+        ${AUTOMODE_HEADERS} 
+        ${AUTOMODE_SOURCES}
+        ~/Desktop/E-puck/argos3-epuck/src/plugins/robots/e-puck/real_robot/real_epuck_main.cpp)
+	target_link_libraries(automode
+      	argos3plugin_epuck_epuck
+    	argos3plugin_${ARGOS_BUILD_FOR}_genericrobot)
 endif(ARGOS_BUILD_FOR_SIMULATOR)

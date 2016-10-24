@@ -65,7 +65,7 @@ namespace argos {
 		 */
 		m_mapConditionsChecked.clear();
 		if (!m_pcCurrentBehaviour->IsLocked()) {
-			if (m_bEnteringNewState) {
+			if (m_bEnteringNewState) { 
 				m_vecCurrentConditions = GetOutgoingConditions();
 				m_bEnteringNewState = false;
 			}
@@ -106,6 +106,7 @@ namespace argos {
 	}
 	
 	void AutoMoDeFiniteStateMachine::Reset() {
+		LOG << "FSM Reset" << std::endl;
 		m_unCurrentBehaviourIndex = 0;
 		m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
 		std::vector<AutoMoDeCondition*>::iterator itC;

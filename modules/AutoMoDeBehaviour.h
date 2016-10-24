@@ -19,8 +19,22 @@
 namespace argos {
 	class AutoMoDeBehaviour {
 		protected:
+			/**
+			 * Tells whether or not the behaviour is locked for a given
+			 * number of steps. No conditions should be tested if it is locked.
+			 */
 			bool m_bLocked;
-			bool m_bOperational; // tells whether or not the behaviour is ready to go in ControlStep.
+			
+			/**
+			 * Tells whether or not the behaviour is ready to be executed. 
+			 * This could happen if a previous reseting step takes more than 
+			 * one time step. 
+			 */
+			bool m_bOperational;
+			
+			/**
+			 * Contains the parameters of the behaviours.
+			 */
 			std::map<std::string, Real> m_mapParameters;
 			std::string m_strLabel;
 			UInt8 m_unIndex;
@@ -28,9 +42,27 @@ namespace argos {
 			CRandom::CRNG* m_pcRng;
 		
 		public:
+			/**
+			 * Execution of the behaviour. Based on the state of the robot,
+			 * the behaviour should update the output variables.
+			 */
 			virtual void ControlStep(AutoMoDeRobotDAO* pc_robot_dao) = 0;
+			
+			/**
+			 * Method used to reset the status (variables) of the behaviour.
+			 */
 			virtual void Reset() = 0;
-			virtual void ResumeStep() = 0; 			// Step before ControlStep to prepare 
+			
+			/**
+			 * Method called at the reseting of the behaviour when more than one 
+			 * time step are needed to prepare before the execution of the behaviour
+			 * (that is the call of ControlStep).
+			 */
+			virtual void ResumeStep() = 0;  
+			
+			/**
+			 * Initialize the behaviour.
+			 */
 			//virtual void Init() = 0;
 			
 			virtual AutoMoDeBehaviour* Clone() = 0;

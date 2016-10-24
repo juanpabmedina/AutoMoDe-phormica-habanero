@@ -28,7 +28,7 @@
 		<epuck_proximity implementation="default" show_rays="false"/>
         <!--epuck_range_and_bearing implementation="medium" medium="rab" show_rays="true" data_size="4"/-->
       </sensors>
-      <params readable='true' history='true' fsm-config="--nstates 1 --s0 0 --n0 0"/>
+      <params readable='true' history='false' fsm-config="--nstates 1 --s0 0 --n0 0"/>
     </automode_controller>
   </controllers>
 

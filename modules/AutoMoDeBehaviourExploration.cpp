@@ -35,12 +35,13 @@ namespace argos {
 		m_fWheelSpeed = 10;
 		m_pcRng = CRandom::CreateRNG("argos");
 		m_fProximityThreshold = 0.1;
+		m_bLocked = false;
+		m_bOperational = true;
 		//TODO: Initialize parameters from m_mapParameters
 		m_cRandomStepsRange.SetMax(20);
 	}
 	
 	void AutoMoDeBehaviourExploration::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
-		//TODO
 		switch (m_eExplorationState) {
 			case RANDOM_WALK: {
 				pc_robot_dao->SetWheelsVelocity(m_fWheelSpeed, m_fWheelSpeed);

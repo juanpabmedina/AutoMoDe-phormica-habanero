@@ -109,6 +109,6 @@ namespace argos {
 		m_pcFiniteStateMachine = pc_finite_state_machine;
 		m_pcFiniteStateMachine->Init();
 	}
+	
+	REGISTER_CONTROLLER(AutoMoDeController, "automode_controller");
 }
-
-REGISTER_CONTROLLER(AutoMoDeController, "automode_controller");
