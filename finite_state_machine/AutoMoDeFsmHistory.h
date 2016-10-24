@@ -1,6 +1,10 @@
-/*
- * File: AutoMoDeFsmHistory.h
+/**
+ * @file AutoMoDeFsmHistory.h
  *
+ * @brief This class allows for keeping track of the 
+ * evolution of the visited states of the finite state machine.
+ * The succession of behaviours controlling the robot are 
+ * thus registered and stored into a file.
  */
 
 #ifndef AUTOMODE_FSM_HISTORY_H

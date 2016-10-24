@@ -38,7 +38,7 @@ namespace argos {
 		m_pcHistory = new AutoMoDeFsmHistory(pc_fsm->GetHistory());
 	}
 	
-	void AutoMoDeFiniteStateMachine::ControlStep(AutoMoDeRobotDAO* pc_robot_dao){   // Add AutoMoDeRobotDAO* pc_robot_dao
+	void AutoMoDeFiniteStateMachine::ControlStep(AutoMoDeRobotDAO* pc_robot_dao){ 
 		/*
 		 * 1. Execute current behaviour
 		 * 2. Check for conditions if current behaviour allows it
@@ -230,19 +230,4 @@ namespace argos {
 	AutoMoDeFsmHistory* AutoMoDeFiniteStateMachine::GetHistory() {
 		return m_pcHistory;
 	}
-	
-	/*
-	void AutoMoDeFiniteStateMachine::ShowContent() {
-		std::vector<AutoMoDeCondition*>::iterator itc;
-		std::vector<AutoMoDeBehaviour*>::iterator itb;
-		std::cout << "Conditions:" << std::endl;
-		for (itc = m_vecConditions.begin(); itc != m_vecConditions.end(); itc++) {
-			std::cout << *itc << std::endl;
-		}
-		std::cout << "Behaviours:" << std::endl;
-		for (itb = m_vecBehaviours.begin(); itb != m_vecBehaviours.end(); itb++) {
-			std::cout << *itb << std::endl;
-		}
-	} */
-
 }

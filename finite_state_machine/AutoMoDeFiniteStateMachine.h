@@ -1,6 +1,10 @@
-/*
- * File: AutoMoDeFiniteStateMachine.h
+/**
+ * @file AutoMoDeFiniteStateMachine.h
  *
+ * @brief This class represents the stochastic finite state
+ * machine that controls the robot. It contains all the modules
+ * (behaviours and conditions) and is responsible for the transitions
+ * between them.
  */
 
 #ifndef AUTOMODE_FINITE_STATE_MACHINE_H
@@ -36,11 +40,18 @@ namespace argos {
 			void AddCondition(AutoMoDeCondition* pc_new_condition);
 			void AddBehaviour(AutoMoDeBehaviour* pc_new_behaviour);
 			
-			void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);  // Add AutoMoDeRobotDAO* pc_robot_dao 
+			void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);
 			void Init();
 			void Reset();
 			
+			/**
+			 * Creates an URL containing a DOT description of the finite state machine.
+			 */
 			std::string GetReadableFormat();
+			
+			/**
+			 * Creates a AutoMoDeFsmHistory.
+			 */
 			void MaintainHistory();
 			
 			UInt8 GetCurrentBehaviourIndex();
@@ -52,8 +63,6 @@ namespace argos {
 			std::vector<AutoMoDeCondition*> GetConditions();
 			
 			AutoMoDeFsmHistory* GetHistory();
-			
-			//void ShowContent(); Used to debug.. Remove later
 			
 		private:
 			void CheckConditions(AutoMoDeRobotDAO* pc_robot_state);  

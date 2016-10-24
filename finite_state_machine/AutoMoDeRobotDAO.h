@@ -1,5 +1,18 @@
-/*
- * File: AutoMoDeRobotDAO.h
+/**
+ * @file AutoMoDeRobotDAO.cpp
+ * 
+ * @brief This class represents the status of the robot.
+ * It contains the input variables (the sensor inputs) and
+ * the output variables (the values for the wheel actuators),
+ * as well as the setters and getters to access them.
+ * 
+ * Only one object of this class should be instanciated, and 
+ * is to be used as a brigde between the AutoMoDeController and 
+ * the AutoMoDeFiniteStateMachine classes. In AutoMoDeController,
+ * the variables of the object shall be updated before being sent to 
+ * the AutoMoDeFiniteStateMachine. The AutoMoDeFiniteStateMachine will
+ * then use the input variables and update the output variables
+ * accordingly.
  * 
  */
 
