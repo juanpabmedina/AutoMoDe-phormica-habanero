@@ -38,6 +38,9 @@ namespace argos {
 			THROW_ARGOSEXCEPTION_NESTED("Error parsing <params>", ex);
 		}
 	
+		m_unRobotID = atoi(GetId().substr(5, 6).c_str());
+		m_pcRobotState->SetRobotIdentifier(m_unRobotID);
+		
 		/*
 		 * If a FSM configuration is given as parameter of the experiment file, create a FSM from it
 		 */
@@ -45,7 +48,9 @@ namespace argos {
 			m_pcFsmBuilder = new AutoMoDeFsmBuilder();
 			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strFsmConfiguration));
 			if (m_bMaintainHistory) {
-				m_pcFiniteStateMachine->MaintainHistory();   // Give here path (file with ID of robot)
+				std::ostringstream sHistoryPath;
+				sHistoryPath <<  "./fsm_history/fsm_history_" <<  m_unRobotID << ".txt";
+				m_pcFiniteStateMachine->MaintainHistory(sHistoryPath.str());   // Give here path (file with ID of robot)
 			}
 			if (m_bPrintReadableFsm) {
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;

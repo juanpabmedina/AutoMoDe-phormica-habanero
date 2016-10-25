@@ -59,6 +59,9 @@ namespace argos {
 			Real GetRightWheelVelocity();
 			Real GetLeftWheelVelocity();
 			
+			void SetRobotIdentifier(UInt32 un_robot_id);
+			UInt32 GetRobotIdentifier();
+			
 			void Reset();
 			
 		private:
@@ -72,6 +75,8 @@ namespace argos {
 			
 			Real m_fLeftWheelVelocity;
 			Real m_fRightWheelVelocity;
+			
+			UInt32 m_unRobotIdentifier;
 	};
 }
 

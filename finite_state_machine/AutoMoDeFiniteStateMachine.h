@@ -50,9 +50,9 @@ namespace argos {
 			std::string GetReadableFormat();
 			
 			/**
-			 * Creates a AutoMoDeFsmHistory.
+			 * Creates a AutoMoDeFsmHistory at the specified file path.
 			 */
-			void MaintainHistory();
+			void MaintainHistory(std::string s_hist_path);
 			
 			UInt8 GetCurrentBehaviourIndex();
 			bool GetMaintainHistoryFlag();

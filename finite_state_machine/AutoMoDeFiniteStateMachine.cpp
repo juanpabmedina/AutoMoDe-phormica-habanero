@@ -172,9 +172,9 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 	
-	void AutoMoDeFiniteStateMachine::MaintainHistory() {
+	void AutoMoDeFiniteStateMachine::MaintainHistory(std::string s_hist_path) {
 		m_bMaintainHistory = true;
-		m_pcHistory = new AutoMoDeFsmHistory("./fsm_history/fsm_history.txt");
+		m_pcHistory = new AutoMoDeFsmHistory(s_hist_path);
 	}
 	
 	/****************************************/

@@ -40,6 +40,7 @@ namespace argos{
 			AutoMoDeFiniteStateMachine* m_pcFiniteStateMachine;
 			AutoMoDeRobotDAO* m_pcRobotState;
 			UInt8 m_unTimeStep;
+			UInt32 m_unRobotID;
 			
 			std::string m_strFsmConfiguration;
 			bool m_bMaintainHistory;

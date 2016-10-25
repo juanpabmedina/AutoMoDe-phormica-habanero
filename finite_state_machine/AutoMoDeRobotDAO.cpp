@@ -133,4 +133,18 @@ namespace argos {
 		m_fLeftWheelVelocity = 0;
 		m_fRightWheelVelocity = 0;
 	}
+	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeRobotDAO::SetRobotIdentifier(UInt32 un_robot_id) {
+		m_unRobotIdentifier = un_robot_id;
+	}
+	
+	/****************************************/
+	/****************************************/
+	
+	UInt32 AutoMoDeRobotDAO::GetRobotIdentifier() {
+		return m_unRobotIdentifier;
+	}
 }
