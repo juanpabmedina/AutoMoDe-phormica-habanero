@@ -18,6 +18,8 @@ namespace argos {
 			virtual void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);
 			virtual void Reset();
 			virtual void ResumeStep();
+			virtual void Init();
+			
 			
 			virtual AutoMoDeBehaviourStop* Clone();
 	};

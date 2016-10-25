@@ -51,7 +51,6 @@ namespace argos {
 		m_pcRng = CRandom::CreateRNG("argos");
 		m_fProximityThreshold = 0.1;
 		m_bLocked = false;
-		m_bOperational = true;
 		//TODO: Initialize parameters from m_mapParameters
 		m_cRandomStepsRange.SetMax(20);
 	}
@@ -100,15 +99,15 @@ namespace argos {
 	/****************************************/
 	
 	void AutoMoDeBehaviourExploration::Reset() {
-		Init();
 		m_bOperational = false;
+		Init();
+		ResumeStep();
 	}
 	
 	/****************************************/
 	/****************************************/
 	
 	void AutoMoDeBehaviourExploration::ResumeStep() {
-		//TODO
 		m_bOperational = true;
 	}
 	

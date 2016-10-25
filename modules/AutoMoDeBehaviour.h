@@ -63,7 +63,7 @@ namespace argos {
 			/**
 			 * Initialize the behaviour.
 			 */
-			//virtual void Init() = 0;
+			virtual void Init() = 0;
 			
 			virtual AutoMoDeBehaviour* Clone() = 0;
 			

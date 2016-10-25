@@ -7,10 +7,16 @@
 
 
 namespace argos { 
-
+	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeBehaviourPhotoaxis::AutoMoDeBehaviourPhotoaxis() {
 		m_strLabel = "Photoaxis";
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourPhotoaxis::AutoMoDeBehaviourPhotoaxis(AutoMoDeBehaviourPhotoaxis* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
@@ -21,21 +27,42 @@ namespace argos {
 		m_mapParameters = pc_behaviour->GetParameters();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeBehaviourPhotoaxis::~AutoMoDeBehaviourPhotoaxis() {}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourPhotoaxis* AutoMoDeBehaviourPhotoaxis::Clone() {
 		return new AutoMoDeBehaviourPhotoaxis(*this);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourPhotoaxis::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
 		//TODO
 		m_bLocked = false;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeBehaviourPhotoaxis::Init() {}
+	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourPhotoaxis::Reset() {
 		//TODO
 		m_bOperational = false;
+		ResumeStep();
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourPhotoaxis::ResumeStep() {
 		//TODO

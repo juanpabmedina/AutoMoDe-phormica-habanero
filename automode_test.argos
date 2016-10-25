@@ -22,11 +22,15 @@
                         library="/home/aligot/Desktop/E-puck/argos3-aligot/build/controllers/argos3-AutoMoDe/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default"/>
-        <!--epuck_range_and_bearing implementation="medium" show_rays="false" medium="rab" data_size="4"/-->
+        <epuck_rgb_leds implementation="default" medium="leds"/>
+        <epuck_range_and_bearing implementation="medium" show_rays="false" medium="rab" data_size="4"/>
       </actuators>
       <sensors>
 		<epuck_proximity implementation="default" show_rays="false"/>
-        <!--epuck_range_and_bearing implementation="medium" medium="rab" show_rays="true" data_size="4"/-->
+        <epuck_range_and_bearing implementation="medium" medium="rab" show_rays="true" data_size="4"/>
+		<epuck_light implementation="default" show_rays="false"/>
+		<epuck_ground implementation="rot_z_only" />
+		<epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
       <params readable='true' history='false' fsm-config="--nstates 1 --s0 0 --n0 0"/>
     </automode_controller>
@@ -35,7 +39,13 @@
   <!-- ********* -->
   <!-- * Arena * -->
   <!-- ********* -->
-  <arena size="5, 5, 1" center="0,0,0">
+  <arena size="5, 5, 1" center="0,0,0">  
+	<!-- Change the floor here -->  
+	<floor id="floor" source="image" path="./images_floor/no_spot.png"/>
+    
+    <!-- Change the light here -->
+	<light id="light" position="0,0.5,0" orientation="0.5,0,0" color="yellow" intensity="0.0" medium="leds"/>
+    
     <box id="wall_n" size="2, 0.12, 0.12" movable="false">    <!-- Longueur, largeur, hauter -->
        <body position="2, 0, 0" orientation="90, 0, 0"/>
     </box>

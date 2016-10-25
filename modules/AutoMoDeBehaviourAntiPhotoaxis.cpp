@@ -8,9 +8,15 @@
 
 namespace argos { 
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeBehaviourAntiPhotoaxis::AutoMoDeBehaviourAntiPhotoaxis() {
 		m_strLabel = "Anti-Photoaxis";
 	}
+	
+	/****************************************/
+	/****************************************/
 		
 	AutoMoDeBehaviourAntiPhotoaxis::AutoMoDeBehaviourAntiPhotoaxis(AutoMoDeBehaviourAntiPhotoaxis* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
@@ -21,21 +27,41 @@ namespace argos {
 		m_mapParameters = pc_behaviour->GetParameters();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeBehaviourAntiPhotoaxis::~AutoMoDeBehaviourAntiPhotoaxis() {}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourAntiPhotoaxis* AutoMoDeBehaviourAntiPhotoaxis::Clone() {
 		return new AutoMoDeBehaviourAntiPhotoaxis(*this);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourAntiPhotoaxis::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
 		//TODO
 		m_bLocked = false;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeBehaviourAntiPhotoaxis::Init() {}
+	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourAntiPhotoaxis::Reset() {
-		//TODO
 		m_bOperational = false;
+		ResumeStep();
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourAntiPhotoaxis::ResumeStep() {
 		//TODO

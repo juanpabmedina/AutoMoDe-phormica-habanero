@@ -8,9 +8,15 @@
 
 namespace argos { 
 
+	/****************************************/
+	/****************************************/
+
 	AutoMoDeBehaviourStop::AutoMoDeBehaviourStop() {
 		m_strLabel = "Stop";
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourStop::AutoMoDeBehaviourStop(AutoMoDeBehaviourStop* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
@@ -21,24 +27,43 @@ namespace argos {
 		m_mapParameters = pc_behaviour->GetParameters();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeBehaviourStop::~AutoMoDeBehaviourStop() {}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourStop* AutoMoDeBehaviourStop::Clone() {
 		return new AutoMoDeBehaviourStop(*this);
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourStop::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
-		//TODO
+		pc_robot_dao->SetWheelsVelocity(0,0);
 		m_bLocked = false;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeBehaviourStop::Init() {}
+	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourStop::Reset() {
-		//TODO
 		m_bOperational = false;
+		ResumeStep();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourStop::ResumeStep() {
-		//TODO
 		m_bOperational = true;
 	}
 }

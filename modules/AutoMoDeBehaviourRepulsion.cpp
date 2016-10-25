@@ -7,10 +7,16 @@
 
 
 namespace argos { 
+	
+	/****************************************/
+	/****************************************/
 
 	AutoMoDeBehaviourRepulsion::AutoMoDeBehaviourRepulsion() {
 		m_strLabel = "Repulsion";
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourRepulsion::AutoMoDeBehaviourRepulsion(AutoMoDeBehaviourRepulsion* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
@@ -21,21 +27,42 @@ namespace argos {
 		m_mapParameters = pc_behaviour->GetParameters();
 	}
 	
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeBehaviourRepulsion::~AutoMoDeBehaviourRepulsion() {}
+	
+	/****************************************/
+	/****************************************/
 	
 	AutoMoDeBehaviourRepulsion* AutoMoDeBehaviourRepulsion::Clone() {
 		return new AutoMoDeBehaviourRepulsion(*this);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourRepulsion::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
 		//TODO
 		m_bLocked = false;
 	}
 	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeBehaviourRepulsion::Init() {}
+	
+	/****************************************/
+	/****************************************/
+	
 	void AutoMoDeBehaviourRepulsion::Reset() {
 		//TODO
 		m_bOperational = false;
+		ResumeStep();
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeBehaviourRepulsion::ResumeStep() {
 		//TODO
