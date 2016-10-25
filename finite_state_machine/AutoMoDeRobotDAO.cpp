@@ -79,29 +79,15 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 	
-	std::vector<Real> AutoMoDeRobotDAO::GetRangesNeighbors() {
-		return m_vecRangesNeighbors;
+	CCI_EPuckRangeAndBearingSensor::TPackets AutoMoDeRobotDAO::GetRangeAndBearingMessages() {
+		return m_sRangeAndBearingMessages;
 	}
 	
 	/****************************************/
 	/****************************************/
 	
-	void AutoMoDeRobotDAO::SetRangesNeighbors(std::vector<Real> vec_ranges_neighbors){
-		m_vecRangesNeighbors = vec_ranges_neighbors;
-	}
-	
-	/****************************************/
-	/****************************************/
-	
-	std::vector<Real> AutoMoDeRobotDAO::GetBearingsNeighbors() {
-		return m_vecBearingsNeighbors;
-	}
-	
-	/****************************************/
-	/****************************************/
-	
-	void AutoMoDeRobotDAO::SetBearingsNeighbors(std::vector<Real> vec_bearings_neighbors) {
-		m_vecBearingsNeighbors = vec_bearings_neighbors;
+	void AutoMoDeRobotDAO::SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets s_packets) {
+		m_sRangeAndBearingMessages = s_packets;
 	}
 			
 	/****************************************/

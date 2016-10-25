@@ -49,11 +49,8 @@ namespace argos {
 			UInt8 GetNumberNeighbors();
 			void SetNumberNeighbors(UInt8 un_number_neighbors);
 			
-			std::vector<Real> GetRangesNeighbors();
-			void SetRangesNeighbors(std::vector<Real> vec_ranges_neighbors);
-			
-			std::vector<Real> GetBearingsNeighbors();
-			void SetBearingsNeighbors(std::vector<Real> vec_bearings_neighbors);
+			CCI_EPuckRangeAndBearingSensor::TPackets GetRangeAndBearingMessages();
+			void SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets);
 			
 			void SetWheelsVelocity(Real un_left_velocity, Real un_right_velocity);
 			Real GetRightWheelVelocity();
@@ -70,8 +67,7 @@ namespace argos {
 			CCI_EPuckGroundSensor::SReadings m_sGroundInput;
 			
 			UInt8 m_unNumberNeighbors;
-			std::vector<Real> m_vecRangesNeighbors;
-			std::vector<Real> m_vecBearingsNeighbors;
+			CCI_EPuckRangeAndBearingSensor::TPackets m_sRangeAndBearingMessages;
 			
 			Real m_fLeftWheelVelocity;
 			Real m_fRightWheelVelocity;
