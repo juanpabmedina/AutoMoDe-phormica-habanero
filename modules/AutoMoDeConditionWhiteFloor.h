@@ -2,7 +2,7 @@
  * File: AutoMoDeConditionWhiteFloor.h
  *
  */
- 
+
 #ifndef AUTOMODE_CONDITION_WHITE_FLOOR_H
 #define AUTOMODE_CONDITION_WHITE_FLOOR_H
 
@@ -10,14 +10,14 @@
 
 namespace argos {
 	class AutoMoDeConditionWhiteFloor: public AutoMoDeCondition {
-		public: 
+		public:
 			AutoMoDeConditionWhiteFloor();
 			virtual ~AutoMoDeConditionWhiteFloor();
-						
+
 			AutoMoDeConditionWhiteFloor(AutoMoDeConditionWhiteFloor* pc_condition);
 			virtual AutoMoDeConditionWhiteFloor* Clone();
-			
-			virtual bool Verify();
+
+			virtual bool Verify(AutoMoDeRobotDAO* pc_robot_dao);
 			virtual void Reset();
 	};
 }

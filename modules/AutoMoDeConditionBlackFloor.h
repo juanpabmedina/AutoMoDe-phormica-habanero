@@ -2,7 +2,7 @@
  * File: AutoMoDeConditionBlackFloor.h
  *
  */
- 
+
 #ifndef AUTOMODE_CONDITION_BLACK_FLOOR_H
 #define AUTOMODE_CONDITION_BLACK_FLOOR_H
 
@@ -10,15 +10,18 @@
 
 namespace argos {
 	class AutoMoDeConditionBlackFloor: public AutoMoDeCondition {
-		public: 
+		public:
 			AutoMoDeConditionBlackFloor();
 			virtual ~AutoMoDeConditionBlackFloor();
-			
+
 			AutoMoDeConditionBlackFloor(AutoMoDeConditionBlackFloor* pc_condition);
 			virtual AutoMoDeConditionBlackFloor* Clone();
-			
-			virtual bool Verify();
+
+			virtual bool Verify(AutoMoDeRobotDAO* pc_robot_dao);
 			virtual void Reset();
+
+		private:
+			Real m_fGroundThreshold;
 	};
 }
 

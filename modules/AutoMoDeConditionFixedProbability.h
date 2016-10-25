@@ -2,7 +2,7 @@
  * File: AutoMoDeConditionFixedProbability.h
  *
  */
- 
+
 #ifndef AUTOMODE_CONDITION_FIXED_PROBABILITY_H
 #define AUTOMODE_CONDITION_FIXED_PROBABILITY_H
 
@@ -10,14 +10,14 @@
 
 namespace argos {
 	class AutoMoDeConditionFixedProbability: public AutoMoDeCondition {
-		public: 
+		public:
 			AutoMoDeConditionFixedProbability();
 			virtual ~AutoMoDeConditionFixedProbability();
-			
+
 			AutoMoDeConditionFixedProbability(AutoMoDeConditionFixedProbability* pc_condition);
 			virtual AutoMoDeConditionFixedProbability* Clone();
-			
-			virtual bool Verify();
+
+			virtual bool Verify(AutoMoDeRobotDAO* pc_robot_dao);
 			virtual void Reset();
 	};
 }

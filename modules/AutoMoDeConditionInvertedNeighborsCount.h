@@ -2,7 +2,7 @@
  * File: AutoMoDeConditionInvertedNeighborsCount.h
  *
  */
- 
+
 #ifndef AUTOMODE_CONDITION_INVERTED_NEIGHBORS_COUNT_H
 #define AUTOMODE_CONDITION_INVERTED_NEIGHBORS_COUNT_H
 
@@ -10,14 +10,14 @@
 
 namespace argos {
 	class AutoMoDeConditionInvertedNeighborsCount: public AutoMoDeCondition {
-		public: 
+		public:
 			AutoMoDeConditionInvertedNeighborsCount();
 			virtual ~AutoMoDeConditionInvertedNeighborsCount();
-						
+
 			AutoMoDeConditionInvertedNeighborsCount(AutoMoDeConditionInvertedNeighborsCount* pc_condition);
 			virtual AutoMoDeConditionInvertedNeighborsCount* Clone();
-			
-			virtual bool Verify();
+
+			virtual bool Verify(AutoMoDeRobotDAO* pc_robot_dao);
 			virtual void Reset();
 	};
 }
