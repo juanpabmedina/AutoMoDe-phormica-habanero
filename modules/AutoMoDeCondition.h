@@ -22,7 +22,7 @@ namespace argos {
 			std::string m_strLabel;
 			UInt8 m_unIndex;
 			UInt8 m_unIdentifier;
-			AutoMoDeRobotDAO* m_pcRobotDao;
+			AutoMoDeRobotDAO* m_pcRobotDAO;
 
 		public:
 			virtual bool Verify() = 0;
@@ -48,7 +48,7 @@ namespace argos {
 			std::map<std::string, Real> GetParameters();
 
 			const std::string GetLabel();
-			void SetRobotDao(AutoMoDeRobotDAO* pc_robot_dao);
+			void SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao);
 	};
 }
 

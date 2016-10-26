@@ -43,7 +43,7 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourStop::ControlStep() {
-		m_pcRobotDao->SetWheelsVelocity(0,0);
+		m_pcRobotDAO->SetWheelsVelocity(0,0);
 		m_bLocked = false;
 	}
 

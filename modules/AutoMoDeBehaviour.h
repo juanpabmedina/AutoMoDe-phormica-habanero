@@ -38,7 +38,7 @@ namespace argos {
 			std::string m_strLabel;
 			UInt8 m_unIndex;
 			UInt8 m_unIdentifier;
-            AutoMoDeRobotDAO* m_pcRobotDao;
+            AutoMoDeRobotDAO* m_pcRobotDAO;
 
 		public:
 			/**
@@ -86,6 +86,8 @@ namespace argos {
 			CVector2 ComputeVectorToFollow(CVector2 c_sum);
 			CVector2 SumProximityReadings(CCI_EPuckProximitySensor::TReadings s_prox);
 			CVector2 ParseLight(CVector2 c_light);
+
+			void SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao);
 	};
 }
 

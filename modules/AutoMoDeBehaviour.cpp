@@ -114,8 +114,8 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void SetRobotDao(AutoMoDeRobotDAO* pc_robot_dao) {
-		m_pcRobotDao = pc_robot_dao;
+	void AutoMoDeBehaviour::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao) {
+		m_pcRobotDAO = pc_robot_dao;
 	}
 
 }

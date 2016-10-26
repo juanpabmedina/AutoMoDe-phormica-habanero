@@ -66,7 +66,7 @@ namespace argos {
 		}
 
 		if (m_pcCurrentBehaviour->IsOperational()) {
-			m_pcCurrentBehaviour->ControlStep(m_pcRobotDAO);
+			m_pcCurrentBehaviour->ControlStep();
 		} else {
 			m_pcCurrentBehaviour->ResumeStep();
 		}
@@ -86,7 +86,7 @@ namespace argos {
 					/*
 					 * 3. Update current behaviour
 					 */
-					if ((*it)->Verify(m_pcRobotDAO)) {
+					if ((*it)->Verify()) {
 						m_mapConditionsChecked.insert(std::pair<AutoMoDeCondition*, bool>((*it), true));
 						m_unCurrentBehaviourIndex = (*it)->GetExtremity();
 						m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
@@ -153,14 +153,14 @@ namespace argos {
 
 		return vecResult;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeFiniteStateMachine::CheckConditions() {
 		// TODO
 	}
-	
+
 
 	/****************************************/
 	/****************************************/
@@ -301,25 +301,25 @@ namespace argos {
 	AutoMoDeFsmHistory* AutoMoDeFiniteStateMachine::GetHistory() {
 		return m_pcHistory;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeFiniteStateMachine::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_DAO) {
 		m_pcRobotDAO = pc_robot_DAO;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeFiniteStateMachine::ShareRobotDAO() {
 		std::vector<AutoMoDeCondition*>::iterator itC;
 		std::vector<AutoMoDeBehaviour*>::iterator itB;
 		for (itC = m_vecConditions.begin(); itC != m_vecConditions.end(); ++itC) {
-			(*itC)->SetRobotDAO(m_pcRobotDAO));
+			(*itC)->SetRobotDAO(m_pcRobotDAO);
 		}
 		for (itB = m_vecBehaviours.begin(); itB != m_vecBehaviours.end(); ++itB) {
-			(*itB)->SetRobotDAO(m_pcRobotDAO));
+			(*itB)->SetRobotDAO(m_pcRobotDAO);
 		}
 	}
 }

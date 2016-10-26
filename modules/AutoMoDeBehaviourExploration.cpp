@@ -60,11 +60,11 @@ namespace argos {
 	void AutoMoDeBehaviourExploration::ControlStep() {
 		switch (m_eExplorationState) {
 			case RANDOM_WALK: {
-				m_pcRobotDao->SetWheelsVelocity(m_fWheelSpeed, m_fWheelSpeed);
-				if (IsObstacleInFront(m_pcRobotDao->GetProximityInput())) {
+				m_pcRobotDAO->SetWheelsVelocity(m_fWheelSpeed, m_fWheelSpeed);
+				if (IsObstacleInFront(m_pcRobotDAO->GetProximityInput())) {
 					m_eExplorationState = OBSTACLE_AVOIDANCE;
-					m_unTurnSteps = (m_pcRobotDao->GetRandomNumberGenerator())->Uniform(m_cRandomStepsRange);
-					CRadians cAngle = SumProximityReadings(m_pcRobotDao->GetProximityInput()).Angle().SignedNormalize();
+					m_unTurnSteps = (m_pcRobotDAO->GetRandomNumberGenerator())->Uniform(m_cRandomStepsRange);
+					CRadians cAngle = SumProximityReadings(m_pcRobotDAO->GetProximityInput()).Angle().SignedNormalize();
 					if (cAngle.GetValue() < 0) {
 						m_eTurnDirection = RIGHT;
 					} else {
@@ -77,11 +77,11 @@ namespace argos {
 				m_unTurnSteps -= 1;
 				switch (m_eTurnDirection) {
 					case LEFT: {
-						m_pcRobotDao->SetWheelsVelocity(m_fWheelSpeed, -m_fWheelSpeed);
+						m_pcRobotDAO->SetWheelsVelocity(m_fWheelSpeed, -m_fWheelSpeed);
 						break;
 					}
 					case RIGHT: {
-						m_pcRobotDao->SetWheelsVelocity(-m_fWheelSpeed, m_fWheelSpeed);
+						m_pcRobotDAO->SetWheelsVelocity(-m_fWheelSpeed, m_fWheelSpeed);
 						break;
 					}
 				}
