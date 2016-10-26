@@ -24,7 +24,7 @@
 	}
 
     void AutoMoDeConditionBlackFloor::Init() {
-        m_fGroundThreshold = 0; //TODO : definir le paramètre
+        m_fGroundThreshold = 0.1; //TODO : definir le paramètre
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
 			m_fProbability = it->second;

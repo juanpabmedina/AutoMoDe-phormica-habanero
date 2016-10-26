@@ -1,15 +1,15 @@
 /*
  * File: AutoMoDeController.cpp
- * 
+ *
  */
 
 #include "AutoMoDeController.h"
 
 namespace argos {
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeController::AutoMoDeController() {
 		m_pcRobotState = new AutoMoDeRobotDAO();
 		m_unTimeStep = 0;
@@ -17,17 +17,17 @@ namespace argos {
 		m_bMaintainHistory = false;
 		m_bPrintReadableFsm = false;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeController::~AutoMoDeController() {
-		
+
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeController::Init(TConfigurationNode& t_node) {
 		// Parsing parameters
 		try {
@@ -37,10 +37,10 @@ namespace argos {
 		} catch (CARGoSException& ex) {
 			THROW_ARGOSEXCEPTION_NESTED("Error parsing <params>", ex);
 		}
-	
+
 		m_unRobotID = atoi(GetId().substr(5, 6).c_str());
 		m_pcRobotState->SetRobotIdentifier(m_unRobotID);
-		
+
 		/*
 		 * If a FSM configuration is given as parameter of the experiment file, create a FSM from it
 		 */
@@ -55,33 +55,33 @@ namespace argos {
 			if (m_bPrintReadableFsm) {
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;
 			}
-		} 
-		
+		}
+
 		/*
-		 *  Initializing sensors and actuators 
+		 *  Initializing sensors and actuators
 		 */
 		try{
 			m_pcProximitySensor = GetSensor<CCI_EPuckProximitySensor>("epuck_proximity");
 			m_pcLightSensor = GetSensor<CCI_EPuckLightSensor>("epuck_light");
 			m_pcGroundSensor = GetSensor<CCI_EPuckGroundSensor>("epuck_ground");
-			m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
-			m_pcCameraSensor = GetSensor<CCI_EPuckOmnidirectionalCameraSensor>("epuck_omnidirectional_camera");
+			// m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
+			// m_pcCameraSensor = GetSensor<CCI_EPuckOmnidirectionalCameraSensor>("epuck_omnidirectional_camera");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing a Sensor!\n";
 		}
-	
+
 		try{
 			m_pcWheelsActuator = GetActuator<CCI_EPuckWheelsActuator>("epuck_wheels");
-			m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
-			m_pcLEDsActuator = GetActuator<CCI_EPuckRGBLEDsActuator>("epuck_rgb_leds");
+			// m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
+			// m_pcLEDsActuator = GetActuator<CCI_EPuckRGBLEDsActuator>("epuck_rgb_leds");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
 		}
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeController::ControlStep() {
 		/*
 		 * 1. Update RobotDAO
@@ -105,46 +105,46 @@ namespace argos {
 			const CCI_EPuckProximitySensor::TReadings& readings = m_pcProximitySensor->GetReadings();
 			m_pcRobotState->SetProximityInput(readings);
 		}
-	 
-		
+
+
 		/*
 		 * 2. Execute step of FSM
-		 */ 
+		 */
 		m_pcFiniteStateMachine->ControlStep();
-		
-		
+
+
 		/*
 		 * 3. Update Actuators
-		 */ 
+		 */
 		if (m_pcWheelsActuator != NULL) {
 			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetRightWheelVelocity(), m_pcRobotState->GetLeftWheelVelocity());
 		}
 		m_unTimeStep++;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeController::Destroy() {
-		
+
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeController::Reset() {
 		m_pcFiniteStateMachine->Reset();
 		m_pcRobotState->Reset();
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeController::SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_finite_state_machine) {
 		m_pcFiniteStateMachine = pc_finite_state_machine;
 		m_pcFiniteStateMachine->SetRobotDAO(m_pcRobotState);
 		m_pcFiniteStateMachine->Init();
 	}
-	
+
 	REGISTER_CONTROLLER(AutoMoDeController, "automode_controller");
 }
