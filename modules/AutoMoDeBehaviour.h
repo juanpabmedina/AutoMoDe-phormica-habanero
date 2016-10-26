@@ -6,7 +6,6 @@
 #ifndef AUTOMODEBEHAVIOUR_H
 #define AUTOMODEBEHAVIOUR_H
 
-#include <argos3/core/utility/math/rng.h> 
 #include <argos3/core/utility/math/vector2.h>
 #include <argos3/core/utility/logging/argos_log.h>
 
@@ -39,7 +38,6 @@ namespace argos {
 			std::string m_strLabel;
 			UInt8 m_unIndex;
 			UInt8 m_unIdentifier;
-			CRandom::CRNG* m_pcRng;
 		
 		public:
 			/**

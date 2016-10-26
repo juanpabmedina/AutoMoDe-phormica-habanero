@@ -48,7 +48,6 @@ namespace argos {
 		m_unTurnSteps = 0;
 		m_eExplorationState = RANDOM_WALK;
 		m_fWheelSpeed = 10;
-		m_pcRng = CRandom::CreateRNG("argos");
 		m_fProximityThreshold = 0.1;
 		m_bLocked = false;
 		//TODO: Initialize parameters from m_mapParameters
@@ -64,7 +63,7 @@ namespace argos {
 				pc_robot_dao->SetWheelsVelocity(m_fWheelSpeed, m_fWheelSpeed);
 				if (IsObstacleInFront(pc_robot_dao->GetProximityInput())) {
 					m_eExplorationState = OBSTACLE_AVOIDANCE;
-					m_unTurnSteps = m_pcRng->Uniform(m_cRandomStepsRange);
+					m_unTurnSteps = (pc_robot_dao->GetRandomNumberGenerator())->Uniform(m_cRandomStepsRange);
 					CRadians cAngle = SumProximityReadings(pc_robot_dao->GetProximityInput()).Angle().SignedNormalize();
 					if (cAngle.GetValue() < 0) {
 						m_eTurnDirection = RIGHT;

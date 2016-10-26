@@ -21,6 +21,7 @@
 #define AUTOMODE_ROBOT_DAO_H
 
 #include <vector>
+#include <argos3/core/utility/math/rng.h> 
 #include <argos3/core/utility/logging/argos_log.h> 
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_wheels_actuator.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_sensor.h>
@@ -61,6 +62,8 @@ namespace argos {
 			
 			void Reset();
 			
+			CRandom::CRNG* GetRandomNumberGenerator();
+			
 		private:
 			CCI_EPuckProximitySensor::TReadings m_sProximityInput;
 			CCI_EPuckLightSensor::TReadings m_sLightInput;
@@ -73,6 +76,8 @@ namespace argos {
 			Real m_fRightWheelVelocity;
 			
 			UInt32 m_unRobotIdentifier;
+			
+			CRandom::CRNG* m_pcRng;
 	};
 }
 

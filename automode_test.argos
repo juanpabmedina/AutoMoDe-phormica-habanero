@@ -19,7 +19,7 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="libautomode.so">
+                        library="/home/aligot/Desktop/E-puck/argos3-aligot/build/controllers/argos3-AutoMoDe/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>
