@@ -13,7 +13,7 @@
   <!-- ****************** -->
   <!--loop_functions label="rab_selective_test" output="output.txt" /-->
 
-      <loop_functions library="/home/ken/depots/ken-epuck-argos3/build/argos3-AutoMoDe/libblackspot_loopfunc.so"
+      <loop_functions library="/home/aligot/Desktop/E-puck/argos3-aligot/build/controllers/argos3-AutoMoDe/libblackspot_loopfunc.so"
        label="blackspot_loop_functions">
       </loop_functions>
   <!-- *************** -->
@@ -22,18 +22,18 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="libautomode.so">
+                        library="/home/aligot/Desktop/E-puck/argos3-aligot/build/controllers/argos3-AutoMoDe/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default"/>
-        <!-- <epuck_rgb_leds implementation="default" medium="leds"/> -->
-        <!-- <epuck_range_and_bearing implementation="medium" show_rays="false" medium="rab" data_size="4"/> -->
+        <epuck_rgb_leds implementation="default" medium="leds"/> 
+        <epuck_range_and_bearing implementation="medium" show_rays="false" medium="rab" data_size="4"/> 
       </actuators>
       <sensors>
 		<epuck_proximity implementation="default" show_rays="false"/>
-        <!-- <epuck_range_and_bearing implementation="medium" medium="rab" show_rays="true" data_size="4"/> -->
+        <epuck_range_and_bearing implementation="medium" medium="rab" show_rays="true" data_size="4"/> 
 		<epuck_light implementation="default" show_rays="false"/>
 		<epuck_ground implementation="rot_z_only" />
-		<!-- <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/> -->
+		 <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/> 
       </sensors>
       <params readable='true' history='true' fsm-config="--nstates 2 --s0 0 --rwm0 50 --n0 1 --n0x0 1 --c0x0 0 --p0x0 0.50 --s1 1 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.05"/>
     </automode_controller>

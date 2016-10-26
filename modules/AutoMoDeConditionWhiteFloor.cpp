@@ -14,7 +14,14 @@
 	AutoMoDeConditionWhiteFloor::~AutoMoDeConditionWhiteFloor() {}
 
 	bool AutoMoDeConditionWhiteFloor::Verify() {
-		return true;
+		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
+
+		if (readings.Left <= m_fGroundThreshold || readings.Center <= m_fGroundThreshold || readings.Right <= m_fGroundThreshold) {
+            return EvaluateBernoulliProbability(m_fProbability);
+        }
+        else {
+            return false;
+        }
 	}
 
 	AutoMoDeConditionWhiteFloor::AutoMoDeConditionWhiteFloor(AutoMoDeConditionWhiteFloor* pc_condition) {
@@ -31,6 +38,7 @@
 	}
 	
 	void AutoMoDeConditionWhiteFloor::Init() {
+		m_fGroundThreshold = 0.95;
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
 			m_fProbability = it->second;
@@ -41,7 +49,7 @@
 	}
 
 	void AutoMoDeConditionWhiteFloor::Reset() {
-
+		
 	}
 
  }

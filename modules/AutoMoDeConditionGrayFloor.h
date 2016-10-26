@@ -22,7 +22,7 @@ namespace argos {
 			virtual void Init();
 			
 		private:
-			Real m_fGroundThreshold;
+			CRange<Real> m_fGroundThresholdRange;
 			Real m_fProbability;
 	};
 }

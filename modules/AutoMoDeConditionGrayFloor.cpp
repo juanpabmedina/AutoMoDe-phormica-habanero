@@ -27,10 +27,19 @@
 	}
 
 	bool AutoMoDeConditionGrayFloor::Verify() {
-		return true;
+		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
+		
+		if (m_fGroundThresholdRange.WithinMinBoundExcludedMaxBoundExcluded(readings.Left) || m_fGroundThresholdRange.WithinMinBoundExcludedMaxBoundExcluded(readings.Center) || m_fGroundThresholdRange.WithinMinBoundExcludedMaxBoundExcluded(readings.Right)) {
+            return EvaluateBernoulliProbability(m_fProbability);
+        }
+        else {
+            return false;
+        }
 	}
 	
 	void AutoMoDeConditionGrayFloor::Init() {
+		m_fGroundThresholdRange.SetMin(0.1);
+		m_fGroundThresholdRange.SetMax(0.95);
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
 			m_fProbability = it->second;
