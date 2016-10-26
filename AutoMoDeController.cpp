@@ -110,7 +110,7 @@ namespace argos {
 		/*
 		 * 2. Execute step of FSM
 		 */ 
-		m_pcFiniteStateMachine->ControlStep(m_pcRobotState);
+		m_pcFiniteStateMachine->ControlStep();
 		
 		
 		/*
@@ -142,6 +142,7 @@ namespace argos {
 	
 	void AutoMoDeController::SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_finite_state_machine) {
 		m_pcFiniteStateMachine = pc_finite_state_machine;
+		m_pcFiniteStateMachine->SetRobotDAO(m_pcRobotState);
 		m_pcFiniteStateMachine->Init();
 	}
 	

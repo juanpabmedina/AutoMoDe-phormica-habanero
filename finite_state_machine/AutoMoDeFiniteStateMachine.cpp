@@ -49,7 +49,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeFiniteStateMachine::ControlStep(AutoMoDeRobotDAO* pc_robot_dao){
+	void AutoMoDeFiniteStateMachine::ControlStep(){
 		/*
 		 * 1. Execute current behaviour
 		 * 2. Check for conditions if current behaviour allows it
@@ -66,7 +66,7 @@ namespace argos {
 		}
 
 		if (m_pcCurrentBehaviour->IsOperational()) {
-			m_pcCurrentBehaviour->ControlStep(pc_robot_dao);
+			m_pcCurrentBehaviour->ControlStep(m_pcRobotDAO);
 		} else {
 			m_pcCurrentBehaviour->ResumeStep();
 		}
@@ -81,12 +81,12 @@ namespace argos {
 				m_bEnteringNewState = false;
 			}
 			else {
-				std::random_shuffle(m_vecCurrentConditions.begin(), m_vecCurrentConditions.begin());
+				std::random_shuffle(m_vecCurrentConditions.begin(), m_vecCurrentConditions.begin()); // todo: check functionality
 				for (std::vector<AutoMoDeCondition*>::iterator it = m_vecCurrentConditions.begin(); it != m_vecCurrentConditions.end(); it++) {
 					/*
 					 * 3. Update current behaviour
 					 */
-					if ((*it)->Verify(pc_robot_dao)) {
+					if ((*it)->Verify(m_pcRobotDAO)) {
 						m_mapConditionsChecked.insert(std::pair<AutoMoDeCondition*, bool>((*it), true));
 						m_unCurrentBehaviourIndex = (*it)->GetExtremity();
 						m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
@@ -116,6 +116,7 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeFiniteStateMachine::Init() {
+		ShareRobotDAO();
 		m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
 	}
 
@@ -123,7 +124,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeFiniteStateMachine::Reset() {
-		LOG << "FSM Reset" << std::endl;
 		m_unCurrentBehaviourIndex = 0;
 		m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
 		std::vector<AutoMoDeCondition*>::iterator itC;
@@ -153,6 +153,14 @@ namespace argos {
 
 		return vecResult;
 	}
+	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeFiniteStateMachine::CheckConditions() {
+		// TODO
+	}
+	
 
 	/****************************************/
 	/****************************************/
@@ -292,5 +300,26 @@ namespace argos {
 
 	AutoMoDeFsmHistory* AutoMoDeFiniteStateMachine::GetHistory() {
 		return m_pcHistory;
+	}
+	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeFiniteStateMachine::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_DAO) {
+		m_pcRobotDAO = pc_robot_DAO;
+	}
+	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeFiniteStateMachine::ShareRobotDAO() {
+		std::vector<AutoMoDeCondition*>::iterator itC;
+		std::vector<AutoMoDeBehaviour*>::iterator itB;
+		for (itC = m_vecConditions.begin(); itC != m_vecConditions.end(); ++itC) {
+			(*itC)->SetRobotDAO(m_pcRobotDAO));
+		}
+		for (itB = m_vecBehaviours.begin(); itB != m_vecBehaviours.end(); ++itB) {
+			(*itB)->SetRobotDAO(m_pcRobotDAO));
+		}
 	}
 }
