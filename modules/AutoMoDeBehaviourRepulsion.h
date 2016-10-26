@@ -2,7 +2,7 @@
  * File: AutoMoDeBehaviourRepulsion.h
  *
  */
- 
+
 #ifndef AUTOMODE_BEHAVIOUR_REPULSION_H
 #define AUTOMODE_BEHAVIOUR_REPULSION_H
 
@@ -10,16 +10,16 @@
 
 namespace argos {
 	class AutoMoDeBehaviourRepulsion: public AutoMoDeBehaviour {
-		public: 
+		public:
 			AutoMoDeBehaviourRepulsion();
 			AutoMoDeBehaviourRepulsion(AutoMoDeBehaviourRepulsion* pc_behaviour);
 			virtual ~AutoMoDeBehaviourRepulsion();
-			
-			virtual void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);
+
+			virtual void ControlStep();
 			virtual void Reset();
 			virtual void ResumeStep();
 			virtual void Init();
-			
+
 			virtual AutoMoDeBehaviourRepulsion* Clone();
 	};
 }

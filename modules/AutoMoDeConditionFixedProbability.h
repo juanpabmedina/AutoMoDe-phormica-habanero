@@ -17,7 +17,7 @@ namespace argos {
 			AutoMoDeConditionFixedProbability(AutoMoDeConditionFixedProbability* pc_condition);
 			virtual AutoMoDeConditionFixedProbability* Clone();
 
-			virtual bool Verify(AutoMoDeRobotDAO* pc_robot_dao);
+			virtual bool Verify();
 			virtual void Reset();
 	};
 }

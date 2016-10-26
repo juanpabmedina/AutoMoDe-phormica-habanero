@@ -13,7 +13,7 @@
 
 	AutoMoDeConditionWhiteFloor::~AutoMoDeConditionWhiteFloor() {}
 
-	bool AutoMoDeConditionWhiteFloor::Verify(AutoMoDeRobotDAO* pc_robot_dao) {
+	bool AutoMoDeConditionWhiteFloor::Verify() {
 		return true;
 	}
 

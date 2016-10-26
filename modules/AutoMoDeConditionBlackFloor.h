@@ -17,7 +17,7 @@ namespace argos {
 			AutoMoDeConditionBlackFloor(AutoMoDeConditionBlackFloor* pc_condition);
 			virtual AutoMoDeConditionBlackFloor* Clone();
 
-			virtual bool Verify(AutoMoDeRobotDAO* pc_robot_dao);
+			virtual bool Verify();
 			virtual void Reset();
 
 		private:

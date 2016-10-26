@@ -17,7 +17,7 @@ namespace argos {
 			AutoMoDeConditionInvertedNeighborsCount(AutoMoDeConditionInvertedNeighborsCount* pc_condition);
 			virtual AutoMoDeConditionInvertedNeighborsCount* Clone();
 
-			virtual bool Verify(AutoMoDeRobotDAO* pc_robot_dao);
+			virtual bool Verify();
 			virtual void Reset();
 	};
 }

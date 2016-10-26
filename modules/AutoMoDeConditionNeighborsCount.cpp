@@ -26,7 +26,7 @@
 		return new AutoMoDeConditionNeighborsCount(*this);
 	}
 
-	bool AutoMoDeConditionNeighborsCount::Verify(AutoMoDeRobotDAO* pc_robot_dao) {
+	bool AutoMoDeConditionNeighborsCount::Verify() {
 		return true;
 	}
 

@@ -6,7 +6,7 @@
 #include "AutoMoDeBehaviourStop.h"
 
 
-namespace argos { 
+namespace argos {
 
 	/****************************************/
 	/****************************************/
@@ -14,10 +14,10 @@ namespace argos {
 	AutoMoDeBehaviourStop::AutoMoDeBehaviourStop() {
 		m_strLabel = "Stop";
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeBehaviourStop::AutoMoDeBehaviourStop(AutoMoDeBehaviourStop* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
@@ -26,43 +26,43 @@ namespace argos {
 		m_unIdentifier = pc_behaviour->GetIdentifier();
 		m_mapParameters = pc_behaviour->GetParameters();
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeBehaviourStop::~AutoMoDeBehaviourStop() {}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeBehaviourStop* AutoMoDeBehaviourStop::Clone() {
 		return new AutoMoDeBehaviourStop(*this);
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
-	void AutoMoDeBehaviourStop::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
-		pc_robot_dao->SetWheelsVelocity(0,0);
+
+	void AutoMoDeBehaviourStop::ControlStep() {
+		m_pcRobotDao->SetWheelsVelocity(0,0);
 		m_bLocked = false;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeBehaviourStop::Init() {}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeBehaviourStop::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeBehaviourStop::ResumeStep() {
 		m_bOperational = true;
 	}

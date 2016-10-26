@@ -6,8 +6,8 @@
 #include "AutoMoDeBehaviourExploration.h"
 
 
-namespace argos { 
-	
+namespace argos {
+
 	/****************************************/
 	/****************************************/
 
@@ -15,10 +15,10 @@ namespace argos {
 		m_strLabel = "Exploration";
 		Init();
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeBehaviourExploration::AutoMoDeBehaviourExploration(AutoMoDeBehaviourExploration* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
@@ -28,22 +28,22 @@ namespace argos {
 		m_mapParameters = pc_behaviour->GetParameters();
 		Init();
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeBehaviourExploration::~AutoMoDeBehaviourExploration() {}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeBehaviourExploration* AutoMoDeBehaviourExploration::Clone() {
 		return new AutoMoDeBehaviourExploration(*this);
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeBehaviourExploration::Init() {
 		m_unTurnSteps = 0;
 		m_eExplorationState = RANDOM_WALK;
@@ -54,18 +54,18 @@ namespace argos {
 		//TODO: Initialize parameters from m_mapParameters
 		m_cRandomStepsRange.SetMax(20);
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
-	void AutoMoDeBehaviourExploration::ControlStep(AutoMoDeRobotDAO* pc_robot_dao) {
+
+	void AutoMoDeBehaviourExploration::ControlStep() {
 		switch (m_eExplorationState) {
 			case RANDOM_WALK: {
-				pc_robot_dao->SetWheelsVelocity(m_fWheelSpeed, m_fWheelSpeed);
-				if (IsObstacleInFront(pc_robot_dao->GetProximityInput())) {
+				m_pcRobotDao->SetWheelsVelocity(m_fWheelSpeed, m_fWheelSpeed);
+				if (IsObstacleInFront(m_pcRobotDao->GetProximityInput())) {
 					m_eExplorationState = OBSTACLE_AVOIDANCE;
 					m_unTurnSteps = m_pcRng->Uniform(m_cRandomStepsRange);
-					CRadians cAngle = SumProximityReadings(pc_robot_dao->GetProximityInput()).Angle().SignedNormalize();
+					CRadians cAngle = SumProximityReadings(m_pcRobotDao->GetProximityInput()).Angle().SignedNormalize();
 					if (cAngle.GetValue() < 0) {
 						m_eTurnDirection = RIGHT;
 					} else {
@@ -78,11 +78,11 @@ namespace argos {
 				m_unTurnSteps -= 1;
 				switch (m_eTurnDirection) {
 					case LEFT: {
-						pc_robot_dao->SetWheelsVelocity(m_fWheelSpeed, -m_fWheelSpeed);
+						m_pcRobotDao->SetWheelsVelocity(m_fWheelSpeed, -m_fWheelSpeed);
 						break;
 					}
 					case RIGHT: {
-						pc_robot_dao->SetWheelsVelocity(-m_fWheelSpeed, m_fWheelSpeed);
+						m_pcRobotDao->SetWheelsVelocity(-m_fWheelSpeed, m_fWheelSpeed);
 						break;
 					}
 				}
@@ -94,29 +94,29 @@ namespace argos {
 		}
 		m_bLocked = false;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeBehaviourExploration::Reset() {
 		m_bOperational = false;
 		Init();
 		ResumeStep();
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeBehaviourExploration::ResumeStep() {
 		m_bOperational = true;
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	bool AutoMoDeBehaviourExploration::IsObstacleInFront(CCI_EPuckProximitySensor::TReadings s_prox_input) {
-		if (s_prox_input[0].Value >= m_fProximityThreshold || 
-				s_prox_input[1].Value >= m_fProximityThreshold || 
+		if (s_prox_input[0].Value >= m_fProximityThreshold ||
+				s_prox_input[1].Value >= m_fProximityThreshold ||
 				s_prox_input[6].Value >= m_fProximityThreshold ||
 				s_prox_input[7].Value >= m_fProximityThreshold) {
 			return true;

@@ -27,8 +27,8 @@
 		return new AutoMoDeConditionBlackFloor(*this);
 	}
 
-	bool AutoMoDeConditionBlackFloor::Verify(AutoMoDeRobotDAO* pc_robot_dao) {
-        CCI_EPuckGroundSensor::SReadings readings = pc_robot_dao->GetGroundInput();
+	bool AutoMoDeConditionBlackFloor::Verify() {
+        CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDao->GetGroundInput();
 
        if (readings.Left <= m_fGroundThreshold || readings.Center <= m_fGroundThreshold || readings.Right <= m_fGroundThreshold) {
             return true;

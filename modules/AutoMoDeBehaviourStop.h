@@ -2,7 +2,7 @@
  * File: AutoMoDeBehaviourStop.h
  *
  */
- 
+
 #ifndef AUTOMODE_BEHAVIOUR_STOP_H
 #define AUTOMODE_BEHAVIOUR_STOP_H
 
@@ -10,17 +10,17 @@
 
 namespace argos {
 	class AutoMoDeBehaviourStop: public AutoMoDeBehaviour {
-		public: 
+		public:
 			AutoMoDeBehaviourStop();
 			AutoMoDeBehaviourStop(AutoMoDeBehaviourStop* pc_behaviour);
 			virtual ~AutoMoDeBehaviourStop();
-			
-			virtual void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);
+
+			virtual void ControlStep();
 			virtual void Reset();
 			virtual void ResumeStep();
 			virtual void Init();
-			
-			
+
+
 			virtual AutoMoDeBehaviourStop* Clone();
 	};
 }

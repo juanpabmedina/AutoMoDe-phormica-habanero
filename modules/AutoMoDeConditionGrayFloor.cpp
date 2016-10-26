@@ -26,7 +26,7 @@
 		return new AutoMoDeConditionGrayFloor(*this);
 	}
 
-	bool AutoMoDeConditionGrayFloor::Verify(AutoMoDeRobotDAO* pc_robot_dao) {
+	bool AutoMoDeConditionGrayFloor::Verify() {
 		return true;
 	}
 

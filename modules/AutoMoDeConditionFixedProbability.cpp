@@ -26,7 +26,7 @@
 		return new AutoMoDeConditionFixedProbability(*this);
 	}
 
-	bool AutoMoDeConditionFixedProbability::Verify(AutoMoDeRobotDAO* pc_robot_dao) {
+	bool AutoMoDeConditionFixedProbability::Verify() {
 		return true;
 	}
 

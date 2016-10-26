@@ -26,7 +26,7 @@
 		return new AutoMoDeConditionInvertedNeighborsCount(*this);
 	}
 
-	bool AutoMoDeConditionInvertedNeighborsCount::Verify(AutoMoDeRobotDAO* pc_robot_dao) {
+	bool AutoMoDeConditionInvertedNeighborsCount::Verify() {
 		return true;
 	}
 
