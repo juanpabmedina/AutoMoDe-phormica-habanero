@@ -12,6 +12,7 @@ namespace argos {
 	/****************************************/
 	
 	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
+		m_pcRng = CRandom::CreateRNG("argos");
 		Reset();
 	}
 	
@@ -132,5 +133,12 @@ namespace argos {
 	
 	UInt32 AutoMoDeRobotDAO::GetRobotIdentifier() {
 		return m_unRobotIdentifier;
+	}
+	
+	/****************************************/
+	/****************************************/
+	
+	CRandom::CRNG* AutoMoDeRobotDAO::GetRandomNumberGenerator() {
+		return m_pcRng;
 	}
 }

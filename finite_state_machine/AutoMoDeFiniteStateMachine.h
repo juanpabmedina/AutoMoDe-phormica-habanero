@@ -40,7 +40,7 @@ namespace argos {
 			void AddCondition(AutoMoDeCondition* pc_new_condition);
 			void AddBehaviour(AutoMoDeBehaviour* pc_new_behaviour);
 			
-			void ControlStep(AutoMoDeRobotDAO* pc_robot_dao);
+			void ControlStep();
 			void Init();
 			void Reset();
 			
@@ -64,13 +64,20 @@ namespace argos {
 			
 			AutoMoDeFsmHistory* GetHistory();
 			
+			void SetRobotDAO(AutoMoDeRobotDAO* m_pcRobotDAO);
+			
 		private:
-			void CheckConditions(AutoMoDeRobotDAO* pc_robot_state);  
+			void CheckConditions();  
 			std::vector<AutoMoDeCondition*> GetOutgoingConditions(); 
 			
 			std::string FillWithInitialState();
 			std::string FillWithNonInitialStates();
 			std::string FillWithConditions();
+		
+			/**
+			 * Pass the pointer to the RobotDAO object to all modules part of the FSM. 
+			 */
+			void ShareRobotDAO();
 		
 			std::vector<AutoMoDeBehaviour*> m_vecBehaviours;
 			std::vector<AutoMoDeCondition*> m_vecConditions;
@@ -86,6 +93,8 @@ namespace argos {
 			UInt32 m_unTimeStep;
 			
 			std::map<AutoMoDeCondition*, bool> m_mapConditionsChecked;
+			
+			AutoMoDeRobotDAO* m_pcRobotDAO;
 	};
 }
 
