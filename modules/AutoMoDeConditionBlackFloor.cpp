@@ -20,8 +20,12 @@
 		m_unFromBehaviourIndex = pc_condition->GetOrigin();
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
-        m_fGroundThreshold = 0; //TODO : definir le paramètre
+        Init();
 	}
+
+    void AutoMoDeConditionBlackFloor::Init() {
+        m_fGroundThreshold = 0; //TODO : definir le paramètre
+    }
 
 	AutoMoDeConditionBlackFloor* AutoMoDeConditionBlackFloor::Clone() {
 		return new AutoMoDeConditionBlackFloor(*this);

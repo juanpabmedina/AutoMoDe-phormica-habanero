@@ -28,6 +28,11 @@ namespace argos {
 			virtual bool Verify() = 0;
 			virtual void Reset() = 0;
 
+			/**
+			 * Initialize the condition.
+			 */
+			virtual void Init() = 0;
+
 			const std::string GetUrlDescription();
 
 			virtual AutoMoDeCondition* Clone() = 0;
