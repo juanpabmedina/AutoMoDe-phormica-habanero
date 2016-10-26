@@ -25,9 +25,13 @@
 	AutoMoDeConditionFixedProbability* AutoMoDeConditionFixedProbability::Clone() {
 		return new AutoMoDeConditionFixedProbability(*this);
 	}
+	
+	void AutoMoDeConditionFixedProbability::Init() {
+		m_fProbability = 0.5; //TODO init from m_mapParameters
+	}
 
 	bool AutoMoDeConditionFixedProbability::Verify() {
-		return true;
+		return EvaluateBernoulliProbability(m_fProbability);
 	}
 
 	void AutoMoDeConditionFixedProbability::Reset() {

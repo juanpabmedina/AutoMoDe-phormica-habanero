@@ -33,5 +33,9 @@
 	void AutoMoDeConditionNeighborsCount::Reset() {
 
 	}
+	
+	void AutoMoDeConditionNeighborsCount::Init() {
+
+	}
 
  }

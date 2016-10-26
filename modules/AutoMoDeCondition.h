@@ -54,6 +54,8 @@ namespace argos {
 
 			const std::string GetLabel();
 			void SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao);
+			
+			bool EvaluateBernoulliProbability(Real f_probability);
 	};
 }
 

@@ -29,6 +29,11 @@
 	bool AutoMoDeConditionGrayFloor::Verify() {
 		return true;
 	}
+	
+	void AutoMoDeConditionGrayFloor::Init() {
+		
+	}
+
 
 	void AutoMoDeConditionGrayFloor::Reset() {
 

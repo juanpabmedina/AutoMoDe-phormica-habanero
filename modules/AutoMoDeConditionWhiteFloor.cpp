@@ -29,6 +29,10 @@
 	AutoMoDeConditionWhiteFloor* AutoMoDeConditionWhiteFloor::Clone() {
 		return new AutoMoDeConditionWhiteFloor(*this);
 	}
+	
+	void AutoMoDeConditionWhiteFloor::Init() {
+
+	}
 
 	void AutoMoDeConditionWhiteFloor::Reset() {
 

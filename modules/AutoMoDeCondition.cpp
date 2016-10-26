@@ -113,5 +113,9 @@ namespace argos {
     void AutoMoDeCondition::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao) {
         m_pcRobotDAO = pc_robot_dao;
     }
+    
+    bool AutoMoDeCondition::EvaluateBernoulliProbability(Real f_probability) {
+		return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
+	}
 
 }
