@@ -21,6 +21,9 @@ namespace argos {
 			virtual void Init();
 
 			virtual AutoMoDeBehaviourRepulsion* Clone();
+			
+		private:
+			UInt8 m_unRepulsionParameter;
 	};
 }
 

@@ -23,6 +23,7 @@ namespace argos {
 
 		private:
 			Real m_fGroundThreshold;
+			Real m_fProbability;
 	};
 }
 

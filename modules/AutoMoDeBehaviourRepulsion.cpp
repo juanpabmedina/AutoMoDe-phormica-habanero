@@ -50,7 +50,13 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourRepulsion::Init() {}
+	void AutoMoDeBehaviourRepulsion::Init() {
+		if (m_mapParameters.find("rep") != m_mapParameters.end()) {
+			m_unRepulsionParameter = m_mapParameters.find("rep")->second;
+		} else {
+			THROW_ARGOSEXCEPTION("Missing Parameter: repulsion");
+		}
+	}
 
 	/****************************************/
 	/****************************************/

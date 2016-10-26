@@ -31,7 +31,11 @@
 	}
 	
 	void AutoMoDeConditionWhiteFloor::Init() {
-
+		if (m_mapParameters.find("p") != m_mapParameters.end()) {
+			m_fProbability = m_mapParameters.find("p")->second;
+		} else {
+			THROW_ARGOSEXCEPTION("Missing Parameter: white floor");
+		}
 	}
 
 	void AutoMoDeConditionWhiteFloor::Reset() {

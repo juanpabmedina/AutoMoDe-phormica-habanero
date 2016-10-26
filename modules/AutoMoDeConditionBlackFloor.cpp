@@ -25,7 +25,12 @@
 
     void AutoMoDeConditionBlackFloor::Init() {
         m_fGroundThreshold = 0; //TODO : definir le paramètre
-    }
+        if (m_mapParameters.find("p") != m_mapParameters.end()) {
+			m_fProbability = m_mapParameters.find("p")->second;
+		} else {
+			THROW_ARGOSEXCEPTION("Missing Parameter: black floor");
+		}
+     }
 
 	AutoMoDeConditionBlackFloor* AutoMoDeConditionBlackFloor::Clone() {
 		return new AutoMoDeConditionBlackFloor(*this);
@@ -35,7 +40,7 @@
         CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
 
        if (readings.Left <= m_fGroundThreshold || readings.Center <= m_fGroundThreshold || readings.Right <= m_fGroundThreshold) {
-            return true;
+            return EvaluateBernoulliProbability(m_fProbability);
         }
         else {
             return false;

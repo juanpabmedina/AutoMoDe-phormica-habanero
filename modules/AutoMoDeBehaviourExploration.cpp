@@ -50,8 +50,11 @@ namespace argos {
 		m_fWheelSpeed = 10;
 		m_fProximityThreshold = 0.1;
 		m_bLocked = false;
-		//TODO: Initialize parameters from m_mapParameters
-		m_cRandomStepsRange.SetMax(20);
+		if (m_mapParameters.find("rwm") != m_mapParameters.end()) {
+			m_cRandomStepsRange.SetMax(m_mapParameters.find("rwm")->second);
+		} else {
+			THROW_ARGOSEXCEPTION("Missing Parameter: exploration");
+		}
 	}
 
 	/****************************************/

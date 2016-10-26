@@ -27,7 +27,11 @@
 	}
 	
 	void AutoMoDeConditionFixedProbability::Init() {
-		m_fProbability = 0.5; //TODO init from m_mapParameters
+		if (m_mapParameters.find("p") != m_mapParameters.end()) {
+			m_fProbability = m_mapParameters.find("p")->second;
+		} else {
+			THROW_ARGOSEXCEPTION("Missing Parameter: fixed probability");
+		}
 	}
 
 	bool AutoMoDeConditionFixedProbability::Verify() {

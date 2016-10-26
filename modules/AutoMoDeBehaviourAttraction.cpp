@@ -50,7 +50,13 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::Init() {}
+	void AutoMoDeBehaviourAttraction::Init() {
+		if (m_mapParameters.find("att") != m_mapParameters.end()) {
+			m_unAttractionParameter = m_mapParameters.find("att")->second;
+		} else {
+			THROW_ARGOSEXCEPTION("Missing Parameter: attraction");
+		}
+	}	
 
 	/****************************************/
 	/****************************************/
