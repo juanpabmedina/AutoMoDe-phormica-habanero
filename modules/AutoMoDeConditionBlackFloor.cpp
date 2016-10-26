@@ -25,10 +25,12 @@
 
     void AutoMoDeConditionBlackFloor::Init() {
         m_fGroundThreshold = 0; //TODO : definir le paramètre
-        if (m_mapParameters.find("p") != m_mapParameters.end()) {
-			m_fProbability = m_mapParameters.find("p")->second;
+		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
+		if (it != m_mapParameters.end()) {
+			m_fProbability = it->second;
 		} else {
-			THROW_ARGOSEXCEPTION("Missing Parameter: black floor");
+			LOGERR << "[FATAL] Missing parameter for the following condition:" << m_strLabel << std::endl;
+			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
      }
 

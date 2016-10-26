@@ -51,10 +51,12 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourRepulsion::Init() {
-		if (m_mapParameters.find("rep") != m_mapParameters.end()) {
-			m_unRepulsionParameter = m_mapParameters.find("rep")->second;
+		std::map<std::string, Real>::iterator it = m_mapParameters.find("rep");
+		if (it != m_mapParameters.end()) {
+			m_unRepulsionParameter = it->second;
 		} else {
-			THROW_ARGOSEXCEPTION("Missing Parameter: repulsion");
+			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
 	}
 

@@ -13,7 +13,6 @@ namespace argos {
 
 	AutoMoDeBehaviourExploration::AutoMoDeBehaviourExploration() {
 		m_strLabel = "Exploration";
-		Init();
 	}
 
 	/****************************************/
@@ -50,10 +49,12 @@ namespace argos {
 		m_fWheelSpeed = 10;
 		m_fProximityThreshold = 0.1;
 		m_bLocked = false;
-		if (m_mapParameters.find("rwm") != m_mapParameters.end()) {
-			m_cRandomStepsRange.SetMax(m_mapParameters.find("rwm")->second);
+		std::map<std::string, Real>::iterator it = m_mapParameters.find("rwm");
+		if (it != m_mapParameters.end()) {
+			m_cRandomStepsRange.SetMax(it->second);
 		} else {
-			THROW_ARGOSEXCEPTION("Missing Parameter: exploration");
+			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
 	}
 

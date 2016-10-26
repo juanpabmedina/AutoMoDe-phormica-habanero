@@ -81,7 +81,7 @@ namespace argos {
 				m_bEnteringNewState = false;
 			}
 			else {
-				std::random_shuffle(m_vecCurrentConditions.begin(), m_vecCurrentConditions.begin()); // todo: check functionality
+				std::random_shuffle(m_vecCurrentConditions.begin(), m_vecCurrentConditions.begin()); // TODO: check functionality
 				for (std::vector<AutoMoDeCondition*>::iterator it = m_vecCurrentConditions.begin(); it != m_vecCurrentConditions.end(); it++) {
 					/*
 					 * 3. Update current behaviour

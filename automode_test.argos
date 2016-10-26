@@ -32,7 +32,8 @@
 		<epuck_ground implementation="rot_z_only" />
 		<epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
-      <params readable='true' history='false' fsm-config="--nstates 1 --s0 0 --rm0 10 --n0 0"/>
+      <params readable='true' history='false' fsm-config="--nstates 2 --s0 0 --rwm0 50 --n0 1 --n0x0 1 --c0x0 0 --p0x0 0.25 --s1 1 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.5"/>
+      <!--"--nstates 2 --s0 0 --rwm0 50 --n0 1 --n0x0 1 --c0x0 0 --p0x0 0.25 --s1 1 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.5" -->
     </automode_controller>
   </controllers>
 

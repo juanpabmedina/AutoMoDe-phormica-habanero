@@ -113,7 +113,7 @@ namespace argos {
 				cNewBehaviour->AddParameter(strCurrentParameter, fCurrentParameterValue);
 			}
 		}
-				
+		cNewBehaviour->Init();		
 		// Add the constructed Behaviour to the FSM
 		c_fsm->AddBehaviour(cNewBehaviour);		
 		
@@ -192,7 +192,7 @@ namespace argos {
 				
 		// Checking for parameters
 		std::string vecPossibleParameters[] = {"p", "w"};
-		UInt8 unNumberPossibleParameters = 2;  // Change that later...
+		UInt8 unNumberPossibleParameters = 2;  // TODO Change that later...
 		for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 			std::string strCurrentParameter = vecPossibleParameters[i];
 			ss.str(std::string());
@@ -203,7 +203,7 @@ namespace argos {
 				cNewCondition->AddParameter(strCurrentParameter, fCurrentParameterValue);
 			}
 		}
-		
+		cNewCondition->Init();	
 		c_fsm->AddCondition(cNewCondition);
 		
 	}
