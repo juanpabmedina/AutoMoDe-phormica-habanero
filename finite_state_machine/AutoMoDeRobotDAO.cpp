@@ -13,6 +13,7 @@ namespace argos {
 	
 	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
 		m_pcRng = CRandom::CreateRNG("argos");
+		m_fMaxVelocity = 10;
 		Reset();
 	}
 	
@@ -140,5 +141,12 @@ namespace argos {
 	
 	CRandom::CRNG* AutoMoDeRobotDAO::GetRandomNumberGenerator() {
 		return m_pcRng;
+	}
+	
+	/****************************************/
+	/****************************************/
+	
+	Real AutoMoDeRobotDAO::GetMaxVelocity() {
+		return m_fMaxVelocity;
 	}
 }

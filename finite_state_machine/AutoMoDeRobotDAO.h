@@ -62,6 +62,8 @@ namespace argos {
 			
 			void Reset();
 			
+			Real GetMaxVelocity();
+			
 			CRandom::CRNG* GetRandomNumberGenerator();
 			
 		private:
@@ -74,6 +76,8 @@ namespace argos {
 			
 			Real m_fLeftWheelVelocity;
 			Real m_fRightWheelVelocity;
+			
+			Real m_fMaxVelocity;
 			
 			UInt32 m_unRobotIdentifier;
 			

@@ -85,7 +85,7 @@ namespace argos {
 			const bool IsLocked();
 			const bool IsOperational();
 
-			CVector2 ComputeVectorToFollow(CVector2 c_sum);
+			CVector2 ComputeWheelsVelocityFromVector(CVector2 c_vector_to_follow);
 			CVector2 SumProximityReadings(CCI_EPuckProximitySensor::TReadings s_prox);
 			CVector2 ParseLight(CVector2 c_light);
 
