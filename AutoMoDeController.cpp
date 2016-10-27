@@ -119,6 +119,15 @@ namespace argos {
 		if (m_pcWheelsActuator != NULL) {
 			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetRightWheelVelocity(), m_pcRobotState->GetLeftWheelVelocity());
 		}
+		// TODO: handle that later
+		if (m_pcRabActuator != NULL) {
+			UInt8 data[4];
+			data[0] = m_unRobotID;
+			data[1] = 0;
+			data[2] = 0;
+			data[3] = 0;
+			m_pcRabActuator->SetData(data);
+		}
 		m_unTimeStep++;
 	}
 

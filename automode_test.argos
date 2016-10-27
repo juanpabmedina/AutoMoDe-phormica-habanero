@@ -19,11 +19,11 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="libautomode.so">
+                        library="/home/aligot/Desktop/E-puck/argos3-aligot/build/controllers/argos3-AutoMoDe/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>
-        <epuck_range_and_bearing implementation="medium" show_rays="false" medium="rab" data_size="4"/>
+        <epuck_range_and_bearing implementation="medium" show_rays="true" medium="rab" data_size="4"/>
       </actuators>
       <sensors>
 		<epuck_proximity implementation="default" show_rays="false"/>
@@ -32,7 +32,7 @@
 		<epuck_ground implementation="rot_z_only" />
 		<epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
-      <params readable='true' history='false' fsm-config="--nstates 2 --s0 0 --rwm0 50 --n0 1 --n0x0 1 --c0x0 0 --p0x0 0.25 --s1 1 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.5"/>
+      <params readable='true' history='false' fsm-config="--nstates 2 --s0 4 --att0 3 --n0 1 --n0x0 1 --c0x0 3 --p0x0 7 --w0x0 5 --s1 0 --rwm1 30 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.2"/>
       <!--"--nstates 2 --s0 0 --rwm0 50 --n0 1 --n0x0 1 --c0x0 0 --p0x0 0.25 --s1 1 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.5" -->
     </automode_controller>
   </controllers>
@@ -42,7 +42,7 @@
   <!-- ********* -->
   <arena size="5, 5, 1" center="0,0,0">
 	<!-- Change the floor here -->
-	<floor id="floor" source="image" path="/home/ken/depots/ken-epuck-argos3/src/argos3-AutoMoDe/images_floor/no_spot.png"/>
+	<floor id="floor" source="image" path="/home/aligot/Desktop/E-puck/argos3-aligot/controllers/argos3-AutoMoDe/images_floor/no_spot.png"/>
 
     <!-- Change the light here -->
 	<light id="light" position="0,0.5,0" orientation="0.5,0,0" color="yellow" intensity="0.0" medium="leds"/>
@@ -75,17 +75,15 @@
   <!-- ********** -->
   <!-- * E-Puck * -->
   <!-- ********** -->
-    <e-puck id="epuck1">
-      <body position="0.5, 0, 0"
-            orientation="180, 0, 0"/>
-      <controller config="automode" />
-    </e-puck>
-
-    <e-puck id="epuck2">
-      <body position="0.5, 0.5, 0"
-            orientation="180, 0, 0"/>
-      <controller config="automode" />
-    </e-puck>
+    <distribute>
+      <position method="uniform" min="-1,-1,0" max="1,1,0" />
+      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
+      <entity quantity="5" max_trials="100">
+        <e-puck id="epuck">
+          <controller config="automode" />
+        </e-puck>
+      </entity>
+    </distribute>
   </arena>
 
   <!-- ******************* -->
