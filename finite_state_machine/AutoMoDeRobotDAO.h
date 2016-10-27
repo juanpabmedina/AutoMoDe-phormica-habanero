@@ -22,6 +22,7 @@
 
 #include <vector>
 #include <argos3/core/utility/math/rng.h> 
+#include <argos3/core/utility/math/vector2.h>
 #include <argos3/core/utility/logging/argos_log.h> 
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_wheels_actuator.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_sensor.h>
@@ -54,6 +55,7 @@ namespace argos {
 			void SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets);
 			
 			void SetWheelsVelocity(Real un_left_velocity, Real un_right_velocity);
+			void SetWheelsVelocity(CVector2 c_velocity_vector); 
 			Real GetRightWheelVelocity();
 			Real GetLeftWheelVelocity();
 			

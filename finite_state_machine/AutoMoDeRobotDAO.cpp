@@ -101,6 +101,14 @@ namespace argos {
 	}
 	
 	/****************************************/
+	/****************************************/		
+			
+	void AutoMoDeRobotDAO::SetWheelsVelocity(CVector2 c_velocity_vector) {
+		m_fLeftWheelVelocity = c_velocity_vector.GetX();
+		m_fRightWheelVelocity = c_velocity_vector.GetY();
+	}
+	
+	/****************************************/
 	/****************************************/
 	
 	Real AutoMoDeRobotDAO::GetRightWheelVelocity() {
