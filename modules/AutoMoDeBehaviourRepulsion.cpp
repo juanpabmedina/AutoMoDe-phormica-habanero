@@ -60,7 +60,8 @@ namespace argos {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
 
-		//m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(-sResultVector));
+		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(-sResultVector));
+		
 		m_bLocked = false;
 	}
 
