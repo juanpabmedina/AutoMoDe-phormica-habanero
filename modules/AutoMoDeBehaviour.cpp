@@ -61,8 +61,33 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	CVector2 AutoMoDeBehaviour::ComputeVectorToFollow(CVector2 c_sum) {
-		LOG << "ComputeVectorToFollow: Todo" << std::endl;
+	CVector2 AutoMoDeBehaviour::ComputeWheelsVelocityFromVector(CVector2 c_vector_to_follow) {
+		Real fLeftVelocity = 0;
+		Real fRightVelocity = 0;
+		CRange<CRadians> cRightHemisphere(CRadians::PI, CRadians::TWO_PI);
+		CRange<CRadians> cLeftHemisphere(CRadians::ZERO, CRadians::PI);
+		CRadians cNormalizedVectorToFollow = c_vector_to_follow.Angle().UnsignedNormalize();
+		
+		// Compute relative wheel velocity
+		if (c_vector_to_follow.GetX() != 0 || c_vector_to_follow.GetY() != 0) {
+			if (cLeftHemisphere.WithinMinBoundExcludedMaxBoundExcluded(cNormalizedVectorToFollow)) {
+				fRightVelocity = 1;
+			} else {
+				fRightVelocity = Max<Real>(-0.5f, Cos(cNormalizedVectorToFollow));
+			}
+			
+			if (cRightHemisphere.WithinMinBoundExcludedMaxBoundExcluded(cNormalizedVectorToFollow)) {
+				fLeftVelocity = 1;
+			} else {
+				fLeftVelocity = Max<Real>(-0.5f, Cos(cNormalizedVectorToFollow));
+			}
+		}
+		
+		// Transform relative velocity according to max velocity allowed 
+		Real fVelocityFactor = m_pcRobotDAO->GetMaxVelocity() / Max<Real>(std::abs(fRightVelocity), std::abs(fLeftVelocity));
+		CVector2 cWheelsVelocity = CVector2(fVelocityFactor * fLeftVelocity, fVelocityFactor * fRightVelocity);
+		
+		return cWheelsVelocity;
 	}
 
 	/****************************************/
