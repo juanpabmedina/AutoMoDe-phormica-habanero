@@ -51,11 +51,16 @@ namespace argos {
 
 		for (it = sLastPackets.begin(); it != sLastPackets.end(); it++) {
 			if ((*it)->Data[0] != (UInt8) m_pcRobotDAO->GetRobotIdentifier()) {
+				LOG << "range :" << (*it)->Range << std::endl;
 				sRabVectorSum += CVector2(m_unAttractionParameter / (1+(*it)->Range),(*it)->Bearing.SignedNormalize()); //TODO FIXME : Range+1 beacsue range can be 0
 			}
 		}
+		
+		LOG << "RabVectorSum " << sRabVectorSum << std::endl;
+		
 		sProxVectorSum = SumProximityReadings(m_pcRobotDAO->GetProximityInput());
 		sResultVector = sRabVectorSum - 5*sProxVectorSum;
+		
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
