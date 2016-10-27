@@ -20,6 +20,10 @@ namespace argos {
 			virtual bool Verify();
 			virtual void Reset();
 			virtual void Init();
+			
+		private:
+			Real m_fParameterEta;
+			UInt8 m_unParameterXi;
 	};
 }
 
