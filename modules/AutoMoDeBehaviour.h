@@ -11,6 +11,7 @@
 #include <argos3/core/utility/configuration/argos_exception.h>
 
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_proximity_sensor.h>
+#include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_sensor.h>
 
 #include "../finite_state_machine/AutoMoDeRobotDAO.h"
 
