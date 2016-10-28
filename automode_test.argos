@@ -19,7 +19,7 @@
   <controllers>
 	<!-- TRANSMITTER -->
     <automode_controller id="automode"
-                        library="/home/aligot/Desktop/E-puck/argos3-aligot/build/controllers/argos3-AutoMoDe/libautomode.so">
+                        library="/home/ken/depots/ken-epuck-argos3/build/argos3-AutoMoDe/libautomode.so">
       <actuators>
         <epuck_wheels implementation="default"/>
         <epuck_rgb_leds implementation="default" medium="leds"/>
@@ -42,7 +42,7 @@
   <!-- ********* -->
   <arena size="5, 5, 1" center="0,0,0">
 	<!-- Change the floor here -->
-	<floor id="floor" source="image" path="/home/aligot/Desktop/E-puck/argos3-aligot/controllers/argos3-AutoMoDe/images_floor/no_spot.png"/>
+	<floor id="floor" source="image" path="/home/ken/depots/ken-epuck-argos3/src/argos3-AutoMoDe/images_floor/no_spot.png"/>
 
     <!-- Change the light here -->
 	<light id="light" position="0,0.5,0" orientation="0.5,0,0" color="yellow" intensity="0.0" medium="leds"/>
@@ -84,6 +84,18 @@
         </e-puck>
       </entity>
     </distribute>
+    <!-- <e-puck id="epuck1">
+      <body position="0.8, 1, 0"
+            orientation="45, 0, 0"/>
+      <controller config="automode" />
+    </e-puck>
+
+    <e-puck id="epuck2">
+      <body position="0.8, 0.8, 0"
+            orientation="45, 0, 0"/>
+      <controller config="automode" />
+    </e-puck> -->
+
   </arena>
 
   <!-- ******************* -->

@@ -91,7 +91,7 @@ namespace argos {
 			const CCI_EPuckRangeAndBearingSensor::TPackets& packets = m_pcRabSensor->GetPackets();
 			m_pcRobotState->SetNumberNeighbors(packets.size());
 			m_pcRobotState->SetRangeAndBearingMessages(packets);
-			m_pcRabSensor->ClearPackets();
+			//m_pcRabSensor->ClearPackets();
 		}
 		if (m_pcGroundSensor != NULL) {
 			const CCI_EPuckGroundSensor::SReadings& readings = m_pcGroundSensor->GetReadings();
