@@ -1,9 +1,9 @@
 /*
- * File: AutoMoDeBehaviourPhototaxis.cpp
+ * File: AutoMoDeBehaviourAntiPhototaxis.cpp
  *
  */
 
-#include "AutoMoDeBehaviourPhototaxis.h"
+#include "AutoMoDeBehaviourAntiPhototaxis.h"
 
 
 namespace argos {
@@ -11,14 +11,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourPhototaxis::AutoMoDeBehaviourPhototaxis() {
-		m_strLabel = "Phototaxis";
+	AutoMoDeBehaviourAntiPhototaxis::AutoMoDeBehaviourAntiPhototaxis() {
+		m_strLabel = "Anti-Phototaxis";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourPhototaxis::AutoMoDeBehaviourPhototaxis(AutoMoDeBehaviourPhototaxis* pc_behaviour) {
+	AutoMoDeBehaviourAntiPhototaxis::AutoMoDeBehaviourAntiPhototaxis(AutoMoDeBehaviourAntiPhototaxis* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -30,19 +30,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourPhototaxis::~AutoMoDeBehaviourPhototaxis() {}
+	AutoMoDeBehaviourAntiPhototaxis::~AutoMoDeBehaviourAntiPhototaxis() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourPhototaxis* AutoMoDeBehaviourPhototaxis::Clone() {
-		return new AutoMoDeBehaviourPhototaxis(*this);
+	AutoMoDeBehaviourAntiPhototaxis* AutoMoDeBehaviourAntiPhototaxis::Clone() {
+		return new AutoMoDeBehaviourAntiPhototaxis(*this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourPhototaxis::ControlStep() {
+	void AutoMoDeBehaviourAntiPhototaxis::ControlStep() {
 		CCI_EPuckLightSensor::TReadings sReadings = m_pcRobotDAO->GetLightInput();
 	 	CCI_EPuckLightSensor::TReadings::iterator it;
 		CVector2 sLightVectorSum(0,CRadians::ZERO);
@@ -59,7 +59,7 @@ namespace argos {
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
-		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
+		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(-sResultVector));
 		
 		m_bLocked = false;
 	}
@@ -67,13 +67,12 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourPhototaxis::Init() {}
+	void AutoMoDeBehaviourAntiPhototaxis::Init() {}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourPhototaxis::Reset() {
-		//TODO
+	void AutoMoDeBehaviourAntiPhototaxis::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -81,7 +80,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourPhototaxis::ResumeStep() {
+	void AutoMoDeBehaviourAntiPhototaxis::ResumeStep() {
 		//TODO
 		m_bOperational = true;
 	}

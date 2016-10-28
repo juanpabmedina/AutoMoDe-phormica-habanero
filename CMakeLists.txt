@@ -6,8 +6,8 @@ set(AUTOMODE_HEADERS
 	finite_state_machine/AutoMoDeFsmHistory.h
 	finite_state_machine/AutoMoDeRobotDAO.h
 	modules/AutoMoDeBehaviour.h
-	modules/AutoMoDeBehaviourAntiPhotoaxis.h
-	modules/AutoMoDeBehaviourPhotoaxis.h
+	modules/AutoMoDeBehaviourAntiPhototaxis.h
+	modules/AutoMoDeBehaviourPhototaxis.h
 	modules/AutoMoDeBehaviourAttraction.h
 	modules/AutoMoDeBehaviourRepulsion.h
 	modules/AutoMoDeBehaviourStop.h
@@ -28,8 +28,8 @@ set(AUTOMODE_SOURCES
 	finite_state_machine/AutoMoDeRobotDAO.cpp
 	finite_state_machine/AutoMoDeFsmHistory.cpp
 	modules/AutoMoDeBehaviour.cpp
-	modules/AutoMoDeBehaviourAntiPhotoaxis.cpp
-	modules/AutoMoDeBehaviourPhotoaxis.cpp
+	modules/AutoMoDeBehaviourAntiPhototaxis.cpp
+	modules/AutoMoDeBehaviourPhototaxis.cpp
 	modules/AutoMoDeBehaviourAttraction.cpp
 	modules/AutoMoDeBehaviourRepulsion.cpp
 	modules/AutoMoDeBehaviourStop.cpp
