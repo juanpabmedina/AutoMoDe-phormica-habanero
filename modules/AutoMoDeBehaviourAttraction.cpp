@@ -45,9 +45,9 @@ namespace argos {
 	void AutoMoDeBehaviourAttraction::ControlStep() {
 		CCI_EPuckRangeAndBearingSensor::TPackets sLastPackets = m_pcRobotDAO->GetRangeAndBearingMessages();
 	 	CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
-		CVector2 sRabVectorSum;
-		CVector2 sProxVectorSum;
-		CVector2 sResultVector;
+		CVector2 sRabVectorSum(0,CRadians::ZERO);
+		CVector2 sProxVectorSum(0,CRadians::ZERO);
+		CVector2 sResultVector(0,CRadians::ZERO);
 
 		for (it = sLastPackets.begin(); it != sLastPackets.end(); it++) {
 			if ((*it)->Data[0] != (UInt8) m_pcRobotDAO->GetRobotIdentifier()) {
