@@ -51,8 +51,7 @@ namespace argos {
 
 		for (it = sLastPackets.begin(); it != sLastPackets.end(); it++) {
 			if ((*it)->Data[0] != (UInt8) m_pcRobotDAO->GetRobotIdentifier()) {
-				LOG << "Rang :" << (*it)->Range << std::endl;
-				sRabVectorSum += CVector2(m_unAttractionParameter / (1+(*it)->Range),(*it)->Bearing.SignedNormalize()); //TODO FIXME : Range+1 beacsue range can be 0
+				sRabVectorSum += CVector2(m_unAttractionParameter / ((*it)->Range),(*it)->Bearing.SignedNormalize()); //TODO FIXME : Range+1 beacsue range can be 0
 			}
 		}
 

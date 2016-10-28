@@ -111,7 +111,6 @@ namespace argos {
 		 * 2. Execute step of FSM
 		 */
 		m_pcFiniteStateMachine->ControlStep();
-		m_pcRabSensor->ClearPackets();
 
 		/*
 		 * 3. Update Actuators
@@ -128,7 +127,15 @@ namespace argos {
 			data[3] = 0;
 			m_pcRabActuator->SetData(data);
 		}
+		
+		/*
+		 * 4. Update variables
+		 */
+		if (m_pcRabSensor != NULL) {
+			m_pcRabSensor->ClearPackets();
+		}
 		m_unTimeStep++;
+		
 	}
 
 	/****************************************/

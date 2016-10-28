@@ -57,7 +57,9 @@ namespace argos {
 		 * 4. Add entry to history if enabled
 		 * 5. Update internal variables
 		 */
-
+		
+		LOG << m_pcCurrentBehaviour->GetLabel() << std::endl;
+		
 		/*
 		 * 1. Dealing with behaviours
 		 */
