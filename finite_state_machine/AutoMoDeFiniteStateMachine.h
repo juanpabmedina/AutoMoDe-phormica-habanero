@@ -28,6 +28,7 @@
 #include "../modules/AutoMoDeConditionInvertedNeighborsCount.h"
 
 #include <string>
+#include <ctime>
 #include <algorithm>
 
 namespace argos {
