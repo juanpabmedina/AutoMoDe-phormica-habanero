@@ -91,7 +91,7 @@ namespace argos {
 			const CCI_EPuckRangeAndBearingSensor::TPackets& packets = m_pcRabSensor->GetPackets();
 			m_pcRobotState->SetNumberNeighbors(packets.size());
 			m_pcRobotState->SetRangeAndBearingMessages(packets);
-			//m_pcRabSensor->ClearPackets();
+
 		}
 		if (m_pcGroundSensor != NULL) {
 			const CCI_EPuckGroundSensor::SReadings& readings = m_pcGroundSensor->GetReadings();
@@ -111,7 +111,7 @@ namespace argos {
 		 * 2. Execute step of FSM
 		 */
 		m_pcFiniteStateMachine->ControlStep();
-
+		m_pcRabSensor->ClearPackets();
 
 		/*
 		 * 3. Update Actuators
