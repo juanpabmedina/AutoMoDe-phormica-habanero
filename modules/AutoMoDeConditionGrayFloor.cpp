@@ -38,8 +38,7 @@
 	}
 	
 	void AutoMoDeConditionGrayFloor::Init() {
-		m_fGroundThresholdRange.SetMin(0.1);
-		m_fGroundThresholdRange.SetMax(0.95);
+		m_fGroundThresholdRange.Set(0.1, 0.95);
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
 			m_fProbability = it->second;
