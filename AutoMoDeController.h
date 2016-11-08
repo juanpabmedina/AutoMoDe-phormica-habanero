@@ -1,6 +1,6 @@
 /*
  * File: AutoMoDeController.h
- * 
+ *
  */
 
 #ifndef AUTOMODE_CONTROLLER_H
@@ -26,28 +26,28 @@ namespace argos{
 	class AutoMoDeController: public CCI_Controller {
 		public:
 			AutoMoDeController();
-			
+
 			virtual ~AutoMoDeController();
-			
+
 			virtual void Init(TConfigurationNode& t_node);
 			virtual void ControlStep();
 			virtual void Reset();
 			virtual void Destroy();
-			
+
 			void SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_fine_state_machine);
-		
+
 		private:
 			AutoMoDeFiniteStateMachine* m_pcFiniteStateMachine;
 			AutoMoDeRobotDAO* m_pcRobotState;
 			UInt8 m_unTimeStep;
 			UInt32 m_unRobotID;
-			
+
 			std::string m_strFsmConfiguration;
 			bool m_bMaintainHistory;
 			bool m_bPrintReadableFsm;
-			
+
 			AutoMoDeFsmBuilder* m_pcFsmBuilder;
-			
+
 			CCI_EPuckWheelsActuator* m_pcWheelsActuator;
 			CCI_EPuckRangeAndBearingActuator* m_pcRabActuator;
 			CCI_EPuckRGBLEDsActuator* m_pcLEDsActuator;

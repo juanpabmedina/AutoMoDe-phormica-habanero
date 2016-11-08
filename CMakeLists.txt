@@ -1,6 +1,7 @@
 # Headers
 set(AUTOMODE_HEADERS
 	AutoMoDeController.h
+	finite_state_machine/AutoMoDeRabBuffer.h
 	finite_state_machine/AutoMoDeFiniteStateMachine.h
 	finite_state_machine/AutoMoDeFsmBuilder.h
 	finite_state_machine/AutoMoDeFsmHistory.h
@@ -23,6 +24,7 @@ set(AUTOMODE_HEADERS
 # Sources
 set(AUTOMODE_SOURCES
 	AutoMoDeController.cpp
+	finite_state_machine/AutoMoDeRabBuffer.cpp
 	finite_state_machine/AutoMoDeFiniteStateMachine.cpp
 	finite_state_machine/AutoMoDeFsmBuilder.cpp
 	finite_state_machine/AutoMoDeRobotDAO.cpp
@@ -46,15 +48,15 @@ set(AUTOMODE_SOURCES
 if(ARGOS_BUILD_FOR_SIMULATOR)
 	add_library(automode SHARED ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 	target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)
-	
+
 	add_library(blackspot_loopfunc SHARED loop_functions/BlackSpotLoopFunc.h loop_functions/BlackSpotLoopFunc.cpp)
 	target_link_libraries(blackspot_loopfunc argos3plugin_${ARGOS_BUILD_FOR}_epuck)
-	
+
 elseif(ARGOS_BUILD_FOR_EPUCK)
 	add_executable(automode
         ${AUTOMODE_HEADERS}
         ${AUTOMODE_SOURCES})
-        
+
 	target_link_libraries(automode
     	argos3plugin_${ARGOS_BUILD_FOR}_epuck)
 endif(ARGOS_BUILD_FOR_SIMULATOR)

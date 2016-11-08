@@ -1,5 +1,5 @@
 /**
- * @file AutoMoDeRobotDAO.cpp
+ * @file AutoMoDeRobotDAO.h
  *
  * @brief This class represents the status of the robot.
  * It contains the input variables (the sensor inputs) and
@@ -33,6 +33,8 @@
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_ground_sensor.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_omnidirectional_camera_sensor.h>
 
+#include "AutoMoDeRabBuffer.h"
+
 namespace argos {
 	class AutoMoDeRobotDAO {
 		public:
@@ -51,7 +53,7 @@ namespace argos {
 			UInt8 GetNumberNeighbors();
 			void SetNumberNeighbors(UInt8 un_number_neighbors);
 
-			CCI_EPuckRangeAndBearingSensor::TPackets GetRangeAndBearingMessages();
+			std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> GetRangeAndBearingMessages();
 			void SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets s_packets);
 
 			void SetWheelsVelocity(Real un_left_velocity, Real un_right_velocity);
@@ -68,13 +70,16 @@ namespace argos {
 
 			CRandom::CRNG* GetRandomNumberGenerator();
 
+			// Debugging function. Displays the RAB messages in the buffer.
+			void DisplayRabBufferContent();
+
 		private:
 			CCI_EPuckProximitySensor::TReadings m_sProximityInput;
 			CCI_EPuckLightSensor::TReadings m_sLightInput;
 			CCI_EPuckGroundSensor::SReadings m_sGroundInput;
 
 			UInt8 m_unNumberNeighbors;
-			CCI_EPuckRangeAndBearingSensor::TPackets m_sRangeAndBearingMessages;
+		//	CCI_EPuckRangeAndBearingSensor::TPackets m_sRangeAndBearingMessages;
 
 			Real m_fLeftWheelVelocity;
 			Real m_fRightWheelVelocity;
@@ -84,6 +89,8 @@ namespace argos {
 			UInt32 m_unRobotIdentifier;
 
 			CRandom::CRNG* m_pcRng;
+
+			AutoMoDeRabBuffer* m_pcRabMessageBuffer;
 	};
 }
 

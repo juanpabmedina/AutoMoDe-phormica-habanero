@@ -91,7 +91,6 @@ namespace argos {
 			const CCI_EPuckRangeAndBearingSensor::TPackets& packets = m_pcRabSensor->GetPackets();
 			m_pcRobotState->SetNumberNeighbors(packets.size());
 			m_pcRobotState->SetRangeAndBearingMessages(packets);
-
 		}
 		if (m_pcGroundSensor != NULL) {
 			const CCI_EPuckGroundSensor::SReadings& readings = m_pcGroundSensor->GetReadings();
@@ -106,6 +105,11 @@ namespace argos {
 			m_pcRobotState->SetProximityInput(readings);
 		}
 
+		/*
+		 * Testing of Buffer
+		 */
+
+		 m_pcRobotState->DisplayRabBufferContent();
 
 		/*
 		 * 2. Execute step of FSM
@@ -127,7 +131,7 @@ namespace argos {
 			data[3] = 0;
 			m_pcRabActuator->SetData(data);
 		}
-		
+
 		/*
 		 * 4. Update variables
 		 */
@@ -135,7 +139,7 @@ namespace argos {
 			m_pcRabSensor->ClearPackets();
 		}
 		m_unTimeStep++;
-		
+
 	}
 
 	/****************************************/

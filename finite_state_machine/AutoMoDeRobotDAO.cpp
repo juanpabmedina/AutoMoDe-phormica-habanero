@@ -13,6 +13,8 @@ namespace argos {
 
 	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
 		m_pcRng = CRandom::CreateRNG("argos");
+		m_pcRabMessageBuffer = new AutoMoDeRabBuffer();
+		m_pcRabMessageBuffer->SetTimeLife(4);
 		m_fMaxVelocity = 10;
 		Reset();
 	}
@@ -81,16 +83,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	CCI_EPuckRangeAndBearingSensor::TPackets AutoMoDeRobotDAO::GetRangeAndBearingMessages() {
-		return m_sRangeAndBearingMessages;
+	std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> AutoMoDeRobotDAO::GetRangeAndBearingMessages() {
+		return m_pcRabMessageBuffer->GetMessages();
 	}
 
 	/****************************************/
 	/****************************************/
 
 	void AutoMoDeRobotDAO::SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets s_packets) {
-		m_sRangeAndBearingMessages = s_packets;
-
+		CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
+		for (it = s_packets.begin(); it < s_packets.end(); it++) {
+			m_pcRabMessageBuffer->AddMessage(*it);
+		}
+		m_pcRabMessageBuffer->Update();
 	}
 
 	/****************************************/
@@ -157,5 +162,12 @@ namespace argos {
 
 	Real AutoMoDeRobotDAO::GetMaxVelocity() {
 		return m_fMaxVelocity;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	void AutoMoDeRobotDAO::DisplayRabBufferContent() {
+		m_pcRabMessageBuffer->DisplayContent();
 	}
 }
