@@ -134,6 +134,7 @@ namespace argos {
 	void AutoMoDeRobotDAO::Reset() {
 		m_fLeftWheelVelocity = 0;
 		m_fRightWheelVelocity = 0;
+		m_pcRabMessageBuffer->Reset();
 	}
 
 	/****************************************/

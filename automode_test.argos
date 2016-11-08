@@ -47,7 +47,7 @@
   <floor id="floor" source="loop_functions" pixels_per_meter="100"/>
 
     <!-- Change the light here -->
-	<light id="light" position="0,0.5,0.4" orientation="0,0,0" color="yellow" intensity="5.0" medium="leds"/>
+	<light id="light" position="0,-1.5,0.4" orientation="0,0,0" color="yellow" intensity="5.0" medium="leds"/>
 
     <box id="wall_n" size="2, 0.12, 0.12" movable="false">    <!-- Longueur, largeur, hauteur -->
        <body position="2, 0, 0" orientation="90, 0, 0"/>
@@ -80,23 +80,30 @@
     <distribute>
       <position method="uniform" min="-1,-1,0" max="1,1,0" />
       <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="4" max_trials="100">
+      <entity quantity="0" max_trials="100">
         <e-puck id="epuck">
           <controller config="automode" />
         </e-puck>
       </entity>
     </distribute>
-    <!-- <e-puck id="epuck1">
-      <body position="0.8, 1, 0"
+
+   <e-puck id="epuck1">
+      <body position="0, 0, 0"
             orientation="45, 0, 0"/>
       <controller config="automode" />
     </e-puck>
 
     <e-puck id="epuck2">
-      <body position="0.8, 0.8, 0"
-            orientation="45, 0, 0"/>
+      <body position="0, 0.5, 0"
+            orientation="90, 0, 0"/>
       <controller config="automode" />
-    </e-puck> -->
+    </e-puck>
+
+    <e-puck id="epuck3">
+      <body position="0.5, 0.5, 0"
+            orientation="90, 0, 0"/>
+      <controller config="automode" />
+    </e-puck>
 
   </arena>
 

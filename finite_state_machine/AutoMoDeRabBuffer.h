@@ -3,7 +3,7 @@
   *
   * @brief Container that keep range-and-bearing messages for a fixed
   * period of time. After the time to live of a message is exceded, the
-  * message is discarded. 
+  * message is discarded.
   */
 
 #ifndef AUTOMODE_RAB_BUFFER_H
@@ -28,7 +28,7 @@ namespace argos {
 
       std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> GetMessages();
 
-      //void Clear();
+      void Reset();
 
       // Debbuging function. Displays elements of buffer.
       void DisplayContent();

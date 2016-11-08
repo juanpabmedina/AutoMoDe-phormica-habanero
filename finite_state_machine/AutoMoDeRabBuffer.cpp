@@ -85,5 +85,13 @@ namespace argos {
   UInt32 AutoMoDeRabBuffer::GetSize() {
     return m_vecBufferElements.size();
   }
+  
+  /****************************************/
+  /****************************************/
+
+  void AutoMoDeRabBuffer::Reset() {
+    m_vecBufferElements.clear();
+    m_unCurrentTime = 0;
+  }
 
 }
