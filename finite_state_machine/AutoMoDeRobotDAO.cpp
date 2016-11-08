@@ -14,7 +14,7 @@ namespace argos {
 	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
 		m_pcRng = CRandom::CreateRNG("argos");
 		m_pcRabMessageBuffer = new AutoMoDeRabBuffer();
-		m_pcRabMessageBuffer->SetTimeLife(4);
+		m_pcRabMessageBuffer->SetTimeLife(1);
 		m_fMaxVelocity = 10;
 		Reset();
 	}
@@ -93,7 +93,9 @@ namespace argos {
 	void AutoMoDeRobotDAO::SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets s_packets) {
 		CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
 		for (it = s_packets.begin(); it < s_packets.end(); it++) {
-			m_pcRabMessageBuffer->AddMessage(*it);
+			if ((*it)->Data[0] != m_unRobotIdentifier) {
+				m_pcRabMessageBuffer->AddMessage(*it);
+			}
 		}
 		m_pcRabMessageBuffer->Update();
 	}

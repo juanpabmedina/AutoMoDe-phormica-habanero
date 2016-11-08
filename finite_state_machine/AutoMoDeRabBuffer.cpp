@@ -73,9 +73,12 @@ namespace argos {
   /****************************************/
 
   void AutoMoDeRabBuffer::DisplayContent() {
-    LOG << "--------------------------" << std::endl;
     for (UInt32 i = 0; i < m_vecBufferElements.size(); i++) {
-      LOG << (m_vecBufferElements.at(i).first).Range << " " << (m_vecBufferElements.at(i).first).Data[0] << " " << m_vecBufferElements.at(i).second << std::endl;
+	  CRadians fRadianAngle = (m_vecBufferElements.at(i).first).Bearing;
+	  Real fAngle = ToDegrees(fRadianAngle).GetValue();	
+	  if (fAngle != 0) {
+		LOG << (m_vecBufferElements.at(i).first).Range << " " << fAngle << " " << (m_vecBufferElements.at(i).first).Data[0] << " " << m_vecBufferElements.at(i).second << std::endl;
+		}
     }
   }
 
