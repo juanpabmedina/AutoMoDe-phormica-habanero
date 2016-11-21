@@ -14,7 +14,7 @@ namespace argos {
 	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
 		m_pcRng = CRandom::CreateRNG("argos");
 		m_pcRabMessageBuffer = new AutoMoDeRabBuffer();
-		m_pcRabMessageBuffer->SetTimeLife(1);
+		m_pcRabMessageBuffer->SetTimeLife(2);
 		m_fMaxVelocity = 10;
 		Reset();
 	}
@@ -27,7 +27,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	CCI_EPuckProximitySensor::TReadings AutoMoDeRobotDAO::GetProximityInput() {
+	CCI_EPuckProximitySensor::TReadings AutoMoDeRobotDAO::GetProximityInput() const {
 		return m_sProximityInput;
 	}
 
@@ -41,7 +41,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	CCI_EPuckLightSensor::TReadings AutoMoDeRobotDAO::GetLightInput() {
+	CCI_EPuckLightSensor::TReadings AutoMoDeRobotDAO::GetLightInput() const{
 		return m_sLightInput;
 	}
 
@@ -55,7 +55,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	CCI_EPuckGroundSensor::SReadings AutoMoDeRobotDAO::GetGroundInput() {
+	CCI_EPuckGroundSensor::SReadings AutoMoDeRobotDAO::GetGroundInput() const{
 		return m_sGroundInput;
 	}
 
@@ -69,21 +69,21 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	UInt8 AutoMoDeRobotDAO::GetNumberNeighbors() {
+	const UInt8& AutoMoDeRobotDAO::GetNumberNeighbors() const {
 		return m_unNumberNeighbors;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeRobotDAO::SetNumberNeighbors(UInt8 un_number_neighbors){
+	void AutoMoDeRobotDAO::SetNumberNeighbors(const UInt8& un_number_neighbors){
 		m_unNumberNeighbors = un_number_neighbors;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> AutoMoDeRobotDAO::GetRangeAndBearingMessages() {
+	std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> AutoMoDeRobotDAO::GetRangeAndBearingMessages() const {
 		return m_pcRabMessageBuffer->GetMessages();
 	}
 
@@ -103,7 +103,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeRobotDAO::SetWheelsVelocity(Real un_left_velocity, Real un_right_velocity) {
+	void AutoMoDeRobotDAO::SetWheelsVelocity(const Real& un_left_velocity, const Real& un_right_velocity) {
 		m_fLeftWheelVelocity = un_left_velocity;
 		m_fRightWheelVelocity = un_right_velocity;
 	}
@@ -111,7 +111,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeRobotDAO::SetWheelsVelocity(CVector2 c_velocity_vector) {
+	void AutoMoDeRobotDAO::SetWheelsVelocity(const CVector2& c_velocity_vector) {
 		m_fLeftWheelVelocity = c_velocity_vector.GetX();
 		m_fRightWheelVelocity = c_velocity_vector.GetY();
 	}
@@ -119,14 +119,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	Real AutoMoDeRobotDAO::GetRightWheelVelocity() {
+	const Real& AutoMoDeRobotDAO::GetRightWheelVelocity() const {
 		return m_fRightWheelVelocity;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	Real AutoMoDeRobotDAO::GetLeftWheelVelocity() {
+	const Real& AutoMoDeRobotDAO::GetLeftWheelVelocity() const {
 		return m_fLeftWheelVelocity;
 	}
 
@@ -142,28 +142,28 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeRobotDAO::SetRobotIdentifier(UInt32 un_robot_id) {
+	void AutoMoDeRobotDAO::SetRobotIdentifier(const UInt32& un_robot_id) {
 		m_unRobotIdentifier = un_robot_id;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	UInt32 AutoMoDeRobotDAO::GetRobotIdentifier() {
+	const UInt32& AutoMoDeRobotDAO::GetRobotIdentifier() const{
 		return m_unRobotIdentifier;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	CRandom::CRNG* AutoMoDeRobotDAO::GetRandomNumberGenerator() {
+	CRandom::CRNG* AutoMoDeRobotDAO::GetRandomNumberGenerator() const {
 		return m_pcRng;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	Real AutoMoDeRobotDAO::GetMaxVelocity() {
+	const Real& AutoMoDeRobotDAO::GetMaxVelocity() const{
 		return m_fMaxVelocity;
 	}
 

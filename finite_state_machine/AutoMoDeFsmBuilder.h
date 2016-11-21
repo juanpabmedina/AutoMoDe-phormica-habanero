@@ -2,7 +2,7 @@
  * @file AutoMoDeFsmBuilder.h
  *
  * @brief This class is used to parse the configuration of
- * the stochastic finite state machine and instanciate the 
+ * the stochastic finite state machine and instanciate the
  * different modules (behaviours and conditions). These modules
  * are added to the AutoMoDeFiniStateMachine created.
  */
@@ -23,36 +23,42 @@
 namespace argos {
 	class AutoMoDeFsmBuilder {
 		public:
+			/*
+			 * Class constructor.
+			 */
 			AutoMoDeFsmBuilder();
-			
+
 			/**
 			 * Creates an AutoMoDeFiniteStateMachine based on a configuration as a vector of strings.
-			 * This method should be called when the FSM is created from the main.cpp.  
+			 * This method should be called when the FSM is created from the AutoMoDeMain.cpp.
 			 */
 			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config);
-			
+
 			/**
 			 * Creates an AutoMoDeFiniteStateMachine based on a configuration as a string.
-			 * This method should be called when the FSM is created from the AutoMoDeController.cpp.  
+			 * This method should be called when the FSM is created from the AutoMoDeController.cpp.
 			 */
-			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(std::string str_fsm_config);
-			
+			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(const std::string& str_fsm_config);
+
+			/*
+			 * Class destructor.
+			 */
 			virtual ~AutoMoDeFsmBuilder();
-		
+
 		private:
 			/**
-			 * Creates a AutoMoDeBehaviour from a state configuration and add it to the 
-			 * AutoMoDeFiniStateMachine in construction. 
+			 * Creates a AutoMoDeBehaviour from a state configuration and add it to the
+			 * AutoMoDeFiniStateMachine in construction.
 			 * Strips the different transitions and calls HandleTransition for their creation.
 			 */
 			void HandleState(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_state_config);
-			
+
 			/**
-			 * Creates a AutoMoDeCondition from a transition configuration and add it to the 
-			 * AutoMoDeFiniStateMachine in construction. 
+			 * Creates a AutoMoDeCondition from a transition configuration and add it to the
+			 * AutoMoDeFiniStateMachine in construction.
 			 */
-			void HandleTransition(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_transition_config, 
-									UInt8 un_initial_state_index, UInt8 un_condition_index);
+			void HandleTransition(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_transition_config,
+									const UInt32& un_initial_state_index, const UInt32& un_condition_index);
 	};
 }
 

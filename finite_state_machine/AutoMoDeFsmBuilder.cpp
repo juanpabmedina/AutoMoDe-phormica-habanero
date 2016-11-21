@@ -6,21 +6,21 @@
 #include "AutoMoDeFsmBuilder.h"
 
 namespace argos {
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeFsmBuilder::AutoMoDeFsmBuilder() {}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeFsmBuilder::~AutoMoDeFsmBuilder() {}
-	
+
 	/****************************************/
 	/****************************************/
-	
-	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(std::string str_fsm_config) {
+
+	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(const std::string& str_fsm_config) {
 		std::istringstream iss(str_fsm_config);
 		std::vector<std::string> tokens;
 		copy(std::istream_iterator<std::string>(iss),
@@ -28,13 +28,13 @@ namespace argos {
 			std::back_inserter(tokens));
 		return BuildFiniteStateMachine(tokens);
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config) {
 		AutoMoDeFiniteStateMachine* cFiniteStateMachine = new AutoMoDeFiniteStateMachine();
-		
+
 		std::vector<std::string>::iterator it;
 		UInt8 unNumberStates;
 		try {
@@ -60,14 +60,14 @@ namespace argos {
 		catch (std::exception e) {
 			THROW_ARGOSEXCEPTION("Could not create the Finite State Machine: Error while parsing.");
 		}
-		
+
 		return cFiniteStateMachine;
-		
+
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeFsmBuilder::HandleState(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_state_config) {
 		AutoMoDeBehaviour* cNewBehaviour;
 		std::vector<std::string>::iterator it;
@@ -75,7 +75,7 @@ namespace argos {
 		UInt8 unBehaviourIndex =  atoi((*vec_fsm_state_config.begin()).substr(3,4).c_str());
 		// Extraction of the identifier of the behaviour
 		UInt8 unBehaviourIdentifier =  atoi((*(vec_fsm_state_config.begin()+1)).c_str());
-		
+
 		// Creation of the Behaviour object
 		switch(unBehaviourIdentifier) {
 			case 0:
@@ -86,7 +86,7 @@ namespace argos {
 				break;
 			case 2:
 				cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
-				break;	
+				break;
 			case 3:
 				cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
 				break;
@@ -99,7 +99,7 @@ namespace argos {
 		}
 		cNewBehaviour->SetIndex(unBehaviourIndex);
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);
-		
+
 		// Checking for parameters
 		std::string vecPossibleParameters[] = {"rwm", "att", "rep"};
 		UInt8 unNumberPossibleParameters = 3;  // Change that later...
@@ -113,22 +113,22 @@ namespace argos {
 				cNewBehaviour->AddParameter(strCurrentParameter, fCurrentParameterValue);
 			}
 		}
-		cNewBehaviour->Init();		
+		cNewBehaviour->Init();
 		// Add the constructed Behaviour to the FSM
-		c_fsm->AddBehaviour(cNewBehaviour);		
-		
+		c_fsm->AddBehaviour(cNewBehaviour);
+
 		/*
-		 * Extract the transitions starting from the state and 
+		 * Extract the transitions starting from the state and
 		 * pass them to the transition handler.
 		 */
 		std::ostringstream oss;
 		oss << "--n" << unBehaviourIndex;
 		it = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
 		UInt8 unNumberTransitions = atoi((*(it+1)).c_str());
-		
+
 		std::vector<std::string>::iterator first_transition;
 		std::vector<std::string>::iterator second_transition;
-		
+
 		for (UInt8 i = 0; i < unNumberTransitions; i++) {
 			std::ostringstream oss;
 			oss << "--n" << unBehaviourIndex << "x" << i;
@@ -144,26 +144,26 @@ namespace argos {
 			HandleTransition(c_fsm, vecTransitionConfig, unBehaviourIndex, i);
 		}
 	}
-	
+
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeFsmBuilder::HandleTransition(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_transition_config, UInt8 un_initial_state_index, UInt8 un_condition_index) {
+	void AutoMoDeFsmBuilder::HandleTransition(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_transition_config, const UInt32& un_initial_state_index, const UInt32& un_condition_index) {
 		AutoMoDeCondition* cNewCondition;
-		
+
 		std::stringstream ss;
 		ss << "--n" << un_initial_state_index << "x" << un_condition_index;
 		std::vector<std::string>::iterator it;
 		it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());
-		
+
 		UInt8 unToBehaviour = atoi((*(it+1)).c_str());
-		
+
 		ss.str(std::string());
 		ss << "--c" << un_initial_state_index << "x" << un_condition_index;
 		it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());
-		
+
 		UInt8 unConditionIdentifier = atoi((*(it+1)).c_str());
-		
+
 		switch(unConditionIdentifier) {
 			case 0:
 				cNewCondition = new AutoMoDeConditionBlackFloor();
@@ -184,12 +184,12 @@ namespace argos {
 				cNewCondition = new AutoMoDeConditionFixedProbability();
 				break;
 		}
-		
+
 		cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);
 		cNewCondition->SetIndex(un_condition_index);
 		cNewCondition->SetIdentifier(unConditionIdentifier);
-		
-				
+
+
 		// Checking for parameters
 		std::string vecPossibleParameters[] = {"p", "w"};
 		UInt8 unNumberPossibleParameters = 2;  // TODO Change that later...
@@ -203,9 +203,9 @@ namespace argos {
 				cNewCondition->AddParameter(strCurrentParameter, fCurrentParameterValue);
 			}
 		}
-		cNewCondition->Init();	
+		cNewCondition->Init();
 		c_fsm->AddCondition(cNewCondition);
-		
+
 	}
 
 }

@@ -25,7 +25,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeFiniteStateMachine::AutoMoDeFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_fsm) {
+	AutoMoDeFiniteStateMachine::AutoMoDeFiniteStateMachine(const AutoMoDeFiniteStateMachine* pc_fsm) {
 		m_unCurrentBehaviourIndex = pc_fsm->GetCurrentBehaviourIndex();
 		m_bEnteringNewState = pc_fsm->GetEnteringNewStateFlag();
 		m_bMaintainHistory = pc_fsm->GetMaintainHistoryFlag();
@@ -50,14 +50,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeFiniteStateMachine::ControlStep(){
-		/*
-		 * 1. Execute current behaviour
-		 * 2. Check for conditions if current behaviour allows it
-		 * 3. Update current behaviour if one condition passed
-		 * 4. Add entry to history if enabled
-		 * 5. Update internal variables
-		 */
-	
 		/*
 		 * 1. Dealing with behaviours
 		 */
@@ -157,15 +149,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeFiniteStateMachine::CheckConditions() {
-		// TODO
-	}
-
-
-	/****************************************/
-	/****************************************/
-
-	std::string AutoMoDeFiniteStateMachine::GetReadableFormat(){
+	const std::string AutoMoDeFiniteStateMachine::GetReadableFormat() {
 		std::stringstream ssUrl;
 		ssUrl << "http://chart.googleapis.com/chart?cht=gv:dot&chl=digraph finite_state_machine{rankir=LR;" ;
 		ssUrl << FillWithInitialState();
@@ -180,7 +164,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeFiniteStateMachine::MaintainHistory(std::string s_hist_path) {
+	void AutoMoDeFiniteStateMachine::MaintainHistory(const std::string& s_hist_path) {
 		m_bMaintainHistory = true;
 		m_pcHistory = new AutoMoDeFsmHistory(s_hist_path);
 	}
@@ -202,7 +186,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	std::string AutoMoDeFiniteStateMachine::FillWithInitialState() {
+	const std::string AutoMoDeFiniteStateMachine::FillWithInitialState() {
 		std::stringstream ssUrl;
 		ssUrl << "node [shape = doublecircle]; " ;
 		std::vector<AutoMoDeBehaviour*>::iterator it;
@@ -218,7 +202,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	std::string AutoMoDeFiniteStateMachine::FillWithNonInitialStates() {
+	const std::string AutoMoDeFiniteStateMachine::FillWithNonInitialStates() {
 		std::stringstream ssUrl;
 		ssUrl << "node [shape = circle];" ;
 		std::vector<AutoMoDeBehaviour*>::iterator it;
@@ -234,7 +218,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	std::string AutoMoDeFiniteStateMachine::FillWithConditions() {
+	const std::string AutoMoDeFiniteStateMachine::FillWithConditions() {
 		std::stringstream ssUrl;
 		std::vector<AutoMoDeCondition*>::iterator it;
 
@@ -256,49 +240,49 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	UInt8 AutoMoDeFiniteStateMachine::GetCurrentBehaviourIndex() {
+	const UInt32& AutoMoDeFiniteStateMachine::GetCurrentBehaviourIndex() const {
 		return m_unCurrentBehaviourIndex;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeFiniteStateMachine::GetMaintainHistoryFlag() {
+	const bool AutoMoDeFiniteStateMachine::GetMaintainHistoryFlag() const {
 		return m_bMaintainHistory;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeFiniteStateMachine::GetEnteringNewStateFlag() {
+	const bool AutoMoDeFiniteStateMachine::GetEnteringNewStateFlag() const {
 		return m_bEnteringNewState;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	UInt32 AutoMoDeFiniteStateMachine::GetTimeStep() {
+	const UInt32& AutoMoDeFiniteStateMachine::GetTimeStep() const {
 		return m_unTimeStep;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	std::vector<AutoMoDeBehaviour*> AutoMoDeFiniteStateMachine::GetBehaviours() {
+	std::vector<AutoMoDeBehaviour*> AutoMoDeFiniteStateMachine::GetBehaviours() const {
 		return m_vecBehaviours;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	std::vector<AutoMoDeCondition*> AutoMoDeFiniteStateMachine::GetConditions() {
+	std::vector<AutoMoDeCondition*> AutoMoDeFiniteStateMachine::GetConditions() const {
 		return m_vecConditions;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeFsmHistory* AutoMoDeFiniteStateMachine::GetHistory() {
+	AutoMoDeFsmHistory* AutoMoDeFiniteStateMachine::GetHistory() const {
 		return m_pcHistory;
 	}
 

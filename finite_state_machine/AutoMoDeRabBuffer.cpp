@@ -21,7 +21,7 @@ namespace argos {
   /****************************************/
   /****************************************/
 
-  void AutoMoDeRabBuffer::SetTimeLife(UInt32 un_max_time_to_live) {
+  void AutoMoDeRabBuffer::SetTimeLife(const UInt32& un_max_time_to_live) {
     m_unMaxTimeToLive = un_max_time_to_live;
 
   }
@@ -39,13 +39,6 @@ namespace argos {
   }
 
   /****************************************/
-  /****************************************/
-
-  void AutoMoDeRabBuffer::AddMessage(CCI_EPuckRangeAndBearingSensor::SReceivedPacket* c_packet, UInt32 un_timestamp) {
-    m_vecBufferElements.push_back(std::make_pair(*c_packet, un_timestamp));
-  }
-
-  /****************************************/
 	/****************************************/
 
   void AutoMoDeRabBuffer::AddMessage(CCI_EPuckRangeAndBearingSensor::SReceivedPacket* c_packet) {
@@ -53,14 +46,9 @@ namespace argos {
   }
 
   /****************************************/
-	/****************************************/
-
-  //std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket> AutoMoDeRabBuffer::GetMessages(UInt32 un_current_time, UInt32 un_offset);
-
-  /****************************************/
   /****************************************/
 
-  std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> AutoMoDeRabBuffer::GetMessages() {
+  std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> AutoMoDeRabBuffer::GetMessages(){
     std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> vecRabMessages;
     std::vector<std::pair<CCI_EPuckRangeAndBearingSensor::SReceivedPacket, UInt32> >::iterator it;
     for (it = m_vecBufferElements.begin(); it != m_vecBufferElements.end(); it++) {
@@ -75,20 +63,13 @@ namespace argos {
   void AutoMoDeRabBuffer::DisplayContent() {
     for (UInt32 i = 0; i < m_vecBufferElements.size(); i++) {
 	  CRadians fRadianAngle = (m_vecBufferElements.at(i).first).Bearing;
-	  Real fAngle = ToDegrees(fRadianAngle).GetValue();	
+	  Real fAngle = ToDegrees(fRadianAngle).GetValue();
 	  if (fAngle != 0) {
 		LOG << (m_vecBufferElements.at(i).first).Range << " " << fAngle << " " << (m_vecBufferElements.at(i).first).Data[0] << " " << m_vecBufferElements.at(i).second << std::endl;
 		}
     }
   }
 
-  /****************************************/
-  /****************************************/
-
-  UInt32 AutoMoDeRabBuffer::GetSize() {
-    return m_vecBufferElements.size();
-  }
-  
   /****************************************/
   /****************************************/
 

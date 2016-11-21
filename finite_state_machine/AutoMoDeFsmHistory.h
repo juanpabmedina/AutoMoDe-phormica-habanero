@@ -1,9 +1,9 @@
 /**
  * @file AutoMoDeFsmHistory.h
  *
- * @brief This class allows for keeping track of the 
+ * @brief This class allows for keeping track of the
  * evolution of the visited states of the finite state machine.
- * The succession of behaviours controlling the robot are 
+ * The succession of behaviours controlling the robot are
  * thus registered and stored into a file.
  */
 
@@ -22,21 +22,51 @@
 namespace argos {
 	class AutoMoDeFsmHistory {
 		public:
-			AutoMoDeFsmHistory();
-			AutoMoDeFsmHistory(std::string str_path);
+			/*
+			 * Class constructor. Takes the path to file where the history will be saved.
+			 */
+			AutoMoDeFsmHistory(const std::string& str_path);
+
+			/*
+			 * Copy constructor.
+			 */
 			AutoMoDeFsmHistory(AutoMoDeFsmHistory* pc_fsm_history);
-			
+
+			/*
+			 * Class destructor.
+			 */
 			virtual ~AutoMoDeFsmHistory();
-		
+
+			/*
+			 *
+			 */
 			void AddTimeStep(UInt8 un_time_step, AutoMoDeBehaviour* pc_current_state, std::map<AutoMoDeCondition*, bool> map_transition_status);
+
+			/*
+			 *
+			 */
 			void AddTimeStep(UInt8 un_time_step, AutoMoDeBehaviour* pc_current_state);
-			
+
+			/*
+			 * Open the file where the history will be saved.
+			 */
 			void OpenFile();
-			const std::string GetPath();
-			
+
 		private:
+			/*
+			 * Path of the file where the history will be saved.
+			 */
 			std::string m_strPath;
+
+			/*
+			 * Content of the history.
+			 */
 			std::ofstream m_ofHistoryFile;
+
+			/*
+			 * Returns the path of the history file.
+			 */
+			const std::string& GetPath() const;
 	};
 }
 

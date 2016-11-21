@@ -18,27 +18,60 @@
 namespace argos {
   class AutoMoDeRabBuffer {
     public:
+      /*
+			 * Class constructor.
+       */
       AutoMoDeRabBuffer();
+
+      /*
+			 * Class destructor.
+       */
       ~AutoMoDeRabBuffer();
 
-      void SetTimeLife(UInt32 un_max_time_to_live);
+      /*
+			 * Setter for the time to live of the messages contained in the buffer.
+       */
+      void SetTimeLife(const UInt32& un_max_time_to_live);
+
+      /*
+			 * Removes the messages that are too old.
+       */
       void Update();
-      void AddMessage(CCI_EPuckRangeAndBearingSensor::SReceivedPacket* c_packet, UInt32 un_timestamp);
+
+      /*
+			 * Add a range-and-bearing message to the buffer.
+       */
       void AddMessage(CCI_EPuckRangeAndBearingSensor::SReceivedPacket* c_packet);
 
+      /*
+			 * Returns all range-and-bearing messages of the buffer.
+       */
       std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> GetMessages();
 
+      /*
+			 * Clears the content of the buffer.
+       */
       void Reset();
 
-      // Debbuging function. Displays elements of buffer.
+      // Debbuging function. Displays elements of buffer. TODO: remove.
       void DisplayContent();
 
-      UInt32 GetSize();
 
     private:
+      /*
+			 * Current time step.
+       */
       UInt32 m_unCurrentTime;
+
+      /*
+			 * Time to live of the messages of the buffer.
+       */
       UInt32 m_unMaxTimeToLive;
-      std::vector<std::pair<CCI_EPuckRangeAndBearingSensor::SReceivedPacket, UInt32> > m_vecBufferElements;  // Pairs <Message, Timestamp>
+
+      /*
+			 * List of pairs <range-and-bearing message, timestamp>. Represents the buffer.
+       */
+      std::vector<std::pair<CCI_EPuckRangeAndBearingSensor::SReceivedPacket, UInt32> > m_vecBufferElements;
   };
 }
 

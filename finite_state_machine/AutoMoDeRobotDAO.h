@@ -9,11 +9,10 @@
  * Only one object of this class should be instanciated, and
  * is to be used as a brigde between the AutoMoDeController and
  * the AutoMoDeFiniteStateMachine classes. In AutoMoDeController,
- * the variables of the object shall be updated before being sent to
- * the AutoMoDeFiniteStateMachine. The AutoMoDeFiniteStateMachine will
+ * the variables of the object shall be updated at each time step.
+ * The different modules of the  AutoMoDeFiniteStateMachine will
  * then use the input variables and update the output variables
  * accordingly.
- *
  */
 
 
@@ -38,58 +37,164 @@
 namespace argos {
 	class AutoMoDeRobotDAO {
 		public:
+			/*
+			 *  Class constructor.
+       */
 			AutoMoDeRobotDAO();
+
+			/*
+			 * Class destructor.
+       */
 			virtual ~AutoMoDeRobotDAO();
 
-			CCI_EPuckProximitySensor::TReadings GetProximityInput();
+			/*
+			 * Getter for the proximity input.
+			 */
+			CCI_EPuckProximitySensor::TReadings GetProximityInput() const;
+
+			/*
+			 * Setter for the proximity input.
+			 */
 			void SetProximityInput(CCI_EPuckProximitySensor::TReadings s_prox_input);
 
-			CCI_EPuckLightSensor::TReadings GetLightInput();
+			/*
+			 * Getter for the light input.
+			 */
+			CCI_EPuckLightSensor::TReadings GetLightInput() const;
+
+			/*
+			 * Setter for the light input.
+			 */
 			void SetLightInput(CCI_EPuckLightSensor::TReadings s_light_input);
 
-			CCI_EPuckGroundSensor::SReadings GetGroundInput();
+			/*
+			 * Getter for the ground input.
+			 */
+			CCI_EPuckGroundSensor::SReadings GetGroundInput() const;
+
+			/*
+			 * Setter for the ground input.
+			 */
 			void SetGroundInput(CCI_EPuckGroundSensor::SReadings s_ground_input);
 
-			UInt8 GetNumberNeighbors();
-			void SetNumberNeighbors(UInt8 un_number_neighbors);
+			/*
+			 * Getter for the number of surrounding robots.
+			 */
+			const UInt8& GetNumberNeighbors() const;
 
-			std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> GetRangeAndBearingMessages();
+			/*
+			 * Setter for the number of surrounding robots.
+			 */
+			void SetNumberNeighbors(const UInt8& un_number_neighbors);
+
+			/*
+			 * Getter for the range-and-bearing input.
+			 */
+			std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> GetRangeAndBearingMessages() const;
+
+			/*
+			 * Setter for the range-and-bearing input.
+			 */
 			void SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets s_packets);
 
-			void SetWheelsVelocity(Real un_left_velocity, Real un_right_velocity);
-			void SetWheelsVelocity(CVector2 c_velocity_vector);
-			Real GetRightWheelVelocity();
-			Real GetLeftWheelVelocity();
+			/*
+			 * Setter for the wheels velocity.
+			 */
+			void SetWheelsVelocity(const Real& un_left_velocity, const Real& un_right_velocity);
 
-			void SetRobotIdentifier(UInt32 un_robot_id);
-			UInt32 GetRobotIdentifier();
+			/*
+			 * Setter for the wheels velocity.
+			 */
+			void SetWheelsVelocity(const CVector2& c_velocity_vector);
 
+			/*
+			 * Getter for the right wheel velocity.
+			 */
+			const Real& GetRightWheelVelocity() const;
+
+			/*
+			 * Getter for the left wheel velocity.
+			 */
+			const Real& GetLeftWheelVelocity() const;
+
+			/*
+			 * Setter for the robot idientifier.
+			 */
+			void SetRobotIdentifier(const UInt32& un_robot_id);
+
+			/*
+			 * Getter for the robot identifier.
+			 */
+			const UInt32& GetRobotIdentifier() const;
+
+			/*
+			 * Reset the output variables and clears range-and-bearing message buffer.
+			 */
 			void Reset();
 
-			Real GetMaxVelocity();
+			/*
+			 * Getter for the maximal wheels velocity.
+			 */
+			const Real& GetMaxVelocity() const;
 
-			CRandom::CRNG* GetRandomNumberGenerator();
+			/*
+			 * Getter for the random number generetor.
+			 */
+			CRandom::CRNG* GetRandomNumberGenerator() const;
 
-			// Debugging function. Displays the RAB messages in the buffer.
+			// Debugging function. Displays the RAB messages in the buffer. TODO: remove.
 			void DisplayRabBufferContent();
 
 		private:
+			/*
+			 * The proximity sensors input.
+			 */
 			CCI_EPuckProximitySensor::TReadings m_sProximityInput;
+
+			/*
+			 * The light sensors input.
+			 */
 			CCI_EPuckLightSensor::TReadings m_sLightInput;
+
+			/*
+			 * The ground sensors input.
+			 */
 			CCI_EPuckGroundSensor::SReadings m_sGroundInput;
 
+			/*
+			 * The number of surrounding robots.
+			 */
 			UInt8 m_unNumberNeighbors;
 		//	CCI_EPuckRangeAndBearingSensor::TPackets m_sRangeAndBearingMessages;
 
+			/*
+			 * The left wheel velocity (output variable).
+			 */
 			Real m_fLeftWheelVelocity;
+
+			/*
+			 * The right wheel velocity (output variable).
+			 */
 			Real m_fRightWheelVelocity;
 
+			/*
+			 * The maximal wheels velocity.
+			 */
 			Real m_fMaxVelocity;
 
+			/*
+			 * The robot identifier.
+			 */
 			UInt32 m_unRobotIdentifier;
 
+			/*
+			 * Pointer to the random number generator.
+			 */
 			CRandom::CRNG* m_pcRng;
 
+			/*
+			 * Pointer to the range-and-bearing messages buffer.
+			 */
 			AutoMoDeRabBuffer* m_pcRabMessageBuffer;
 	};
 }

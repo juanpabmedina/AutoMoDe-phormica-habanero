@@ -1,8 +1,8 @@
 /**
  * @file AutoMoDeFiniteStateMachine.h
  *
- * @brief This class represents the stochastic finite state
- * machine that controls the robot. It contains all the modules
+ * @brief This class represents the stochastic Finite State
+ * Machine (FSM) that controls the robot. It contains all the modules
  * (behaviours and conditions) and is responsible for the transitions
  * between them.
  */
@@ -33,69 +33,199 @@
 
 namespace argos {
 	class AutoMoDeFiniteStateMachine {
+
 		public:
+
+			/*
+			 * Class constructor.
+			 */
 			AutoMoDeFiniteStateMachine();
+
+			/*
+			 * Class destructor.
+			 */
 			virtual ~AutoMoDeFiniteStateMachine();
-			AutoMoDeFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_fsm);
-			
+
+			/*
+			 * Copy constructor.
+			 * Intensively used in the main to duplicate the FSM to all robots.
+			 */
+			AutoMoDeFiniteStateMachine(const AutoMoDeFiniteStateMachine* pc_fsm);
+
+			/*
+			 * Add a condition to the FSM.
+			 */
 			void AddCondition(AutoMoDeCondition* pc_new_condition);
+
+			/*
+			 * Add a condition to the FSM.
+			 */
 			void AddBehaviour(AutoMoDeBehaviour* pc_new_behaviour);
-			
+
+			/*
+			 * Core of the Finite State Machine. Responsible for the transitions
+			 * between the different states (behaviours). Works as follows:
+			 *   1. Execute current behaviour
+			 *   2. Check for conditions (if current behaviour is not in blocking state)
+			 *   3. Update current behaviour if one condition passed
+			 *   4. Add entry to history if enabled
+			 *   5. Update internal variables
+			 */
 			void ControlStep();
+
+			/*
+			 * Initialize the Finite State Machine.
+			 */
 			void Init();
+
+			/*
+			 * Reset the Finite State Machine.
+			 */
 			void Reset();
-			
+
 			/**
 			 * Creates an URL containing a DOT description of the finite state machine.
 			 */
-			std::string GetReadableFormat();
-			
+			const std::string GetReadableFormat();
+
 			/**
-			 * Creates a AutoMoDeFsmHistory at the specified file path.
+			 * Creates a AutoMoDeFsmHistory with the specified file path.
 			 */
-			void MaintainHistory(std::string s_hist_path);
-			
-			UInt8 GetCurrentBehaviourIndex();
-			bool GetMaintainHistoryFlag();
-			bool GetEnteringNewStateFlag();
-			UInt32 GetTimeStep();
-			
-			std::vector<AutoMoDeBehaviour*> GetBehaviours();
-			std::vector<AutoMoDeCondition*> GetConditions();
-			
-			AutoMoDeFsmHistory* GetHistory();
-			
+			void MaintainHistory(const std::string& s_hist_path);
+
+			/*
+			 * Returns the index of the behaviour corresponding to the current state of the FSM.
+			 */
+			const UInt32& GetCurrentBehaviourIndex() const;
+
+			/*
+			 * Returns the current time step.
+			 */
+			const UInt32& GetTimeStep() const;
+
+			/*
+			 * Returns all the behaviours contained in the FSM.
+			 */
+			std::vector<AutoMoDeBehaviour*> GetBehaviours() const;
+
+			/*
+			 * Returns all the conditions contained in the FSM.
+			 */
+			std::vector<AutoMoDeCondition*> GetConditions() const;
+
+			/*
+			 * Set the pointer to the class representing the state of the robot.
+			 * @see AutoMoDeRobotDAO.
+			 */
 			void SetRobotDAO(AutoMoDeRobotDAO* m_pcRobotDAO);
-			
+
+
 		private:
-			void CheckConditions();  
-			std::vector<AutoMoDeCondition*> GetOutgoingConditions(); 
-			
-			std::string FillWithInitialState();
-			std::string FillWithNonInitialStates();
-			std::string FillWithConditions();
-		
+			/*
+			 * List of possible behaviours of the FSM.
+			 */
+			std::vector<AutoMoDeBehaviour*> m_vecBehaviours;
+
+			/*
+			 * List of possible conditions of the FSM.
+			 */
+			std::vector<AutoMoDeCondition*> m_vecConditions;
+
+			/*
+			 * Pointer to the behaviour associated with the active state of the FSM.
+			 */
+			AutoMoDeBehaviour* m_pcCurrentBehaviour;
+
+			/*
+			 * List of the conditions going out of the active state.
+			 * These conditions will be checked and determine the next state of the FSM.
+			 */
+			std::vector<AutoMoDeCondition*> m_vecCurrentConditions;
+
+			/*
+			 * Pointer to the object keeping track of the successive
+			 * states of the FSM.
+			 */
+			AutoMoDeFsmHistory* m_pcHistory;
+
+			/*
+			 * The index of the behaviour corresponding to the current
+			 * active state of the FSM.
+			 */
+			UInt32 m_unCurrentBehaviourIndex;
+
+			/*
+			 * Flag indicating if an history of the visited states
+			 * of the FSM is maintained.
+			 */
+			bool m_bMaintainHistory;
+
+			/*
+			 * Flag indicating if the FSM is changing state.
+			 */
+			bool m_bEnteringNewState;
+
+			/*
+			 * The current time step.
+			 */
+			UInt32 m_unTimeStep;
+
+			/*
+			 * Map containing pointers to tested outgoing conditions and
+			 * the result of the test.
+			 * @see AutoMoDeFsmHistory.
+			 */
+			std::map<AutoMoDeCondition*, bool> m_mapConditionsChecked;
+
+			/*
+			 * Pointer to the object representing the state of the robot.
+			 * @see AutoMoDeRobotDAO.
+			 */
+			AutoMoDeRobotDAO* m_pcRobotDAO;
+
+			/*
+			 * Returns a container filled conditions starting from the
+			 * current behaviour and finishing to possible future behaviours.
+			 */
+			std::vector<AutoMoDeCondition*> GetOutgoingConditions();
+
+			/*
+			 * Returns the DOT description of the initial state.
+			 * @see GetReadableFormat()
+			 */
+			const std::string FillWithInitialState();
+
+			/*
+			 * Returns the DOT description of all the non initial states.
+			 * @see GetReadableFormat()
+			 */
+			const std::string FillWithNonInitialStates();
+
+			/*
+			 * Returns the DOT description of the conditions.
+			 * @see GetReadableFormat()
+			 */
+			const std::string FillWithConditions();
+
+			/*
+			 * Returns a pointer to the AutoMoDeFsmHistory object.
+			 */
+			AutoMoDeFsmHistory* GetHistory() const;
+
 			/**
-			 * Pass the pointer to the RobotDAO object to all modules part of the FSM. 
+			 * Pass the pointer to the RobotDAO object to all modules part of the FSM.
 			 */
 			void ShareRobotDAO();
-		
-			std::vector<AutoMoDeBehaviour*> m_vecBehaviours;
-			std::vector<AutoMoDeCondition*> m_vecConditions;
-			
-			AutoMoDeBehaviour* m_pcCurrentBehaviour;
-			std::vector<AutoMoDeCondition*> m_vecCurrentConditions;
-			
-			AutoMoDeFsmHistory* m_pcHistory;
-			
-			UInt8 m_unCurrentBehaviourIndex;
-			bool m_bMaintainHistory;
-			bool m_bEnteringNewState;	
-			UInt32 m_unTimeStep;
-			
-			std::map<AutoMoDeCondition*, bool> m_mapConditionsChecked;
-			
-			AutoMoDeRobotDAO* m_pcRobotDAO;
+
+			/*
+			 * Returns the flag indicating wether an history is maintained or not.
+			 */
+			const bool GetMaintainHistoryFlag() const;
+
+			/*
+			 * Returns the flag indicating wether the FSM is changing state.
+			 */
+			const bool GetEnteringNewStateFlag() const;
 	};
 }
 
