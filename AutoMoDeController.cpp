@@ -50,7 +50,7 @@ namespace argos {
 			if (m_bMaintainHistory) {
 				std::ostringstream sHistoryPath;
 				sHistoryPath <<  "./fsm_history/fsm_history_" <<  m_unRobotID << ".txt";
-				m_pcFiniteStateMachine->MaintainHistory(sHistoryPath.str());   // Give here path (file with ID of robot)
+				m_pcFiniteStateMachine->MaintainHistory(sHistoryPath.str());
 			}
 			if (m_bPrintReadableFsm) {
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;
@@ -77,6 +77,18 @@ namespace argos {
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
 		}
+
+		/*
+		 * Constantly send range-and-bearing messages containing the robot integer identifier.
+		 */
+		if (m_pcRabActuator != NULL) {
+			UInt8 data[4];
+			data[0] = m_unRobotID;
+			data[1] = 0;
+			data[2] = 0;
+			data[3] = 0;
+			m_pcRabActuator->SetData(data);
+		}
 	}
 
 	/****************************************/
@@ -86,7 +98,6 @@ namespace argos {
 		/*
 		 * 1. Update RobotDAO
 		 */
-		//TODO update all fields of RobotDAO
 		if(m_pcRabSensor != NULL){
 			const CCI_EPuckRangeAndBearingSensor::TPackets& packets = m_pcRabSensor->GetPackets();
 			m_pcRobotState->SetNumberNeighbors(packets.size());
@@ -122,18 +133,9 @@ namespace argos {
 		if (m_pcWheelsActuator != NULL) {
 			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetRightWheelVelocity(), m_pcRobotState->GetLeftWheelVelocity());
 		}
-		// TODO: handle that later
-		if (m_pcRabActuator != NULL) {
-			UInt8 data[4];
-			data[0] = m_unRobotID;
-			data[1] = 0;
-			data[2] = 0;
-			data[3] = 0;
-			m_pcRabActuator->SetData(data);
-		}
 
 		/*
-		 * 4. Update variables
+		 * 4. Update variables and sensors
 		 */
 		if (m_pcRabSensor != NULL) {
 			m_pcRabSensor->ClearPackets();
