@@ -211,7 +211,10 @@ namespace argos {
 				ssUrl << "S" << (*it)->GetIndex() << " [label=\"" << (*it)->GetDOTDescription() << "\"; color=blue]" ;
 			}
 		}
-		ssUrl << ";";
+		// If there is only one behaviour, do not add extra ";".
+		if (m_vecBehaviours.size() > 1) {
+			ssUrl << ";";
+		}
 		return ssUrl.str();
 	}
 
