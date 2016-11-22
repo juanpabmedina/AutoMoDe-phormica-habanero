@@ -16,16 +16,50 @@
 namespace argos {
 	class AutoMoDeCondition {
 		protected:
+			/*
+			 * Map containing all parameters of the condition.
+			 */
 			std::map<std::string, Real> m_mapParameters;
-			UInt8 m_unFromBehaviourIndex;
-			UInt8 m_unToBehaviourIndex;
+
+			/*
+			 * Index of the behaviour at the origin of the condition.
+			 */
+			UInt32 m_unFromBehaviourIndex;
+
+			/*
+			 * Index of the behaviour at the extremity of the condition.
+			 */
+			UInt32 m_unToBehaviourIndex;
+
+			/*
+			 * Name of the condition.
+			 */
 			std::string m_strLabel;
-			UInt8 m_unIndex;
-			UInt8 m_unIdentifier;
+
+			/*
+			 * Index of the condition.
+			 */
+			UInt32 m_unIndex;
+
+			/*
+			 * Identifier of the condition.
+			 */
+			UInt32 m_unIdentifier;
+
+			/*
+			 * Shared pointer to the state of the robot.
+			 */
 			AutoMoDeRobotDAO* m_pcRobotDAO;
 
 		public:
+			/*
+			 * Tests whether the condition evaluates to true or false.
+			 */
 			virtual bool Verify() = 0;
+
+			/*
+			 * Reset method.
+			 */
 			virtual void Reset() = 0;
 
 			/**
@@ -33,29 +67,70 @@ namespace argos {
 			 */
 			virtual void Init() = 0;
 
-			const std::string GetUrlDescription();
+			/*
+			 * Returns the DOT description of the condition.
+			 */
+			const std::string GetDOTDescription();
 
+			/*
+			 * Cloning method.
+			 */
 			virtual AutoMoDeCondition* Clone() = 0;
 
-			void SetOriginAndExtremity(UInt8 un_from, UInt8 un_to);
-			void SetOrigin(UInt8 un_from);
-			void SetExtremity(UInt8 un_to);
-			void SetIndex(UInt8 un_index);
-			const UInt8 GetOrigin();
-			const UInt8 GetExtremity();
-			const UInt8 GetIndex();
+			/*
+			 * Setters for the origin and extremity behaviours of the condition.
+			 */
+			void SetOriginAndExtremity(const UInt32& un_from, const UInt32& un_to);
+			void SetOrigin(const UInt32& un_from);
+			void SetExtremity(const UInt32& un_to);
 
-			void SetIdentifier(UInt8 un_id);
-			const UInt8 GetIdentifier();
+			/*
+			 * Setter and getter for the index of the condition.
+			 */
+			void SetIndex(const UInt32& un_index);
+			const UInt32& GetIndex() const;
 
-			void AddParameter(std::string str_identifier, Real f_value);
-			Real GetParameter(std::string str_identifier);
-			std::map<std::string, Real> GetParameters();
+			/*
+			 * Getters for the origin and extremity behaviour of the condition.
+			 */
+			const UInt32& GetOrigin() const;
+			const UInt32& GetExtremity() const;
 
-			const std::string GetLabel();
+			/*
+			 * Getter and setter for the identifier of the condition.
+			 */
+			void SetIdentifier(const UInt32& un_id);
+			const UInt32& GetIdentifier() const;
+
+			/*
+			 * Adds a pair <parameter, value> to the parameters map.
+			 */
+			void AddParameter(const std::string& str_identifier, const Real& f_value);
+
+			/*
+			 * Returns the value of a given parameter from the parameters map.
+			 */
+			Real GetParameter(const std::string& str_identifier);
+
+			/*
+			 * Returns the whole parameter map.
+			 */
+			std::map<std::string, Real> GetParameters() const;
+
+			/*
+			 * Getter for the name of the label.
+			 */
+			const std::string& GetLabel() const;
+
+			/*
+			 * Setter for the pointer to the robot state.
+			 */
 			void SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao);
-			
-			bool EvaluateBernoulliProbability(Real f_probability);
+
+			/*
+			 * Returns a random value from a Bernoulli distribution.
+			 */
+			bool EvaluateBernoulliProbability(const Real& f_probability) const;
 	};
 }
 

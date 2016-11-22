@@ -10,7 +10,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	const std::string AutoMoDeCondition::GetUrlDescription() {
+	const std::string AutoMoDeCondition::GetDOTDescription() {
 		std::stringstream ss;
 		ss << m_strLabel;
 		if (!m_mapParameters.empty()) {
@@ -25,42 +25,42 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeCondition::AddParameter(std::string str_identifier, Real f_value) {
+	void AutoMoDeCondition::AddParameter(const std::string& str_identifier, const Real& f_value) {
 		m_mapParameters.insert(std::pair<std::string, Real>(str_identifier, f_value));
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const UInt8 AutoMoDeCondition::GetOrigin() {
+	const UInt32& AutoMoDeCondition::GetOrigin() const {
 		return m_unFromBehaviourIndex;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const UInt8 AutoMoDeCondition::GetExtremity() {
+	const UInt32& AutoMoDeCondition::GetExtremity() const {
 		return m_unToBehaviourIndex;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeCondition::SetOrigin(UInt8 un_from) {
+	void AutoMoDeCondition::SetOrigin(const UInt32& un_from) {
 		m_unFromBehaviourIndex = un_from;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeCondition::SetExtremity(UInt8 un_to) {
+	void AutoMoDeCondition::SetExtremity(const UInt32& un_to) {
 		m_unToBehaviourIndex = un_to;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeCondition::SetOriginAndExtremity(UInt8 un_from, UInt8 un_to) {
+	void AutoMoDeCondition::SetOriginAndExtremity(const UInt32& un_from, const UInt32& un_to) {
 		m_unFromBehaviourIndex = un_from;
 		m_unToBehaviourIndex = un_to;
 	}
@@ -68,53 +68,56 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	const std::string AutoMoDeCondition::GetLabel() {
+	const std::string& AutoMoDeCondition::GetLabel() const {
 		return m_strLabel;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeCondition::SetIndex(UInt8 un_index) {
+	void AutoMoDeCondition::SetIndex(const UInt32& un_index) {
 		m_unIndex = un_index;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const UInt8 AutoMoDeCondition::GetIndex() {
+	const UInt32& AutoMoDeCondition::GetIndex() const {
 		return m_unIndex;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeCondition::SetIdentifier(UInt8 un_id) {
+	void AutoMoDeCondition::SetIdentifier(const UInt32& un_id) {
 		m_unIdentifier = un_id;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const UInt8 AutoMoDeCondition::GetIdentifier() {
+	const UInt32& AutoMoDeCondition::GetIdentifier() const {
 		return m_unIdentifier;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	std::map<std::string, Real> AutoMoDeCondition::GetParameters() {
+	std::map<std::string, Real> AutoMoDeCondition::GetParameters() const {
 		return m_mapParameters;
 	}
 
-    /****************************************/
+  /****************************************/
 	/****************************************/
 
-    void AutoMoDeCondition::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao) {
-        m_pcRobotDAO = pc_robot_dao;
-    }
-    
-    bool AutoMoDeCondition::EvaluateBernoulliProbability(Real f_probability) {
+  void AutoMoDeCondition::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_dao) {
+      m_pcRobotDAO = pc_robot_dao;
+  }
+
+	/****************************************/
+	/****************************************/
+
+  bool AutoMoDeCondition::EvaluateBernoulliProbability(const Real& f_probability) const {
 		return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
 	}
 

@@ -11,42 +11,42 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	const bool AutoMoDeBehaviour::IsLocked() {
+	const bool AutoMoDeBehaviour::IsLocked() const {
 		return m_bLocked;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviour::SetIndex(UInt8 un_index) {
+	void AutoMoDeBehaviour::SetIndex(const UInt32& un_index) {
 		m_unIndex = un_index;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const UInt8 AutoMoDeBehaviour::GetIndex() {
+	const UInt32& AutoMoDeBehaviour::GetIndex() const {
 		return m_unIndex;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviour::SetIdentifier(UInt8 un_id) {
+	void AutoMoDeBehaviour::SetIdentifier(const UInt32& un_id) {
 		m_unIdentifier = un_id;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const UInt8 AutoMoDeBehaviour::GetIdentifier(){
+	const UInt32& AutoMoDeBehaviour::GetIdentifier() const {
 		return m_unIdentifier;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const std::string AutoMoDeBehaviour::GetUrlDescription() {
+	const std::string AutoMoDeBehaviour::GetDOTDescription() {
 		std::stringstream ss;
 		ss << m_strLabel;
 		if (!m_mapParameters.empty()) {
@@ -100,28 +100,21 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	CVector2 AutoMoDeBehaviour::ParseLight(CVector2 c_light) {
-		LOG << "ParseLight: Todo" << std::endl;
-	}
-
-	/****************************************/
-	/****************************************/
-
-	void AutoMoDeBehaviour::AddParameter(std::string str_identifier, Real f_value) {
+	void AutoMoDeBehaviour::AddParameter(const std::string& str_identifier, const Real& f_value) {
 		m_mapParameters.insert(std::pair<std::string, Real>(str_identifier, f_value));
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const bool AutoMoDeBehaviour::IsOperational() {
+	const bool AutoMoDeBehaviour::IsOperational() const {
 		return m_bOperational;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	const std::string AutoMoDeBehaviour::GetLabel() {
+	const std::string& AutoMoDeBehaviour::GetLabel() const {
 		return m_strLabel;
 	}
 

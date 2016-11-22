@@ -192,7 +192,7 @@ namespace argos {
 		std::vector<AutoMoDeBehaviour*>::iterator it;
 		for (it = m_vecBehaviours.begin(); it != m_vecBehaviours.end(); it++) {
 			if ((*it)->GetIndex() == 0) {
-				ssUrl << "S0 [label=\"" << (*it)->GetUrlDescription() << "\"; color=blue];" ;
+				ssUrl << "S0 [label=\"" << (*it)->GetDOTDescription() << "\"; color=blue];" ;
 				break;
 			}
 		}
@@ -208,7 +208,7 @@ namespace argos {
 		std::vector<AutoMoDeBehaviour*>::iterator it;
 		for (it = m_vecBehaviours.begin(); it != m_vecBehaviours.end(); it++) {
 			if ((*it)->GetIndex() != 0) {
-				ssUrl << "S" << (*it)->GetIndex() << " [label=\"" << (*it)->GetUrlDescription() << "\"; color=blue]" ;
+				ssUrl << "S" << (*it)->GetIndex() << " [label=\"" << (*it)->GetDOTDescription() << "\"; color=blue]" ;
 			}
 		}
 		ssUrl << ";";
@@ -225,7 +225,7 @@ namespace argos {
 		// Creation of conditions
 		ssUrl << "node [shape = diamond];" ;
 		for (it = m_vecConditions.begin(); it != m_vecConditions.end(); it++) {
-			ssUrl << "C" << (*it)->GetOrigin() << "x" << (*it)->GetIndex() << " [label=\"" << (*it)->GetUrlDescription() << "\"; color=green];" ;
+			ssUrl << "C" << (*it)->GetOrigin() << "x" << (*it)->GetIndex() << " [label=\"" << (*it)->GetDOTDescription() << "\"; color=green];" ;
 		}
 
 		// Creation of transitions between behaviours and conditions
