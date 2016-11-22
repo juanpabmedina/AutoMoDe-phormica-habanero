@@ -4,35 +4,28 @@
 #include <argos3/core/simulator/entity/entity.h>
 #include <argos3/core/simulator/entity/controllable_entity.h>
 #include <argos3/core/utility/plugins/dynamic_loading.h>
-#include <argos3/core/simulator/query_plugins.h>
+//#include <argos3/core/simulator/query_plugins.h>
 #include <argos3/core/simulator/argos_command_line_arg_parser.h>
 
-#include "/home/aligot/Desktop/E-puck/argos3-aligot/controllers/AutoMoDe/finite_state_machine/AutoMoDeFiniteStateMachine.h"
-#include "/home/aligot/Desktop/E-puck/argos3-aligot/controllers/AutoMoDe/finite_state_machine/AutoMoDeFsmBuilder.h"
-#include "/home/aligot/Desktop/E-puck/argos3-aligot/controllers/AutoMoDe/AutoMoDeController.h"
+#include "./finite_state_machine/AutoMoDeFiniteStateMachine.h"
+#include "./finite_state_machine/AutoMoDeFsmBuilder.h"
+#include "./AutoMoDeController.h"
 
 using namespace argos;
 
 /**
- * @brief The standard main() function to run the ARGoS simulator.
+ * @brief
  *
- * This main() function provides the basic logic to run the ARGoS
- * simulator: parses the command line, loads the experiment, runs the
- * simulation and disposes all the data.
- *
- * @param n_argc the number of command line arguments given at the shell.
- * @param ppch_argv the actual command line arguments.
- * @return 0 if everything OK; 1 in case of errors.
  */
 int main(int n_argc, char** ppch_argv) {
-	
+
 	bool bReadableFSM = false;
 	bool bHistoryFSM = false;
 	std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
-	
+	std::string strHistoryFolder = "./";
+
 	try {
-		
 		/* Cutting off the FSM configuration from the command line */
 		int nCurrentArgument = 1;
 		while(!bFsmControllerFound) {
@@ -54,41 +47,50 @@ int main(int n_argc, char** ppch_argv) {
 		cACLAP.AddFlag(
 				'r',
 				"readable-fsm",
-				"Creates a readable version of the Finite State Machine [OPTIONAL]",
+				"Creates an url containing a DOT representation of the finite state machine [OPTIONAL]",
 				bReadableFSM);
 		cACLAP.AddFlag(
 				'l',
 				"history",
-				"Keeps track of the states of the FSM that are exploited [OPTIONAL]",
+				"Keeps track of the successive states of the finite state machine [OPTIONAL]",
 				bHistoryFSM);
-				
+		cACLAP.AddArgument<std::string>(
+				't',
+				"history-folder",
+				"The path to the folder where the history of the finite state machine will be stored [OPTIONAL]",
+				strHistoryFolder);
+
 		// Parse command line without taking the configuration of the FSM into account
 		cACLAP.Parse(n_argc, ppch_argv);
-		
+
 		CSimulator& cSimulator = CSimulator::GetInstance();
 
 		switch(cACLAP.GetAction()) {
-         case CARGoSCommandLineArgParser::ACTION_RUN_EXPERIMENT: {
+    	case CARGoSCommandLineArgParser::ACTION_RUN_EXPERIMENT: {
 				CDynamicLoading::LoadAllLibraries();
 				cSimulator.SetExperimentFileName(cACLAP.GetExperimentConfigFile());
+				std::cout << cACLAP.GetExperimentConfigFile() << std::endl;
 				std::cout << "*** AutoMoDe launching ***" << std::endl;
 				std::cout << "   Readable format: " << bReadableFSM << std::endl;
 				std::cout << "   History: " << bHistoryFSM << std::endl;
-			
-				// Creation of the Finite State Machine
+
+				// Creation of the finite state machine.
 				AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
 				AutoMoDeFiniteStateMachine* cFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
-				// If the URL of the Finite State Machine is requested, display it
+
+				// If the URL of the finite state machine is requested, display it.
 				if (bReadableFSM) {
 					std::cout << cFiniteStateMachine->GetReadableFormat() << std::endl;
 				}
-				
+
+				// If an history is requested, maintain it.
 				if (bHistoryFSM) {
-					cFiniteStateMachine->MaintainHistory();
+					cFiniteStateMachine->MaintainHistory(strHistoryFolder);
 				}
-				
+
 				cSimulator.LoadExperiment();
-				
+
+				// Duplicate the finite state machine and pass it to all robots.
 				CSpace::TMapPerType cEntities = cSimulator.GetSpace().GetEntitiesByType("controller");
 				for (CSpace::TMapPerType::iterator it = cEntities.begin(); it != cEntities.end(); ++it) {
 					CControllableEntity* pcEntity = any_cast<CControllableEntity*>(it->second);
@@ -100,35 +102,35 @@ int main(int n_argc, char** ppch_argv) {
 						LOGERR << "Error while casting: " << ex.what() << std::endl;
 					}
 				}
-				
+
 				cSimulator.Execute();
 				break;
 			}
-            
-         case CARGoSCommandLineArgParser::ACTION_QUERY:
-            CDynamicLoading::LoadAllLibraries();
-            QueryPlugins(cACLAP.GetQuery());
-            break;
-         case CARGoSCommandLineArgParser::ACTION_SHOW_HELP:
-            cACLAP.PrintUsage(LOG);
-            break;
-		 case CARGoSCommandLineArgParser::ACTION_SHOW_VERSION:
-            cACLAP.PrintVersion();
-            break;
-         case CARGoSCommandLineArgParser::ACTION_UNKNOWN:
-            /* Should never get here */
-            break;
+
+    	case CARGoSCommandLineArgParser::ACTION_QUERY:
+        CDynamicLoading::LoadAllLibraries();
+        //QueryPlugins(cACLAP.GetQuery());
+        break;
+    	case CARGoSCommandLineArgParser::ACTION_SHOW_HELP:
+        cACLAP.PrintUsage(LOG);
+        break;
+		 	case CARGoSCommandLineArgParser::ACTION_SHOW_VERSION:
+        cACLAP.PrintVersion();
+        break;
+      case CARGoSCommandLineArgParser::ACTION_UNKNOWN:
+        /* Should never get here */
+        break;
 		}
-	} 
-	catch(std::exception& ex) {
-      /* A fatal error occurred: dispose of data, print error and exit */
-      LOGERR << ex.what() << std::endl;
+	} catch(std::exception& ex) {
+    /* A fatal error occurred: dispose of data, print error and exit */
+    LOGERR << ex.what() << std::endl;
 #ifdef ARGOS_THREADSAFE_LOG
-      LOG.Flush();
-      LOGERR.Flush();
+    LOG.Flush();
+    LOGERR.Flush();
 #endif
-      return 1;
-   }
-   /* Everything's ok, exit */
-   return 0;
+    return 1;
+  }
+
+	/* Everything's ok, exit */
+  return 0;
 }

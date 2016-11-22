@@ -60,3 +60,7 @@ elseif(ARGOS_BUILD_FOR_EPUCK)
 	target_link_libraries(automode
     	argos3plugin_${ARGOS_BUILD_FOR}_epuck)
 endif(ARGOS_BUILD_FOR_SIMULATOR)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../controllers/argos3-AutoMoDe)
+add_executable(automode_main AutoMoDeMain.cpp)
+target_link_libraries(automode_main automode argos3core_${ARGOS_BUILD_FOR})

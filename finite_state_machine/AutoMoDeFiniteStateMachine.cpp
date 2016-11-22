@@ -43,7 +43,10 @@ namespace argos {
 		for (std::vector<AutoMoDeCondition*>::iterator it = vecConditions.begin(); it != vecConditions.end(); ++it) {
 			m_vecConditions.push_back((*it)->Clone());
 		}
-		m_pcHistory = new AutoMoDeFsmHistory(pc_fsm->GetHistory());
+
+		if (m_bMaintainHistory) {
+			m_pcHistory = new AutoMoDeFsmHistory(pc_fsm->GetHistory());
+		}
 	}
 
 	/****************************************/
