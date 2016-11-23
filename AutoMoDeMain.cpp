@@ -28,7 +28,7 @@ int main(int n_argc, char** ppch_argv) {
 	try {
 		/* Cutting off the FSM configuration from the command line */
 		int nCurrentArgument = 1;
-		while(!bFsmControllerFound) {
+		while(!bFsmControllerFound && nCurrentArgument < n_argc) {
 			if(strcmp(ppch_argv[nCurrentArgument], "--config-fsm") == 0) {
 				bFsmControllerFound = true;
 				nCurrentArgument++;
@@ -38,10 +38,11 @@ int main(int n_argc, char** ppch_argv) {
 				}
 				/* Do not take the FSM configuration into account in the standard command line parsing. */
 				n_argc = n_argc - vecConfigFsm.size() - 1;
-			} else {
-				THROW_ARGOSEXCEPTION("Missing finite state machine configuration: \n\n\t --config-fsm CONF \t the finite state machine description \n");
 			}
 			nCurrentArgument++;
+		}
+		if (!bFsmControllerFound) {
+			THROW_ARGOSEXCEPTION("Missing finite state machine configuration: \n\n\t --config-fsm CONF \t the finite state machine description \n");
 		}
 
 		/* Configure the command line options */
