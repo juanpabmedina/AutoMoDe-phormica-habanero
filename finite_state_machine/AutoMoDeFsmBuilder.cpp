@@ -102,7 +102,7 @@ namespace argos {
 
 		// Checking for parameters
 		std::string vecPossibleParameters[] = {"rwm", "att", "rep"};
-		UInt8 unNumberPossibleParameters = 3;  // Change that later...
+		UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 		for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 			std::string strCurrentParameter = vecPossibleParameters[i];
 			std::ostringstream oss;
@@ -192,7 +192,7 @@ namespace argos {
 
 		// Checking for parameters
 		std::string vecPossibleParameters[] = {"p", "w"};
-		UInt8 unNumberPossibleParameters = 2;  // TODO Change that later...
+		UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 		for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 			std::string strCurrentParameter = vecPossibleParameters[i];
 			ss.str(std::string());

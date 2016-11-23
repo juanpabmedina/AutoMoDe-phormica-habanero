@@ -38,6 +38,8 @@ int main(int n_argc, char** ppch_argv) {
 				}
 				/* Do not take the FSM configuration into account in the standard command line parsing. */
 				n_argc = n_argc - vecConfigFsm.size() - 1;
+			} else {
+				THROW_ARGOSEXCEPTION("Missing finite state machine configuration: \n\n\t --config-fsm CONF \t the finite state machine description \n");
 			}
 			nCurrentArgument++;
 		}
@@ -59,7 +61,6 @@ int main(int n_argc, char** ppch_argv) {
 				"history-folder",
 				"The path to the folder where the history of the finite state machine will be stored [OPTIONAL]",
 				strHistoryFolder);
-
 		// Parse command line without taking the configuration of the FSM into account
 		cACLAP.Parse(n_argc, ppch_argv);
 
