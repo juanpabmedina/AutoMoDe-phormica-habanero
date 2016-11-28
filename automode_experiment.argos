@@ -36,8 +36,6 @@
 		<epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>
       </sensors>
     <params readable='true' history='true' hist-folder='./fsm_history/' fsm-config="--nstates 2 --s0 0 --rwm0 50 --n0 1 --n0x0 1 --c0x0 0 --p0x0 0.25 --s1 1 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.5"/>
-      <!--"--nstates 2 --s0 0 --rwm0 50 --n0 1 --n0x0 1 --c0x0 0 --p0x0 0.25 --s1 1 --n1 1 --n1x0 0 --c1x0 5 --p1x0 0.5" -->
-      <!-- "--nstates 2 --s0 4 --att0 5 --n0 1 --n0x0 1 --c0x0 0 --p0x0 1 --s1 1 --n1 2 --n1x0 0 --c1x0 1 --p1x0 1 --n1x1 0 --c1x1 5 --p1x1 0.25" -->
     </automode_controller>
   </controllers>
 
@@ -46,7 +44,6 @@
   <!-- ********* -->
   <arena size="5, 5, 1" center="0,0,0">
 	<!-- Change the floor here -->
-	<!--floor id="floor" source="image" path="/home/aligot/Desktop/Arena/argos3-aligot/controllers/argos3-AutoMoDe/images_floor/no_spot.png"/-->
   <floor id="floor" source="loop_functions" pixels_per_meter="100"/>
 
     <!-- Change the light here -->
@@ -89,24 +86,6 @@
         </e-puck>
       </entity>
     </distribute>
-
-   <e-puck id="epuck1">
-      <body position="0, 0, 0"
-            orientation="45, 0, 0"/>
-      <controller config="automode" />
-    </e-puck>
-
-    <e-puck id="epuck2">
-      <body position="0, 0.5, 0"
-            orientation="90, 0, 0"/>
-      <controller config="automode" />
-    </e-puck>
-
-    <e-puck id="epuck3">
-      <body position="0.5, 0.5, 0"
-            orientation="90, 0, 0"/>
-      <controller config="automode" />
-    </e-puck>
 
   </arena>
 

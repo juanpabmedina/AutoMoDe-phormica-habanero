@@ -89,9 +89,9 @@ namespace argos {
 			const std::string GetReadableFormat();
 
 			/**
-			 * Creates a AutoMoDeFsmHistory with the specified file path.
+			 * Creates a AutoMoDeFsmHistory.
 			 */
-			void MaintainHistory(const std::string& s_hist_path);
+			void MaintainHistory();
 
 			/*
 			 * Returns the index of the behaviour corresponding to the current state of the FSM.
@@ -118,6 +118,11 @@ namespace argos {
 			 * @see AutoMoDeRobotDAO.
 			 */
 			void SetRobotDAO(AutoMoDeRobotDAO* m_pcRobotDAO);
+
+			/*
+			 * Setter for the finite state machine history folder;
+			 */
+			void SetHistoryFolder(const std::string& s_hist_folder);
 
 
 		private:
@@ -159,6 +164,11 @@ namespace argos {
 			 * of the FSM is maintained.
 			 */
 			bool m_bMaintainHistory;
+
+			/*
+			 * The path to where the history shall be stored.
+			 */
+			std::string m_strHistoryFolder;
 
 			/*
 			 * Flag indicating if the FSM is changing state.

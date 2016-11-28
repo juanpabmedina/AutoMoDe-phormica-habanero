@@ -100,6 +100,11 @@ namespace argos{
 			bool m_bPrintReadableFsm;
 
 			/*
+			 * The path to where the history shall be stored.
+			 */
+			std::string m_strHistoryFolder;
+
+			/*
 			 * Pointer to the object in charge of creating the AutoMoDeFiniteStateMachine.
 			 */
 			AutoMoDeFsmBuilder* m_pcFsmBuilder;

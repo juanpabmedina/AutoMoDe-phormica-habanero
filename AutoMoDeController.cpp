@@ -16,6 +16,7 @@ namespace argos {
 		m_strFsmConfiguration = "";
 		m_bMaintainHistory = false;
 		m_bPrintReadableFsm = false;
+		m_strHistoryFolder = "./";
 	}
 
 	/****************************************/
@@ -33,6 +34,7 @@ namespace argos {
 		try {
 			GetNodeAttributeOrDefault(t_node, "fsm-config", m_strFsmConfiguration, m_strFsmConfiguration);
 			GetNodeAttributeOrDefault(t_node, "history", m_bMaintainHistory, m_bMaintainHistory);
+			GetNodeAttributeOrDefault(t_node, "hist-folder", m_strHistoryFolder, m_strHistoryFolder);
 			GetNodeAttributeOrDefault(t_node, "readable", m_bPrintReadableFsm, m_bPrintReadableFsm);
 		} catch (CARGoSException& ex) {
 			THROW_ARGOSEXCEPTION_NESTED("Error parsing <params>", ex);
@@ -48,11 +50,11 @@ namespace argos {
 			m_pcFsmBuilder = new AutoMoDeFsmBuilder();
 			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strFsmConfiguration));
 			if (m_bMaintainHistory) {
-				std::ostringstream sHistoryPath;
-				sHistoryPath <<  "./fsm_history/fsm_history_" <<  m_unRobotID << ".txt";
-				m_pcFiniteStateMachine->MaintainHistory(sHistoryPath.str());
+				m_pcFiniteStateMachine->SetHistoryFolder(m_strHistoryFolder);
+				m_pcFiniteStateMachine->MaintainHistory();
 			}
 			if (m_bPrintReadableFsm) {
+				std::cout << "Finite State Machine description: " << std::endl;
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;
 			}
 		}
