@@ -44,13 +44,16 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionInvertedNeighborsCount.cpp
 	modules/AutoMoDeConditionFixedProbability.cpp)
 
-
 if(ARGOS_BUILD_FOR_SIMULATOR)
 	add_library(automode SHARED ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 	target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)
 
 	add_library(blackspot_loopfunc SHARED loop_functions/BlackSpotLoopFunc.h loop_functions/BlackSpotLoopFunc.cpp)
 	target_link_libraries(blackspot_loopfunc argos3plugin_${ARGOS_BUILD_FOR}_epuck)
+	
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../controllers/argos3-AutoMoDe)
+	add_executable(automode_main AutoMoDeMain.cpp ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
+	target_link_libraries(automode_main argos3core_${ARGOS_BUILD_FOR}  argos3plugin_${ARGOS_BUILD_FOR}_epuck)
 
 elseif(ARGOS_BUILD_FOR_EPUCK)
 	add_executable(automode
@@ -60,7 +63,3 @@ elseif(ARGOS_BUILD_FOR_EPUCK)
 	target_link_libraries(automode
     	argos3plugin_${ARGOS_BUILD_FOR}_epuck)
 endif(ARGOS_BUILD_FOR_SIMULATOR)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../controllers/argos3-AutoMoDe)
-add_executable(automode_main AutoMoDeMain.cpp)
-target_link_libraries(automode_main automode argos3core_${ARGOS_BUILD_FOR})
