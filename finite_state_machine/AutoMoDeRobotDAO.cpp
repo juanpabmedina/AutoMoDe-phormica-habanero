@@ -16,7 +16,12 @@ namespace argos {
 		m_pcRabMessageBuffer = new AutoMoDeRabBuffer();
 		m_pcRabMessageBuffer->SetTimeLife(2);
 		m_fMaxVelocity = 10;
-		Reset();
+		m_fLeftWheelVelocity = 0;
+		m_fRightWheelVelocity = 0;
+		// TODO: Remove following variables later
+		m_unNumberValidMessages = 0;
+		m_unNumberInvalidMessages = 0;
+		m_unTimeStep = 0;
 	}
 
 	/****************************************/
@@ -91,11 +96,22 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeRobotDAO::SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets s_packets) {
+		m_unTimeStep += 1;
 		CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
 		for (it = s_packets.begin(); it < s_packets.end(); it++) {
 			if ((*it)->Data[0] != m_unRobotIdentifier) {
 				m_pcRabMessageBuffer->AddMessage(*it);
 			}
+
+			if ((*it)->Bearing != CRadians::ZERO) {
+				m_unNumberValidMessages += 1;
+			} else {
+				m_unNumberInvalidMessages += 1;
+			}
+		}
+
+		if (m_unTimeStep%20 == 0) {
+			LOG << "V: " << m_unNumberValidMessages << " I: " << m_unNumberInvalidMessages << " T:" << (m_unNumberValidMessages + m_unNumberInvalidMessages) << std::endl;
 		}
 		m_pcRabMessageBuffer->Update();
 	}
@@ -171,6 +187,7 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeRobotDAO::DisplayRabBufferContent() {
-		m_pcRabMessageBuffer->DisplayContent();
+		//LOG << " Epuck " << m_unRobotIdentifier << std::endl;
+		//m_pcRabMessageBuffer->DisplayContent();
 	}
 }

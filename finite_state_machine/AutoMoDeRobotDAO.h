@@ -196,6 +196,11 @@ namespace argos {
 			 * Pointer to the range-and-bearing messages buffer.
 			 */
 			AutoMoDeRabBuffer* m_pcRabMessageBuffer;
+
+			// testing variables. TODO: Remove.
+			UInt32 m_unNumberValidMessages;
+			UInt32 m_unNumberInvalidMessages;
+			UInt32 m_unTimeStep;
 	};
 }
 
