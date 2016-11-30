@@ -30,7 +30,7 @@
       </actuators>
       <sensors>
 		    <epuck_proximity implementation="default" show_rays="false" noise_level="0.05" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/proximity_sensor.xml"/>
-        <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" loss_probability="0.95" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/range_and_bearing_sensor.xml"/>
+        <epuck_range_and_bearing implementation="medium" medium="rab" data_size="4" real_range_noise="true" loss_probability="0.7" calibrated="true" low_level_config="/home/root/aligot/low_level_configuration/range_and_bearing_sensor.xml"/>
 		    <epuck_light implementation="default" show_rays="false" noise_level="0.05"/>
 		    <epuck_ground implementation="rot_z_only" noise_level="0.05"/>
 		    <epuck_omnidirectional_camera implementation="rot_z_only" medium="leds" show_rays="false"/>

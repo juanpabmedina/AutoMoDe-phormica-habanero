@@ -18,10 +18,6 @@ namespace argos {
 		m_fMaxVelocity = 10;
 		m_fLeftWheelVelocity = 0;
 		m_fRightWheelVelocity = 0;
-		// TODO: Remove following variables later
-		m_unNumberValidMessages = 0;
-		m_unNumberInvalidMessages = 0;
-		m_unTimeStep = 0;
 	}
 
 	/****************************************/
@@ -96,22 +92,18 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeRobotDAO::SetRangeAndBearingMessages(CCI_EPuckRangeAndBearingSensor::TPackets s_packets) {
-		m_unTimeStep += 1;
+		std::map<UInt32, CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> mapRemainingMessages;
+		std::map<UInt32, CCI_EPuckRangeAndBearingSensor::SReceivedPacket*>::iterator mapIt;
 		CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
-		for (it = s_packets.begin(); it < s_packets.end(); it++) {
+		m_unNumberNeighbors = 0;
+		for (it = s_packets.begin(); it < s_packets.end(); ++it) {
 			if ((*it)->Data[0] != m_unRobotIdentifier) {
-				m_pcRabMessageBuffer->AddMessage(*it);
-			}
-
-			if ((*it)->Bearing != CRadians::ZERO) {
-				m_unNumberValidMessages += 1;
-			} else {
-				m_unNumberInvalidMessages += 1;
+				mapRemainingMessages[(*it)->Data[0]] = (*it);
 			}
 		}
-
-		if (m_unTimeStep%20 == 0) {
-			LOG << "V: " << m_unNumberValidMessages << " I: " << m_unNumberInvalidMessages << " T:" << (m_unNumberValidMessages + m_unNumberInvalidMessages) << std::endl;
+		for (mapIt = mapRemainingMessages.begin(); mapIt != mapRemainingMessages.end(); ++mapIt) {
+			m_pcRabMessageBuffer->AddMessage((*mapIt).second);
+			m_unNumberNeighbors += 1;
 		}
 		m_pcRabMessageBuffer->Update();
 	}
