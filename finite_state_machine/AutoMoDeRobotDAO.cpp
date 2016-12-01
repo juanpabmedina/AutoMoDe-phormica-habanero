@@ -14,7 +14,7 @@ namespace argos {
 	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
 		m_pcRng = CRandom::CreateRNG("argos");
 		m_pcRabMessageBuffer = new AutoMoDeRabBuffer();
-		m_pcRabMessageBuffer->SetTimeLife(2);
+		m_pcRabMessageBuffer->SetTimeLife(5);
 		m_fMaxVelocity = 10;
 		m_fLeftWheelVelocity = 0;
 		m_fRightWheelVelocity = 0;
@@ -180,6 +180,6 @@ namespace argos {
 
 	void AutoMoDeRobotDAO::DisplayRabBufferContent() {
 		//LOG << " Epuck " << m_unRobotIdentifier << std::endl;
-		//m_pcRabMessageBuffer->DisplayContent();
+		m_pcRabMessageBuffer->DisplayContent();
 	}
 }

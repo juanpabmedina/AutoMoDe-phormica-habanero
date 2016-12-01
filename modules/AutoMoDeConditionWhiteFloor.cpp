@@ -7,22 +7,34 @@
 
  namespace argos {
 
+	/****************************************/
+	/****************************************/
+	
 	AutoMoDeConditionWhiteFloor::AutoMoDeConditionWhiteFloor() {
 		m_strLabel = "WhiteFloor";
 	}
+	
+	/****************************************/
+	/****************************************/
 
 	AutoMoDeConditionWhiteFloor::~AutoMoDeConditionWhiteFloor() {}
 
+	/****************************************/
+	/****************************************/
+	
 	bool AutoMoDeConditionWhiteFloor::Verify() {
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
 
-		if (readings.Left <= m_fGroundThreshold || readings.Center <= m_fGroundThreshold || readings.Right <= m_fGroundThreshold) {
+		if (readings.Left >= m_fGroundThreshold || readings.Center >= m_fGroundThreshold || readings.Right >= m_fGroundThreshold) {
             return EvaluateBernoulliProbability(m_fProbability);
         }
         else {
             return false;
         }
 	}
+
+	/****************************************/
+	/****************************************/
 
 	AutoMoDeConditionWhiteFloor::AutoMoDeConditionWhiteFloor(AutoMoDeConditionWhiteFloor* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
@@ -32,10 +44,16 @@
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
 	}
+	
+	/****************************************/
+	/****************************************/
 
 	AutoMoDeConditionWhiteFloor* AutoMoDeConditionWhiteFloor::Clone() {
 		return new AutoMoDeConditionWhiteFloor(*this);
 	}
+	
+	/****************************************/
+	/****************************************/
 	
 	void AutoMoDeConditionWhiteFloor::Init() {
 		m_fGroundThreshold = 0.95;
@@ -47,9 +65,10 @@
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
 	}
-
-	void AutoMoDeConditionWhiteFloor::Reset() {
-		
-	}
+	
+	/****************************************/
+	/****************************************/
+	
+	void AutoMoDeConditionWhiteFloor::Reset() {}
 
  }
