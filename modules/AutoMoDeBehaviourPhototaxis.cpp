@@ -73,7 +73,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourPhototaxis::Reset() {
-		//TODO
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -82,7 +81,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourPhototaxis::ResumeStep() {
-		//TODO
 		m_bOperational = true;
 	}
 }

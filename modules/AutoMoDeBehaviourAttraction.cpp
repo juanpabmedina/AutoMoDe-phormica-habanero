@@ -56,11 +56,12 @@ namespace argos {
 		}
 
 		sProxVectorSum = SumProximityReadings(m_pcRobotDAO->GetProximityInput());
-		sResultVector = sRabVectorSum - 5*sProxVectorSum;
+		sResultVector = sRabVectorSum - 6*sProxVectorSum;
 
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
+	
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
 
 		m_bLocked = false;
@@ -83,7 +84,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourAttraction::Reset() {
-		//TODO
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -92,7 +92,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourAttraction::ResumeStep() {
-		//TODO
 		m_bOperational = true;
 	}
 }

@@ -142,9 +142,6 @@ namespace argos {
 			 */
 			CRandom::CRNG* GetRandomNumberGenerator() const;
 
-			// Debugging function. Displays the RAB messages in the buffer. TODO: remove.
-			void DisplayRabBufferContent();
-
 		private:
 			/*
 			 * The proximity sensors input.

@@ -53,9 +53,6 @@ namespace argos {
        */
       void Reset();
 
-      // Debbuging function. Displays elements of buffer. TODO: remove.
-      void DisplayContent();
-
 
     private:
       /*

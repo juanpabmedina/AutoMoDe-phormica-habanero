@@ -119,12 +119,6 @@ namespace argos {
 		}
 
 		/*
-		 * Testing of Buffer
-		 */
-
-		 m_pcRobotState->DisplayRabBufferContent();
-
-		/*
 		 * 2. Execute step of FSM
 		 */
 		m_pcFiniteStateMachine->ControlStep();

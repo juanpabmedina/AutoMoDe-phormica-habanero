@@ -14,7 +14,7 @@ namespace argos {
 	AutoMoDeRobotDAO::AutoMoDeRobotDAO() {
 		m_pcRng = CRandom::CreateRNG("argos");
 		m_pcRabMessageBuffer = new AutoMoDeRabBuffer();
-		m_pcRabMessageBuffer->SetTimeLife(5);
+		m_pcRabMessageBuffer->SetTimeLife(10);
 		m_fMaxVelocity = 10;
 		m_fLeftWheelVelocity = 0;
 		m_fRightWheelVelocity = 0;
@@ -98,7 +98,11 @@ namespace argos {
 		m_unNumberNeighbors = 0;
 		for (it = s_packets.begin(); it < s_packets.end(); ++it) {
 			if ((*it)->Data[0] != m_unRobotIdentifier) {
-				mapRemainingMessages[(*it)->Data[0]] = (*it);
+				if (mapRemainingMessages.find((*it)->Data[0]) != mapRemainingMessages.end()) {  // If ID not in map, add message.
+					mapRemainingMessages[(*it)->Data[0]] = (*it);
+				} else if ((*it)->Bearing != CRadians::ZERO){  // If ID there, overwrite only if the message is valid (correct range and bearing information)
+					mapRemainingMessages[(*it)->Data[0]] = (*it);
+				}
 			}
 		}
 		for (mapIt = mapRemainingMessages.begin(); mapIt != mapRemainingMessages.end(); ++mapIt) {
@@ -173,13 +177,5 @@ namespace argos {
 
 	const Real& AutoMoDeRobotDAO::GetMaxVelocity() const{
 		return m_fMaxVelocity;
-	}
-
-	/****************************************/
-	/****************************************/
-
-	void AutoMoDeRobotDAO::DisplayRabBufferContent() {
-		//LOG << " Epuck " << m_unRobotIdentifier << std::endl;
-		m_pcRabMessageBuffer->DisplayContent();
 	}
 }

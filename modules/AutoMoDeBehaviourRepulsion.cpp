@@ -51,16 +51,16 @@ namespace argos {
 
 		for (it = sLastPackets.begin(); it != sLastPackets.end(); it++) {
 			if ((*it)->Data[0] != (UInt8) m_pcRobotDAO->GetRobotIdentifier()) {
-				sRabVectorSum += CVector2(m_unRepulsionParameter / (1+(*it)->Range),(*it)->Bearing.SignedNormalize()); //TODO FIXME : Range+1 beacsue range can be 0
+				sRabVectorSum += CVector2(m_unRepulsionParameter / ((*it)->Range + 1),(*it)->Bearing.SignedNormalize());
 			}
 		}
 		sProxVectorSum = SumProximityReadings(m_pcRobotDAO->GetProximityInput());
-		sResultVector = sRabVectorSum - 5*sProxVectorSum;
+		sResultVector = -sRabVectorSum - 5*sProxVectorSum;
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
-
-		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(-sResultVector));
+		
+		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
 		
 		m_bLocked = false;
 	}
@@ -82,7 +82,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourRepulsion::Reset() {
-		//TODO
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -91,7 +90,6 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeBehaviourRepulsion::ResumeStep() {
-		//TODO
 		m_bOperational = true;
 	}
 }

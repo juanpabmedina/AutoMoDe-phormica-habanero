@@ -53,6 +53,7 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeFiniteStateMachine::ControlStep(){
+		//LOG << m_pcCurrentBehaviour->GetLabel() << std::endl;
 		/*
 		 * 1. Dealing with behaviours
 		 */
