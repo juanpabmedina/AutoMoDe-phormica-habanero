@@ -50,7 +50,10 @@ if(ARGOS_BUILD_FOR_SIMULATOR)
 
 	add_library(blackspot_loopfunc SHARED loop_functions/BlackSpotLoopFunc.h loop_functions/BlackSpotLoopFunc.cpp)
 	target_link_libraries(blackspot_loopfunc argos3plugin_${ARGOS_BUILD_FOR}_epuck)
-	
+
+	add_library(aggregation_loopfunc SHARED loop_functions/AggregationLoopFunc.h loop_functions/AggregationLoopFunc.cpp)
+	target_link_libraries(aggregation_loopfunc argos3plugin_${ARGOS_BUILD_FOR}_epuck)
+
 	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../controllers/argos3-AutoMoDe)
 	add_executable(automode_main AutoMoDeMain.cpp ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 	target_link_libraries(automode_main argos3core_${ARGOS_BUILD_FOR}  argos3plugin_${ARGOS_BUILD_FOR}_epuck)
