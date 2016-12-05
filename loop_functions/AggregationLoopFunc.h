@@ -13,7 +13,7 @@ class AggregationLoopFunction: public AutoMoDeLoopFunctions {
     AggregationLoopFunction(const AggregationLoopFunction& orig);
     virtual ~AggregationLoopFunction();
 
-    virtual void Init(argos::TConfigurationNode& t_tree);
+    //virtual void Init(argos::TConfigurationNode& t_tree);
     virtual void Reset();
     virtual void Destroy();
 

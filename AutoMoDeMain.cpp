@@ -95,7 +95,7 @@ int main(int n_argc, char** ppch_argv) {
 				// Retrieval of the score of the swarm driven by the Finite State Machine
 				AutoMoDeLoopFunctions& cLoopFunctions = dynamic_cast<AutoMoDeLoopFunctions&> (cSimulator.GetLoopFunctions());
 				Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
-				LOG << fObjectiveFunction << std::endl;
+				std::cout << fObjectiveFunction << std::endl;
 
 				break;
 			}

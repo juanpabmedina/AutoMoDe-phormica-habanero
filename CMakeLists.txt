@@ -43,7 +43,8 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionGrayFloor.cpp
 	modules/AutoMoDeConditionNeighborsCount.cpp
 	modules/AutoMoDeConditionInvertedNeighborsCount.cpp
-	modules/AutoMoDeConditionFixedProbability.cpp)
+	modules/AutoMoDeConditionFixedProbability.cpp
+	loop_functions/AutoMoDeLoopFunctions.cpp)
 
 if(ARGOS_BUILD_FOR_SIMULATOR)
 	add_library(automode SHARED ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})

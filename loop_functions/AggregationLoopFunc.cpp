@@ -25,13 +25,6 @@ AggregationLoopFunction::~AggregationLoopFunction() {}
 /****************************************/
 /****************************************/
 
-void AggregationLoopFunction::Init(argos::TConfigurationNode& t_tree) {
-    Reset();
-}
-
-/****************************************/
-/****************************************/
-
 void AggregationLoopFunction::Reset() {}
 
 /****************************************/
@@ -78,7 +71,7 @@ void AggregationLoopFunction::PostExperiment() {
     m_unNumberRobots += 1;
   }
 
-  m_fObjectiveFunction = Max(m_unScoreSpot1, m_unScoreSpot2)/m_unNumberRobots;
+  m_fObjectiveFunction = Max(m_unScoreSpot1, m_unScoreSpot2)/(Real) m_unNumberRobots;
 }
 
 Real AggregationLoopFunction::GetObjectiveFunction() {
