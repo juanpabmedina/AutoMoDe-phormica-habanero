@@ -8,6 +8,7 @@
 
 #include "./finite_state_machine/AutoMoDeFiniteStateMachine.h"
 #include "./finite_state_machine/AutoMoDeFsmBuilder.h"
+#include "./loop_functions/AutoMoDeLoopFunctions.h"
 #include "./AutoMoDeController.h"
 
 using namespace argos;
@@ -90,6 +91,12 @@ int main(int n_argc, char** ppch_argv) {
 				}
 
 				cSimulator.Execute();
+
+				// Retrieval of the score of the swarm driven by the Finite State Machine
+				AutoMoDeLoopFunctions& cLoopFunctions = dynamic_cast<AutoMoDeLoopFunctions&> (cSimulator.GetLoopFunctions());
+				Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
+				LOG << fObjectiveFunction << std::endl;
+
 				break;
 			}
 

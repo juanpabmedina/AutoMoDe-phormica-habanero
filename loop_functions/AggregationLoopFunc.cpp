@@ -9,6 +9,7 @@ AggregationLoopFunction::AggregationLoopFunction() {
   m_cCoordSpot2 = CVector2(-0.5,0);
   m_unScoreSpot1 = 0;
   m_unScoreSpot2 = 0;
+  m_fObjectiveFunction = 0;
 }
 
 /****************************************/
@@ -74,9 +75,14 @@ void AggregationLoopFunction::PostExperiment() {
     } else if (fDistanceSpot2 <= m_fRadius){
       m_unScoreSpot2 += 1;
     }
+    m_unNumberRobots += 1;
   }
 
-  LOG << m_unScoreSpot1 << " " << m_unScoreSpot2 << std::endl;
+  m_fObjectiveFunction = Max(m_unScoreSpot1, m_unScoreSpot2)/m_unNumberRobots;
+}
+
+Real AggregationLoopFunction::GetObjectiveFunction() {
+  return m_fObjectiveFunction;
 }
 
 REGISTER_LOOP_FUNCTIONS(AggregationLoopFunction, "aggregation_loop_functions");

@@ -19,7 +19,8 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeConditionGrayFloor.h
 	modules/AutoMoDeConditionNeighborsCount.h
 	modules/AutoMoDeConditionInvertedNeighborsCount.h
-	modules/AutoMoDeConditionFixedProbability.h)
+	modules/AutoMoDeConditionFixedProbability.h
+	loop_functions/AutoMoDeLoopFunctions.h)
 
 # Sources
 set(AUTOMODE_SOURCES
