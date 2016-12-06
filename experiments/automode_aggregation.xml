@@ -11,7 +11,6 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <!--loop_functions label="rab_selective_test" output="output.txt" /-->
   <loop_functions library="/home/aligot/Desktop/Arena/argos3-aligot/build/controllers/argos3-AutoMoDe/libaggregation_loopfunc.so"
    label="aggregation_loop_functions">
    <params dist_radius="1.2" number_robots="20"/>
@@ -92,17 +91,8 @@
   <!-- ********** -->
   <!-- * E-Puck * -->
   <!-- ********** -->
-  <!--
-    <distribute>
-      <position method="uniform" min="-1,-1,0" max="1,1,0" />
-      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
-      <entity quantity="20" max_trials="100">
-        <e-puck id="epuck">
-          <controller config="automode" />
-        </e-puck>
-      </entity>
-    </distribute>
-  -->
+
+  <!-- The epucks are distributed by the AutoMoDeLoopFunctions. -->
   </arena>
 
   <!-- ******************* -->
@@ -125,7 +115,6 @@
   <!-- * Visualization * -->
   <!-- ***************** -->
   <visualization>
-    <!--
     <qt-opengl>
       <camera>
         <placement idx="0"
@@ -133,7 +122,7 @@
                    look_at="0,0,0"
                    lens_focal_length="30" />
       </camera>
-    </qt-opengl>-->
+    </qt-opengl>
   </visualization>
 
 </argos-configuration>
