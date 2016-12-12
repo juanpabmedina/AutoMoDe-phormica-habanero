@@ -30,21 +30,20 @@
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
 	}
-	
+
 	/****************************************/
 	/****************************************/
 
 	AutoMoDeConditionInvertedNeighborsCount* AutoMoDeConditionInvertedNeighborsCount::Clone() {
 		return new AutoMoDeConditionInvertedNeighborsCount(*this);
 	}
-	
+
 	/****************************************/
 	/****************************************/
 
 	bool AutoMoDeConditionInvertedNeighborsCount::Verify() {
 		UInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberNeighbors();
 		Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * (m_unParameterXi - unNumberNeighbors))));
-		LOG << fProbability << std::endl;
 		return EvaluateBernoulliProbability(fProbability);
 	}
 
@@ -54,10 +53,10 @@
 	void AutoMoDeConditionInvertedNeighborsCount::Reset() {
 
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeConditionInvertedNeighborsCount::Init() {
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
 		std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");
