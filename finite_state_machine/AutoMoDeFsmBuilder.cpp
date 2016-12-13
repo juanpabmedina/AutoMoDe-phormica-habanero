@@ -119,29 +119,31 @@ namespace argos {
 
 		/*
 		 * Extract the transitions starting from the state and
-		 * pass them to the transition handler.
+		 * pass them to the transition handler, if they exist.
 		 */
 		std::ostringstream oss;
 		oss << "--n" << unBehaviourIndex;
 		it = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
-		UInt8 unNumberTransitions = atoi((*(it+1)).c_str());
+		if (it != vec_fsm_state_config.end()) {
+			UInt8 unNumberTransitions = atoi((*(it+1)).c_str());
 
-		std::vector<std::string>::iterator first_transition;
-		std::vector<std::string>::iterator second_transition;
+			std::vector<std::string>::iterator first_transition;
+			std::vector<std::string>::iterator second_transition;
 
-		for (UInt8 i = 0; i < unNumberTransitions; i++) {
-			std::ostringstream oss;
-			oss << "--n" << unBehaviourIndex << "x" << i;
-			first_transition = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
-			if (i+1 < unNumberTransitions) {
+			for (UInt8 i = 0; i < unNumberTransitions; i++) {
 				std::ostringstream oss;
-				oss << "--n" << unBehaviourIndex << "x" << i+1;
-				second_transition = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
-			} else {
-				second_transition = vec_fsm_state_config.end();
+				oss << "--n" << unBehaviourIndex << "x" << i;
+				first_transition = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
+				if (i+1 < unNumberTransitions) {
+					std::ostringstream oss;
+					oss << "--n" << unBehaviourIndex << "x" << i+1;
+					second_transition = std::find(vec_fsm_state_config.begin(), vec_fsm_state_config.end(), oss.str());
+				} else {
+					second_transition = vec_fsm_state_config.end();
+				}
+				std::vector<std::string> vecTransitionConfig(first_transition, second_transition);
+				HandleTransition(c_fsm, vecTransitionConfig, unBehaviourIndex, i);
 			}
-			std::vector<std::string> vecTransitionConfig(first_transition, second_transition);
-			HandleTransition(c_fsm, vecTransitionConfig, unBehaviourIndex, i);
 		}
 	}
 
