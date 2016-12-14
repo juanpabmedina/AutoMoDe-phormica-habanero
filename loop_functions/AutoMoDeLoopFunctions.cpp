@@ -16,6 +16,11 @@ void AutoMoDeLoopFunctions::Init(argos::TConfigurationNode& t_tree) {
   PositionRobots();
 }
 
+void AutoMoDeLoopFunctions::Reset() {
+  RemoveRobots();
+  PositionRobots();
+}
+
 /****************************************/
 /****************************************/
 
@@ -58,5 +63,16 @@ void AutoMoDeLoopFunctions::PositionRobots() {
     if(!bPlaced) {
        THROW_ARGOSEXCEPTION("Can't place robot #" << i);
     }
+  }
+}
+
+/****************************************/
+/****************************************/
+
+void AutoMoDeLoopFunctions::RemoveRobots() {
+  for(UInt32 i = 1; i < m_unNumberRobots + 1; ++i) {
+    std::ostringstream id;
+    id << "epuck" << i;
+    RemoveEntity(id.str().c_str());
   }
 }

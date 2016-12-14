@@ -23,10 +23,20 @@ class AutoMoDeLoopFunctions: public CLoopFunctions {
     virtual void Init(argos::TConfigurationNode& t_tree);
 
     /*
+     * Reset function. First remove the robots, then re-position them. 
+     */
+    virtual void Reset();
+
+    /*
      * Method used to distribute the robots in a circle.
      * This replace the original distribution function of the argos simulator.
      */
     void PositionRobots();
+
+    /*
+     * Method used to remove the robots from the arena.
+     */
+    void RemoveRobots();
 
     /*
      * The number of robots to be placed for the experiment.

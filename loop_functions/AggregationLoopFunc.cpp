@@ -25,11 +25,6 @@ AggregationLoopFunction::~AggregationLoopFunction() {}
 /****************************************/
 /****************************************/
 
-void AggregationLoopFunction::Reset() {}
-
-/****************************************/
-/****************************************/
-
 void AggregationLoopFunction::Destroy() {}
 
 /****************************************/

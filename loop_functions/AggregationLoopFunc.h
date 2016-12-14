@@ -13,8 +13,6 @@ class AggregationLoopFunction: public AutoMoDeLoopFunctions {
     AggregationLoopFunction(const AggregationLoopFunction& orig);
     virtual ~AggregationLoopFunction();
 
-    //virtual void Init(argos::TConfigurationNode& t_tree);
-    virtual void Reset();
     virtual void Destroy();
 
     virtual argos::CColor GetFloorColor(const argos::CVector2& c_position_on_plane);
