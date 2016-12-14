@@ -54,13 +54,13 @@ namespace argos {
 		}
 
 		sProxVectorSum = SumProximityReadings(m_pcRobotDAO->GetProximityInput());
-		sResultVector = sLightVectorSum - 5*sProxVectorSum;
+		sResultVector = -sLightVectorSum - 5*sProxVectorSum;
 
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
-		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(-sResultVector));
-		
+		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
+
 		m_bLocked = false;
 	}
 
