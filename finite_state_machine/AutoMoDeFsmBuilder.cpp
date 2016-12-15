@@ -36,17 +36,16 @@ namespace argos {
 		AutoMoDeFiniteStateMachine* cFiniteStateMachine = new AutoMoDeFiniteStateMachine();
 
 		std::vector<std::string>::iterator it;
-		UInt8 unNumberStates;
 		try {
 			it = std::find(vec_fsm_config.begin(), vec_fsm_config.end(), "--nstates");
-			unNumberStates = atoi((*(it+1)).c_str());
+			m_unNumberStates = atoi((*(it+1)).c_str());
 			std::vector<std::string>::iterator first_state;
 			std::vector<std::string>::iterator second_state;
-			for (UInt8 i = 0; i < unNumberStates; i++) {
+			for (UInt32 i = 0; i < m_unNumberStates; i++) {
 				std::ostringstream oss;
 				oss << "--s" << i;
 				first_state = std::find(vec_fsm_config.begin(), vec_fsm_config.end(), oss.str());
-				if (i+1 < unNumberStates) {
+				if (i+1 < m_unNumberStates) {
 					std::ostringstream oss;
 					oss << "--s" << i+1;
 					second_state = std::find(vec_fsm_config.begin(), vec_fsm_config.end(), oss.str());
@@ -158,56 +157,57 @@ namespace argos {
 		std::vector<std::string>::iterator it;
 		it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());
 
+		// TODO: Check here whether unToBehaviour is smaller than the total number of states.
 		UInt8 unToBehaviour = atoi((*(it+1)).c_str());
-
-		ss.str(std::string());
-		ss << "--c" << un_initial_state_index << "x" << un_condition_index;
-		it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());
-
-		UInt8 unConditionIdentifier = atoi((*(it+1)).c_str());
-
-		switch(unConditionIdentifier) {
-			case 0:
-				cNewCondition = new AutoMoDeConditionBlackFloor();
-				break;
-			case 1:
-				cNewCondition = new AutoMoDeConditionGrayFloor();
-				break;
-			case 2:
-				cNewCondition = new AutoMoDeConditionWhiteFloor();
-				break;
-			case 3:
-				cNewCondition = new AutoMoDeConditionNeighborsCount();
-				break;
-			case 4:
-				cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
-				break;
-			case 5:
-				cNewCondition = new AutoMoDeConditionFixedProbability();
-				break;
-		}
-
-		cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);
-		cNewCondition->SetIndex(un_condition_index);
-		cNewCondition->SetIdentifier(unConditionIdentifier);
-
-
-		// Checking for parameters
-		std::string vecPossibleParameters[] = {"p", "w"};
-		UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
-		for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
-			std::string strCurrentParameter = vecPossibleParameters[i];
+		if (unToBehaviour < m_unNumberStates) {
 			ss.str(std::string());
-			ss << "--" << strCurrentParameter << un_initial_state_index << "x" << un_condition_index;
+			ss << "--c" << un_initial_state_index << "x" << un_condition_index;
 			it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());
-			if (it != vec_fsm_transition_config.end()) {
-				Real fCurrentParameterValue = strtod((*(it+1)).c_str(), NULL);
-				cNewCondition->AddParameter(strCurrentParameter, fCurrentParameterValue);
-			}
-		}
-		cNewCondition->Init();
-		c_fsm->AddCondition(cNewCondition);
 
+			UInt8 unConditionIdentifier = atoi((*(it+1)).c_str());
+
+			switch(unConditionIdentifier) {
+				case 0:
+					cNewCondition = new AutoMoDeConditionBlackFloor();
+					break;
+				case 1:
+					cNewCondition = new AutoMoDeConditionGrayFloor();
+					break;
+				case 2:
+					cNewCondition = new AutoMoDeConditionWhiteFloor();
+					break;
+				case 3:
+					cNewCondition = new AutoMoDeConditionNeighborsCount();
+					break;
+				case 4:
+					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+					break;
+				case 5:
+					cNewCondition = new AutoMoDeConditionFixedProbability();
+					break;
+			}
+
+			cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);
+			cNewCondition->SetIndex(un_condition_index);
+			cNewCondition->SetIdentifier(unConditionIdentifier);
+
+
+			// Checking for parameters
+			std::string vecPossibleParameters[] = {"p", "w"};
+			UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
+			for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
+				std::string strCurrentParameter = vecPossibleParameters[i];
+				ss.str(std::string());
+				ss << "--" << strCurrentParameter << un_initial_state_index << "x" << un_condition_index;
+				it = std::find(vec_fsm_transition_config.begin(), vec_fsm_transition_config.end(), ss.str());
+				if (it != vec_fsm_transition_config.end()) {
+					Real fCurrentParameterValue = strtod((*(it+1)).c_str(), NULL);
+					cNewCondition->AddParameter(strCurrentParameter, fCurrentParameterValue);
+				}
+			}
+			cNewCondition->Init();
+			c_fsm->AddCondition(cNewCondition);
+		}
 	}
 
 }
