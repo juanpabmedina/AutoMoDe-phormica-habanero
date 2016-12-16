@@ -57,10 +57,12 @@ namespace argos {
 			 * Creates a AutoMoDeCondition from a transition configuration and add it to the
 			 * AutoMoDeFiniStateMachine in construction.
 			 */
-			void HandleTransition(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_transition_config,
+			void HandleTransition(std::vector<std::string>& vec_fsm_transition_config,
 									const UInt32& un_initial_state_index, const UInt32& un_condition_index);
 
 			UInt32 m_unNumberStates;
+
+			AutoMoDeFiniteStateMachine* cFiniteStateMachine;
 	};
 }
 

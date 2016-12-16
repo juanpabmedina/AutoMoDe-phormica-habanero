@@ -60,6 +60,8 @@ namespace argos {
       AutoMoDeRobotDAO* m_pcRobotDAO;
 
 		public:
+
+		 virtual ~AutoMoDeBehaviour();
 			/*
 			 * Execution of the behaviour. Based on the state of the robot,
 			 * the behaviour should update the output variables.

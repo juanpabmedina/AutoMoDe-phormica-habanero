@@ -15,7 +15,9 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeFsmBuilder::~AutoMoDeFsmBuilder() {}
+	AutoMoDeFsmBuilder::~AutoMoDeFsmBuilder() {
+		delete cFiniteStateMachine;
+	}
 
 	/****************************************/
 	/****************************************/
@@ -33,7 +35,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeFiniteStateMachine* AutoMoDeFsmBuilder::BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config) {
-		AutoMoDeFiniteStateMachine* cFiniteStateMachine = new AutoMoDeFiniteStateMachine();
+		cFiniteStateMachine = new AutoMoDeFiniteStateMachine();
 
 		std::vector<std::string>::iterator it;
 		try {
@@ -141,7 +143,7 @@ namespace argos {
 					second_transition = vec_fsm_state_config.end();
 				}
 				std::vector<std::string> vecTransitionConfig(first_transition, second_transition);
-				HandleTransition(c_fsm, vecTransitionConfig, unBehaviourIndex, i);
+				HandleTransition(vecTransitionConfig, unBehaviourIndex, i);
 			}
 		}
 	}
@@ -149,7 +151,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeFsmBuilder::HandleTransition(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_transition_config, const UInt32& un_initial_state_index, const UInt32& un_condition_index) {
+	void AutoMoDeFsmBuilder::HandleTransition(std::vector<std::string>& vec_fsm_transition_config, const UInt32& un_initial_state_index, const UInt32& un_condition_index) {
 		AutoMoDeCondition* cNewCondition;
 
 		std::stringstream ss;
@@ -206,7 +208,7 @@ namespace argos {
 				}
 			}
 			cNewCondition->Init();
-			c_fsm->AddCondition(cNewCondition);
+			cFiniteStateMachine->AddCondition(cNewCondition);
 		}
 	}
 

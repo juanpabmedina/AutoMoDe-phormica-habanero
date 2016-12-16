@@ -52,6 +52,9 @@ namespace argos {
 			AutoMoDeRobotDAO* m_pcRobotDAO;
 
 		public:
+
+			virtual ~AutoMoDeCondition(){};
+
 			/*
 			 * Tests whether the condition evaluates to true or false.
 			 */

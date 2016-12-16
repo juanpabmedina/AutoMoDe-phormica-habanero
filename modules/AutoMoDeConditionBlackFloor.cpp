@@ -7,11 +7,20 @@
 
  namespace argos {
 
+  /****************************************/
+  /****************************************/
+
 	AutoMoDeConditionBlackFloor::AutoMoDeConditionBlackFloor() {
 		m_strLabel = "BlackFloor";
 	}
 
+  /****************************************/
+  /****************************************/
+
 	AutoMoDeConditionBlackFloor::~AutoMoDeConditionBlackFloor() {}
+
+  /****************************************/
+  /****************************************/
 
 	AutoMoDeConditionBlackFloor::AutoMoDeConditionBlackFloor(AutoMoDeConditionBlackFloor* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
@@ -23,20 +32,29 @@
         Init();
 	}
 
-    void AutoMoDeConditionBlackFloor::Init() {
-        m_fGroundThreshold = 0.1; //TODO : definir le paramètre
-		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
-		if (it != m_mapParameters.end()) {
-			m_fProbability = it->second;
-		} else {
-			LOGERR << "[FATAL] Missing parameter for the following condition:" << m_strLabel << std::endl;
-			THROW_ARGOSEXCEPTION("Missing Parameter");
-		}
-     }
+  /****************************************/
+  /****************************************/
+
+  void AutoMoDeConditionBlackFloor::Init() {
+    m_fGroundThreshold = 0.1; //TODO : definir le paramètre
+	  std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
+    if (it != m_mapParameters.end()) {
+      m_fProbability = it->second;
+    } else {
+      LOGERR << "[FATAL] Missing parameter for the following condition:" << m_strLabel << std::endl;
+      THROW_ARGOSEXCEPTION("Missing Parameter");
+	  }
+  }
+
+  /****************************************/
+  /****************************************/
 
 	AutoMoDeConditionBlackFloor* AutoMoDeConditionBlackFloor::Clone() {
 		return new AutoMoDeConditionBlackFloor(*this);
 	}
+
+  /****************************************/
+  /****************************************/
 
 	bool AutoMoDeConditionBlackFloor::Verify() {
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
@@ -49,8 +67,9 @@
         }
 	}
 
-	void AutoMoDeConditionBlackFloor::Reset() {
+  /****************************************/
+  /****************************************/
 
-	}
+	void AutoMoDeConditionBlackFloor::Reset() {}
 
  }

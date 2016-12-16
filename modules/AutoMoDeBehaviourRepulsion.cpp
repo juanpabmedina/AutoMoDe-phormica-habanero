@@ -61,7 +61,7 @@ namespace argos {
 		}
 		
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
-		
+
 		m_bLocked = false;
 	}
 

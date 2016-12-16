@@ -23,7 +23,11 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeController::~AutoMoDeController() {
-
+		//delete m_pcRobotState;
+		//delete m_pcFiniteStateMachine;
+		delete m_pcFsmBuilder;
+		delete m_pcRobotState;
+		//delete m_pcFiniteStateMachine;
 	}
 
 	/****************************************/
@@ -144,7 +148,8 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeController::Destroy() {
-
+		//m_pcFiniteStateMachine->Destroy();
+		//m_pcFiniteStateMachine->Destroy();
 	}
 
 	/****************************************/

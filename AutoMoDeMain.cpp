@@ -67,12 +67,12 @@ int main(int n_argc, char** ppch_argv) {
 
 				// Creation of the finite state machine.
 				AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
-				AutoMoDeFiniteStateMachine* cFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
+				AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
 
 				// If the URL of the finite state machine is requested, display it.
 				if (bReadableFSM) {
 					std::cout << "Finite State Machine description: " << std::endl;
-					std::cout << cFiniteStateMachine->GetReadableFormat() << std::endl;
+					std::cout << pcFiniteStateMachine->GetReadableFormat() << std::endl;
 				}
 
 				cSimulator.LoadExperiment();
@@ -81,7 +81,7 @@ int main(int n_argc, char** ppch_argv) {
 				CSpace::TMapPerType cEntities = cSimulator.GetSpace().GetEntitiesByType("controller");
 				for (CSpace::TMapPerType::iterator it = cEntities.begin(); it != cEntities.end(); ++it) {
 					CControllableEntity* pcEntity = any_cast<CControllableEntity*>(it->second);
-					AutoMoDeFiniteStateMachine* pcPersonalFsm = new AutoMoDeFiniteStateMachine(cFiniteStateMachine);
+					AutoMoDeFiniteStateMachine* pcPersonalFsm = new AutoMoDeFiniteStateMachine(pcFiniteStateMachine);
 					try {
 						AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
 						cController.SetFiniteStateMachine(pcPersonalFsm);
@@ -114,6 +114,9 @@ int main(int n_argc, char** ppch_argv) {
         /* Should never get here */
         break;
 		}
+
+		cSimulator.Destroy();
+
 	} catch(std::exception& ex) {
     /* A fatal error occurred: dispose of data, print error and exit */
     LOGERR << ex.what() << std::endl;

@@ -9,11 +9,11 @@
 
 	/****************************************/
 	/****************************************/
-	
+
 	AutoMoDeConditionWhiteFloor::AutoMoDeConditionWhiteFloor() {
 		m_strLabel = "WhiteFloor";
 	}
-	
+
 	/****************************************/
 	/****************************************/
 
@@ -21,7 +21,7 @@
 
 	/****************************************/
 	/****************************************/
-	
+
 	bool AutoMoDeConditionWhiteFloor::Verify() {
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
 
@@ -44,17 +44,17 @@
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
 	}
-	
+
 	/****************************************/
 	/****************************************/
 
 	AutoMoDeConditionWhiteFloor* AutoMoDeConditionWhiteFloor::Clone() {
 		return new AutoMoDeConditionWhiteFloor(*this);
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeConditionWhiteFloor::Init() {
 		m_fGroundThreshold = 0.95;
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
@@ -65,10 +65,10 @@
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeConditionWhiteFloor::Reset() {}
 
  }

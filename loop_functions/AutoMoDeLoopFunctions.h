@@ -23,7 +23,7 @@ class AutoMoDeLoopFunctions: public CLoopFunctions {
     virtual void Init(argos::TConfigurationNode& t_tree);
 
     /*
-     * Reset function. First remove the robots, then re-position them. 
+     * Reset function. First remove the robots, then re-position them.
      */
     virtual void Reset();
 
@@ -56,7 +56,7 @@ class AutoMoDeLoopFunctions: public CLoopFunctions {
     virtual Real GetObjectiveFunction() = 0;
 
   private:
-    CRandom::CRNG* m_pcRNG;
+    CRandom::CRNG* m_pcRng;
 
 };
 

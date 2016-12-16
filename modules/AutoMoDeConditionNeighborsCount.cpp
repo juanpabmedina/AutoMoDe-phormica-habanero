@@ -30,14 +30,14 @@
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
 	}
-	
+
 	/****************************************/
 	/****************************************/
 
 	AutoMoDeConditionNeighborsCount* AutoMoDeConditionNeighborsCount::Clone() {
 		return new AutoMoDeConditionNeighborsCount(*this);
 	}
-	
+
 	/****************************************/
 	/****************************************/
 
@@ -53,10 +53,10 @@
 	void AutoMoDeConditionNeighborsCount::Reset() {
 
 	}
-	
+
 	/****************************************/
 	/****************************************/
-	
+
 	void AutoMoDeConditionNeighborsCount::Init() {
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
 		std::map<std::string, Real>::iterator itXi = m_mapParameters.find("p");

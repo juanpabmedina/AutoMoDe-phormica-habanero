@@ -4,7 +4,7 @@
 /****************************************/
 
 void AutoMoDeLoopFunctions::Init(argos::TConfigurationNode& t_tree) {
-  m_pcRNG = CRandom::CreateRNG("argos");
+  m_pcRng = CRandom::CreateRNG("argos");
   TConfigurationNode cParametersNode;
   try {
     cParametersNode = GetNode(t_tree, "params");
@@ -45,8 +45,8 @@ void AutoMoDeLoopFunctions::PositionRobots() {
     unTrials = 0;
     do {
        ++unTrials;
-       a = m_pcRNG->Uniform(CRange<Real>(0.0f, 1.0f));
-       b = m_pcRNG->Uniform(CRange<Real>(0.0f, 1.0f));
+       a = m_pcRng->Uniform(CRange<Real>(0.0f, 1.0f));
+       b = m_pcRng->Uniform(CRange<Real>(0.0f, 1.0f));
        // If b < a, swap them
        if (b < a) {
          temp = a;
@@ -57,7 +57,7 @@ void AutoMoDeLoopFunctions::PositionRobots() {
        Real fPosY = b * m_fDistributionRadius * sin(2 * CRadians::PI.GetValue() * (a/b));
        bPlaced = MoveEntity((*pcEpuck).GetEmbodiedEntity(),
                             CVector3(fPosX, fPosY, 0),
-                            CQuaternion().FromEulerAngles(m_pcRNG->Uniform(CRange<CRadians>(CRadians::ZERO,CRadians::TWO_PI)),
+                            CQuaternion().FromEulerAngles(m_pcRng->Uniform(CRange<CRadians>(CRadians::ZERO,CRadians::TWO_PI)),
                             CRadians::ZERO,CRadians::ZERO),false);
     } while(!bPlaced && unTrials < 100);
     if(!bPlaced) {

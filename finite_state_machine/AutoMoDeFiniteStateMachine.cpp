@@ -20,7 +20,20 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeFiniteStateMachine::~AutoMoDeFiniteStateMachine() {}
+	AutoMoDeFiniteStateMachine::~AutoMoDeFiniteStateMachine() {
+		for (unsigned int i = 0; i < m_vecBehaviours.size(); ++i) {
+			delete m_vecBehaviours.at(i);
+		}
+
+		for (unsigned int i = 0; i < m_vecConditions.size(); ++i) {
+			delete m_vecConditions.at(i);
+		}
+
+		if (m_bMaintainHistory) {
+			delete m_pcHistory;
+		}
+
+	}
 
 	/****************************************/
 	/****************************************/

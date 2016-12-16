@@ -8,6 +8,8 @@
 
 namespace argos {
 
+	AutoMoDeBehaviour::~AutoMoDeBehaviour() {}
+
 	/****************************************/
 	/****************************************/
 

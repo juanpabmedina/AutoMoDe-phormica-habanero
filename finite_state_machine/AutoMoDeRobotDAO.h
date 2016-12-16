@@ -90,7 +90,7 @@ namespace argos {
 			/*
 			 * Getter for the range-and-bearing input.
 			 */
-			std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> GetRangeAndBearingMessages() const;
+			std::vector<CCI_EPuckRangeAndBearingSensor::SReceivedPacket*> GetRangeAndBearingMessages() ;
 
 			/*
 			 * Setter for the range-and-bearing input.
@@ -162,7 +162,6 @@ namespace argos {
 			 * The number of surrounding robots.
 			 */
 			UInt8 m_unNumberNeighbors;
-		//	CCI_EPuckRangeAndBearingSensor::TPackets m_sRangeAndBearingMessages;
 
 			/*
 			 * The left wheel velocity (output variable).
@@ -192,7 +191,7 @@ namespace argos {
 			/*
 			 * Pointer to the range-and-bearing messages buffer.
 			 */
-			AutoMoDeRabBuffer* m_pcRabMessageBuffer;
+			AutoMoDeRabBuffer m_pcRabMessageBuffer;
 	};
 }
 

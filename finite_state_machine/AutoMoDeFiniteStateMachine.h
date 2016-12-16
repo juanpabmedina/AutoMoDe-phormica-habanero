@@ -124,7 +124,6 @@ namespace argos {
 			 */
 			void SetHistoryFolder(const std::string& s_hist_folder);
 
-
 		private:
 			/*
 			 * List of possible behaviours of the FSM.

@@ -23,7 +23,6 @@ namespace argos {
 
   void AutoMoDeRabBuffer::SetTimeLife(const UInt32& un_max_time_to_live) {
     m_unMaxTimeToLive = un_max_time_to_live;
-
   }
 
   /****************************************/

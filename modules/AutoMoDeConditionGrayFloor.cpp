@@ -7,11 +7,20 @@
 
  namespace argos {
 
+  /****************************************/
+  /****************************************/
+
 	AutoMoDeConditionGrayFloor::AutoMoDeConditionGrayFloor() {
 		m_strLabel = "GrayFloor";
 	}
 
+  /****************************************/
+  /****************************************/
+
 	AutoMoDeConditionGrayFloor::~AutoMoDeConditionGrayFloor() {}
+
+  /****************************************/
+  /****************************************/
 
 	AutoMoDeConditionGrayFloor::AutoMoDeConditionGrayFloor(AutoMoDeConditionGrayFloor* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
@@ -22,13 +31,19 @@
 		m_mapParameters = pc_condition->GetParameters();
 	}
 
+  /****************************************/
+  /****************************************/
+
 	AutoMoDeConditionGrayFloor* AutoMoDeConditionGrayFloor::Clone() {
 		return new AutoMoDeConditionGrayFloor(*this);
 	}
 
+  /****************************************/
+  /****************************************/
+
 	bool AutoMoDeConditionGrayFloor::Verify() {
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
-		
+
 		if (m_fGroundThresholdRange.WithinMinBoundExcludedMaxBoundExcluded(readings.Left) || m_fGroundThresholdRange.WithinMinBoundExcludedMaxBoundExcluded(readings.Center) || m_fGroundThresholdRange.WithinMinBoundExcludedMaxBoundExcluded(readings.Right)) {
             return EvaluateBernoulliProbability(m_fProbability);
         }
@@ -36,7 +51,10 @@
             return false;
         }
 	}
-	
+
+  /****************************************/
+  /****************************************/
+
 	void AutoMoDeConditionGrayFloor::Init() {
 		m_fGroundThresholdRange.Set(0.1, 0.95);
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
@@ -48,9 +66,9 @@
 		}
 	}
 
+  /****************************************/
+  /****************************************/
 
-	void AutoMoDeConditionGrayFloor::Reset() {
-
-	}
+	void AutoMoDeConditionGrayFloor::Reset() {}
 
  }
