@@ -133,6 +133,8 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeFiniteStateMachine::Reset() {
+		m_unTimeStep = 0;
+		m_bEnteringNewState = true;
 		m_unCurrentBehaviourIndex = 0;
 		m_pcCurrentBehaviour = m_vecBehaviours.at(m_unCurrentBehaviourIndex);
 		std::vector<AutoMoDeCondition*>::iterator itC;

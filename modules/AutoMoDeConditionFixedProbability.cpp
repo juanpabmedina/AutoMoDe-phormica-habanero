@@ -62,6 +62,8 @@
   /****************************************/
   /****************************************/
 
-	void AutoMoDeConditionFixedProbability::Reset() {}
+	void AutoMoDeConditionFixedProbability::Reset() {
+    Init();
+  }
 
  }

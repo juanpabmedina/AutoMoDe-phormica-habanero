@@ -47,7 +47,6 @@ namespace argos {
 		/*
 		 * If a FSM configuration is given as parameter of the experiment file, create a FSM from it
 		 */
-
 		if (m_strFsmConfiguration.compare("") != 0) {
 			m_pcFsmBuilder = new AutoMoDeFsmBuilder();
 			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strFsmConfiguration));
@@ -59,6 +58,8 @@ namespace argos {
 				std::cout << "Finite State Machine description: " << std::endl;
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;
 			}
+		} else {
+			LOGERR << "Warning: No finite state machine configuration found in .argos" << std::endl;
 		}
 
 

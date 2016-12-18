@@ -26,7 +26,6 @@ class AggregationLoopFunction: public AutoMoDeLoopFunctions {
 
     UInt32 m_unScoreSpot1;
     UInt32 m_unScoreSpot2;
-    UInt32 m_unNumberRobots;
     Real m_fObjectiveFunction;
 };
 

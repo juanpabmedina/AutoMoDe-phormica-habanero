@@ -36,7 +36,7 @@
   /****************************************/
 
   void AutoMoDeConditionBlackFloor::Init() {
-    m_fGroundThreshold = 0.1; //TODO : definir le paramètre
+    m_fGroundThreshold = 0.1;
 	  std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
     if (it != m_mapParameters.end()) {
       m_fProbability = it->second;
@@ -60,16 +60,18 @@
 		CCI_EPuckGroundSensor::SReadings readings = m_pcRobotDAO->GetGroundInput();
 
 		if (readings.Left <= m_fGroundThreshold || readings.Center <= m_fGroundThreshold || readings.Right <= m_fGroundThreshold) {
-            return EvaluateBernoulliProbability(m_fProbability);
-        }
-        else {
-            return false;
-        }
+      return EvaluateBernoulliProbability(m_fProbability);
+    }
+    else {
+      return false;
+    }
 	}
 
   /****************************************/
   /****************************************/
 
-	void AutoMoDeConditionBlackFloor::Reset() {}
+	void AutoMoDeConditionBlackFloor::Reset() {
+    Init();
+  }
 
  }

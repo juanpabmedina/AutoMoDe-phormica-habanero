@@ -17,7 +17,7 @@ using namespace argos;
 const std::string ExplainParameters() {
 	std::string strExplanation = "Missing finite state machine configuration. The possible parameters are: \n\n"
 		" -r | --readable-fsm \t Prints an URL containing a DOT representation of the finite state machine [OPTIONAL]. \n"
-		" --config-fsm CONF \t The finite state machine description [MANDATORY]\n"
+		" --fsm-config CONF \t The finite state machine description [MANDATORY]\n"
 		"\n The description of the finite state machine should be placed at the end of the command line, after the other parameters.";
 	return strExplanation;
 }
@@ -40,7 +40,7 @@ int main(int n_argc, char** ppch_argv) {
 
 		int nCurrentArgument = 1;
 		while(!bFsmControllerFound && nCurrentArgument < n_argc) {
-			if(strcmp(ppch_argv[nCurrentArgument], "--config-fsm") == 0) {
+			if(strcmp(ppch_argv[nCurrentArgument], "--fsm-config") == 0) {
 				bFsmControllerFound = true;
 				nCurrentArgument++;
 				while (nCurrentArgument < n_argc) {

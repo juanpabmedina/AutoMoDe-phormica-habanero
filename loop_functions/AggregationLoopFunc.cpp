@@ -50,7 +50,7 @@ argos::CColor AggregationLoopFunction::GetFloorColor(const argos::CVector2& c_po
 
 void AggregationLoopFunction::PostExperiment() {
   CSpace::TMapPerType& tEpuckMap = GetSpace().GetEntitiesByType("epuck");
-  CVector2 cEpuckPosition;
+  CVector2 cEpuckPosition(0,0);
   for (CSpace::TMapPerType::iterator it = tEpuckMap.begin(); it != tEpuckMap.end(); ++it) {
     CEPuckEntity* pcEpuck = any_cast<CEPuckEntity*>(it->second);
     cEpuckPosition.Set(pcEpuck->GetEmbodiedEntity().GetOriginAnchor().Position.GetX(),
@@ -63,7 +63,6 @@ void AggregationLoopFunction::PostExperiment() {
     } else if (fDistanceSpot2 <= m_fRadius){
       m_unScoreSpot2 += 1;
     }
-    m_unNumberRobots += 1;
   }
 
   m_fObjectiveFunction = Max(m_unScoreSpot1, m_unScoreSpot2)/(Real) m_unNumberRobots;
