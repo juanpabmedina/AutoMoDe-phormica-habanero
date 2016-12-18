@@ -29,7 +29,7 @@
 		m_unFromBehaviourIndex = pc_condition->GetOrigin();
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
-        Init();
+    Init();
 	}
 
   /****************************************/
@@ -50,7 +50,7 @@
   /****************************************/
 
 	AutoMoDeConditionBlackFloor* AutoMoDeConditionBlackFloor::Clone() {
-		return new AutoMoDeConditionBlackFloor(*this);
+		return new AutoMoDeConditionBlackFloor(this);
 	}
 
   /****************************************/

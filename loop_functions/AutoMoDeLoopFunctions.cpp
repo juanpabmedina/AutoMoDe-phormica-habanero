@@ -16,10 +16,18 @@ void AutoMoDeLoopFunctions::Init(argos::TConfigurationNode& t_tree) {
   PositionRobots();
 }
 
+/****************************************/
+/****************************************/
+
 void AutoMoDeLoopFunctions::Reset() {
   RemoveRobots();
   PositionRobots();
 }
+
+/****************************************/
+/****************************************/
+
+AutoMoDeLoopFunctions::~AutoMoDeLoopFunctions() {}
 
 /****************************************/
 /****************************************/

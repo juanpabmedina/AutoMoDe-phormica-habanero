@@ -25,6 +25,7 @@ namespace argos {
 		m_unIndex = pc_behaviour->GetIndex();
 		m_unIdentifier = pc_behaviour->GetIdentifier();
 		m_mapParameters = pc_behaviour->GetParameters();
+		Init();
 	}
 
 	/****************************************/
@@ -36,7 +37,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeBehaviourStop* AutoMoDeBehaviourStop::Clone() {
-		return new AutoMoDeBehaviourStop(*this);
+		return new AutoMoDeBehaviourStop(this);
 	}
 
 	/****************************************/

@@ -13,6 +13,7 @@
 
 using namespace argos;
 
+
 const std::string ExplainParameters() {
 	std::string strExplanation = "Missing finite state machine configuration. The possible parameters are: \n\n"
 		" -r | --readable-fsm \t Prints an URL containing a DOT representation of the finite state machine [OPTIONAL]. \n"
@@ -27,12 +28,16 @@ const std::string ExplainParameters() {
  */
 int main(int n_argc, char** ppch_argv) {
 
+
 	bool bReadableFSM = false;
 	std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
 
+	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
+
 	try {
-		/* Cutting off the FSM configuration from the command line */
+		// Cutting off the FSM configuration from the command line
+
 		int nCurrentArgument = 1;
 		while(!bFsmControllerFound && nCurrentArgument < n_argc) {
 			if(strcmp(ppch_argv[nCurrentArgument], "--config-fsm") == 0) {
@@ -42,20 +47,20 @@ int main(int n_argc, char** ppch_argv) {
 					vecConfigFsm.push_back(std::string(ppch_argv[nCurrentArgument]));
 					nCurrentArgument++;
 				}
-				/* Do not take the FSM configuration into account in the standard command line parsing. */
+				// Do not take the FSM configuration into account in the standard command line parsing.
 				n_argc = n_argc - vecConfigFsm.size() - 1;
 			}
 			nCurrentArgument++;
 		}
 		if (!bFsmControllerFound) {
-			THROW_ARGOSEXCEPTION(ExplainParameters());
+			//THROW_ARGOSEXCEPTION(ExplainParameters());
 		}
 
-		/* Configure the command line options */
+		// Configure the command line options
 		CARGoSCommandLineArgParser cACLAP;
 		cACLAP.AddFlag('r', "readable-fsm", "", bReadableFSM);
 
-		/* Parse command line without taking the configuration of the FSM into account */
+		// Parse command line without taking the configuration of the FSM into account
 		cACLAP.Parse(n_argc, ppch_argv);
 
 		CSimulator& cSimulator = CSimulator::GetInstance();
@@ -66,6 +71,7 @@ int main(int n_argc, char** ppch_argv) {
 				cSimulator.SetExperimentFileName(cACLAP.GetExperimentConfigFile());
 
 				// Creation of the finite state machine.
+
 				AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
 				AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
 
@@ -82,6 +88,7 @@ int main(int n_argc, char** ppch_argv) {
 				for (CSpace::TMapPerType::iterator it = cEntities.begin(); it != cEntities.end(); ++it) {
 					CControllableEntity* pcEntity = any_cast<CControllableEntity*>(it->second);
 					AutoMoDeFiniteStateMachine* pcPersonalFsm = new AutoMoDeFiniteStateMachine(pcFiniteStateMachine);
+					vecFsm.push_back(pcPersonalFsm);
 					try {
 						AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
 						cController.SetFiniteStateMachine(pcPersonalFsm);
@@ -90,9 +97,11 @@ int main(int n_argc, char** ppch_argv) {
 					}
 				}
 
+
 				cSimulator.Execute();
 
 				// Retrieval of the score of the swarm driven by the Finite State Machine
+
 				AutoMoDeLoopFunctions& cLoopFunctions = dynamic_cast<AutoMoDeLoopFunctions&> (cSimulator.GetLoopFunctions());
 				Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
 				std::cout << "Score " << fObjectiveFunction << std::endl;
@@ -111,14 +120,14 @@ int main(int n_argc, char** ppch_argv) {
         cACLAP.PrintVersion();
         break;
       case CARGoSCommandLineArgParser::ACTION_UNKNOWN:
-        /* Should never get here */
+        // Should never get here
         break;
 		}
 
 		cSimulator.Destroy();
 
 	} catch(std::exception& ex) {
-    /* A fatal error occurred: dispose of data, print error and exit */
+    // A fatal error occurred: dispose of data, print error and exit
     LOGERR << ex.what() << std::endl;
 #ifdef ARGOS_THREADSAFE_LOG
     LOG.Flush();
@@ -126,6 +135,11 @@ int main(int n_argc, char** ppch_argv) {
 #endif
     return 1;
   }
+
+	for (unsigned int i = 0; i < vecFsm.size(); ++i) {
+		delete vecFsm.at(i);
+	}
+
 
 	/* Everything's ok, exit */
   return 0;

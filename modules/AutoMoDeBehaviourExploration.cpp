@@ -37,7 +37,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeBehaviourExploration* AutoMoDeBehaviourExploration::Clone() {
-		return new AutoMoDeBehaviourExploration(*this);
+		return new AutoMoDeBehaviourExploration(this);
 	}
 
 	/****************************************/

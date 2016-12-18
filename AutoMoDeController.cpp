@@ -23,11 +23,8 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeController::~AutoMoDeController() {
-		//delete m_pcRobotState;
-		//delete m_pcFiniteStateMachine;
-		delete m_pcFsmBuilder;
 		delete m_pcRobotState;
-		//delete m_pcFiniteStateMachine;
+		delete m_pcFsmBuilder;
 	}
 
 	/****************************************/
@@ -50,6 +47,7 @@ namespace argos {
 		/*
 		 * If a FSM configuration is given as parameter of the experiment file, create a FSM from it
 		 */
+
 		if (m_strFsmConfiguration.compare("") != 0) {
 			m_pcFsmBuilder = new AutoMoDeFsmBuilder();
 			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strFsmConfiguration));
@@ -62,6 +60,8 @@ namespace argos {
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;
 			}
 		}
+
+
 
 		/*
 		 *  Initializing sensors and actuators
@@ -147,10 +147,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeController::Destroy() {
-		//m_pcFiniteStateMachine->Destroy();
-		//m_pcFiniteStateMachine->Destroy();
-	}
+	void AutoMoDeController::Destroy() {}
 
 	/****************************************/
 	/****************************************/

@@ -43,13 +43,14 @@
 		m_unFromBehaviourIndex = pc_condition->GetOrigin();
 		m_unToBehaviourIndex = pc_condition->GetExtremity();
 		m_mapParameters = pc_condition->GetParameters();
+    Init();
 	}
 
 	/****************************************/
 	/****************************************/
 
 	AutoMoDeConditionWhiteFloor* AutoMoDeConditionWhiteFloor::Clone() {
-		return new AutoMoDeConditionWhiteFloor(*this);
+		return new AutoMoDeConditionWhiteFloor(this);
 	}
 
 	/****************************************/

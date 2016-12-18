@@ -25,6 +25,7 @@ namespace argos {
 		m_unIndex = pc_behaviour->GetIndex();
 		m_unIdentifier = pc_behaviour->GetIdentifier();
 		m_mapParameters = pc_behaviour->GetParameters();
+		Init();
 	}
 
 	/****************************************/
@@ -36,7 +37,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeBehaviourRepulsion* AutoMoDeBehaviourRepulsion::Clone() {
-		return new AutoMoDeBehaviourRepulsion(*this);
+		return new AutoMoDeBehaviourRepulsion(this);
 	}
 
 	/****************************************/
@@ -59,7 +60,7 @@ namespace argos {
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
-		
+
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
 
 		m_bLocked = false;

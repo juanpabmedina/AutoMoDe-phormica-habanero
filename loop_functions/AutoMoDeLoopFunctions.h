@@ -16,6 +16,8 @@ using namespace argos;
 class AutoMoDeLoopFunctions: public CLoopFunctions {
   protected:
 
+    ~AutoMoDeLoopFunctions();
+
     /*
      * Initialization method where the parameters of the loop function
      * are fetched from the xml declaration.
