@@ -9,9 +9,9 @@
 #include <argos3/core/utility/logging/argos_log.h>
 #include <argos3/core/control_interface/ci_controller.h>
 
-#include "./finite_state_machine/AutoMoDeFiniteStateMachine.h"
-#include "./finite_state_machine/AutoMoDeFsmBuilder.h"
-#include "./finite_state_machine/AutoMoDeRobotDAO.h"
+#include "./core/AutoMoDeFiniteStateMachine.h"
+#include "./core/AutoMoDeFsmBuilder.h"
+#include "./core/AutoMoDeRobotDAO.h"
 
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_wheels_actuator.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_sensor.h>

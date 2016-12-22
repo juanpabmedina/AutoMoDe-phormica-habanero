@@ -1,7 +1,7 @@
 #ifndef AGGREGATION_LOOP_FUNC
 #define AGGREGATION_LOOP_FUNC
 
-#include "AutoMoDeLoopFunctions.h"
+#include "./src/core/AutoMoDeLoopFunctions.h"
 #include <argos3/core/simulator/space/space.h>
 #include <argos3/plugins/robots/e-puck/simulator/epuck_entity.h>
 

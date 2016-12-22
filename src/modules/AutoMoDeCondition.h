@@ -9,7 +9,7 @@
 #include <argos3/core/utility/math/vector2.h>
 #include <argos3/core/utility/logging/argos_log.h>
 
-#include "../finite_state_machine/AutoMoDeRobotDAO.h"
+#include "../core/AutoMoDeRobotDAO.h"
 
 #include <map>
 

@@ -6,9 +6,9 @@
 #include <argos3/core/utility/plugins/dynamic_loading.h>
 #include <argos3/core/simulator/argos_command_line_arg_parser.h>
 
-#include "./finite_state_machine/AutoMoDeFiniteStateMachine.h"
-#include "./finite_state_machine/AutoMoDeFsmBuilder.h"
-#include "./loop_functions/AutoMoDeLoopFunctions.h"
+#include "./core/AutoMoDeFiniteStateMachine.h"
+#include "./core/AutoMoDeFsmBuilder.h"
+#include "./core/AutoMoDeLoopFunctions.h"
 #include "./AutoMoDeController.h"
 
 using namespace argos;
