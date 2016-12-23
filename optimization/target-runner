@@ -17,7 +17,7 @@
 # Path to the AutoMoDe software:
 # Note that this script is ran from the execution directory
 
-EXE=$(pwd)/../../../automode_main
+EXE=$(pwd)/../../automode_main
 
 CONFIG_ID="$1"
 INSTANCE_ID="$2"
@@ -41,13 +41,13 @@ fi
 
 # Saving the FSM configuration
 FSM_LOG="fsm_log.txt"
-echo ${CONFIG_PARAMS} >> $FSM_LOG 
+echo ${CONFIG_PARAMS} >> $FSM_LOG
 
 start=`date +%s`
 
 # Now we can call AutoMoDe by building a command line with all parameters for it
 # and we collect its output that contains the score
-OUTPUT=$($EXE -n -c $INSTANCE --fsm-config ${CONFIG_PARAMS})
+OUTPUT=$($EXE -n -c $INSTANCE --seed $SEED --fsm-config ${CONFIG_PARAMS})
 
 #end=`date +%s`
 
@@ -62,6 +62,6 @@ fi
 echo " score $SCORE" >> $FSM_LOG
 
 # Print score!
-echo $SCORE
+echo "-$SCORE"
 
 exit 0
