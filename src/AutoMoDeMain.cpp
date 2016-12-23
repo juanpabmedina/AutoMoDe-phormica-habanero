@@ -9,7 +9,7 @@
 #include "./core/AutoMoDeFiniteStateMachine.h"
 #include "./core/AutoMoDeFsmBuilder.h"
 #include "./core/AutoMoDeLoopFunctions.h"
-#include "./AutoMoDeController.h"
+#include "./core/AutoMoDeController.h"
 
 using namespace argos;
 
@@ -17,6 +17,7 @@ using namespace argos;
 const std::string ExplainParameters() {
 	std::string strExplanation = "Missing finite state machine configuration. The possible parameters are: \n\n"
 		" -r | --readable-fsm \t Prints an URL containing a DOT representation of the finite state machine [OPTIONAL]. \n"
+		" -s | --seed \t The seed for the ARGoS simulator [OPTIONAL] \n"
 		" --fsm-config CONF \t The finite state machine description [MANDATORY]\n"
 		"\n The description of the finite state machine should be placed at the end of the command line, after the other parameters.";
 	return strExplanation;
@@ -32,6 +33,7 @@ int main(int n_argc, char** ppch_argv) {
 	bool bReadableFSM = false;
 	std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
+	UInt32 unSeed = 0;
 
 	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
 
@@ -60,6 +62,8 @@ int main(int n_argc, char** ppch_argv) {
 		CARGoSCommandLineArgParser cACLAP;
 		cACLAP.AddFlag('r', "readable-fsm", "", bReadableFSM);
 
+		cACLAP.AddArgument<UInt32>('s', "seed", "", unSeed);
+
 		// Parse command line without taking the configuration of the FSM into account
 		cACLAP.Parse(n_argc, ppch_argv);
 
@@ -81,6 +85,9 @@ int main(int n_argc, char** ppch_argv) {
 					std::cout << pcFiniteStateMachine->GetReadableFormat() << std::endl;
 				}
 
+				// Setting random seed. Only works with modified version of ARGoS3.
+				cSimulator.SetRandomSeed(unSeed);
+
 				cSimulator.LoadExperiment();
 
 				// Duplicate the finite state machine and pass it to all robots.
@@ -96,7 +103,6 @@ int main(int n_argc, char** ppch_argv) {
 						LOGERR << "Error while casting: " << ex.what() << std::endl;
 					}
 				}
-
 
 				cSimulator.Execute();
 
