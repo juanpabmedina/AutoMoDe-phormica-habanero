@@ -55,7 +55,7 @@ int main(int n_argc, char** ppch_argv) {
 			nCurrentArgument++;
 		}
 		if (!bFsmControllerFound) {
-			//THROW_ARGOSEXCEPTION(ExplainParameters());
+			THROW_ARGOSEXCEPTION(ExplainParameters());
 		}
 
 		// Configure the command line options
