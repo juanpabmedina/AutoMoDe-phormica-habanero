@@ -13,7 +13,6 @@ void AutoMoDeLoopFunctions::Init(argos::TConfigurationNode& t_tree) {
   } catch(std::exception e) {
     LOGERR << e.what() << std::endl;
   }
-  PositionRobots();
 }
 
 /****************************************/
