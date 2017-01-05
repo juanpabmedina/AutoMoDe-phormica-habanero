@@ -1,7 +1,8 @@
 MIT License
 
-Copyright (c) 2016 [fullname] - IRIDIA, Université libre de Bruxelles,
-Belgium. [mail addresses]
+Copyright (c) 2016 Antoine Ligot, Ken Hasselmann, Brian Delhaisse, Gianpiero
+Francesca, Lorenzo Garattoni and Mauro Birattari - IRIDIA, Université libre
+de Bruxelles, Belgium. <aligot@ulb.ac.be>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -12,6 +13,12 @@ furnished to do so, subject to the following conditions:
 
 1) The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
+2) All scientific publications that include results obtained with
+the Software or with any modified/derived version of it shall cite
+the following technical report:
+
+
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
