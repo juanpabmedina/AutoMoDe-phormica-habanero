@@ -40,5 +40,5 @@ include(${CMAKE_SOURCE_DIR}/src/cmake/ARGoSPackaging.cmake)
 # Compile stuff
 #
 add_subdirectory(src)
-add_subdirectory(loop_functions)
+add_subdirectory(loop-functions)
 
