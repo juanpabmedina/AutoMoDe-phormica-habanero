@@ -1,7 +1,11 @@
-/**
- * @file AutoMoDeLoopFunctions.h
+/*
+ * @file <src/core/AutoMoDeLoopFunctions.h>
  *
- * @brief
+ * @author Antoine Ligot - <aligot@ulb.ac.be>
+ *
+ * @package ARGoS3-AutoMoDe
+ *
+ * @license MIT License
  */
 
 #ifndef AUTOMODE_LOOP_FUNCTIONS

@@ -1,7 +1,12 @@
-/*
- * File: AutoMoDeBehaviourRepulsion.h
- *
- */
+/**
+  * @file <src/modules/AutoMoDeBehaviourRepulsion.h>
+  *
+  * @author Antoine Ligot - <aligot@ulb.ac.be>
+  *
+  * @package ARGoS3-AutoMoDe
+  *
+  * @license MIT License
+  */
 
 #ifndef AUTOMODE_BEHAVIOUR_REPULSION_H
 #define AUTOMODE_BEHAVIOUR_REPULSION_H
@@ -21,7 +26,7 @@ namespace argos {
 			virtual void Init();
 
 			virtual AutoMoDeBehaviourRepulsion* Clone();
-			
+
 		private:
 			UInt8 m_unRepulsionParameter;
 	};

@@ -1,7 +1,12 @@
-/*
- * File: AutoMoDeBehaviourAttraction.h
- *
- */
+/**
+  * @file <src/modules/AutoMoDeBehaviourAttraction.h>
+  *
+  * @author Antoine Ligot - <aligot@ulb.ac.be>
+  *
+  * @package ARGoS3-AutoMoDe
+  *
+  * @license MIT License
+  */
 
 #ifndef AUTOMODE_BEHAVIOUR_ATTRACTION_H
 #define AUTOMODE_BEHAVIOUR_ATTRACTION_H
@@ -21,7 +26,7 @@ namespace argos {
 			virtual void Init();
 
 			virtual AutoMoDeBehaviourAttraction* Clone();
-			
+
 		private:
 			UInt8 m_unAttractionParameter;
 	};
