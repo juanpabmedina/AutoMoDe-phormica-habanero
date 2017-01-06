@@ -61,7 +61,7 @@ class AutoMoDeLoopFunctions: public CLoopFunctions {
      * Method used to distribute the robots in a circle of radius m_fDistributionRadius.
      * This replace the original distribution function of the argos simulator.
      */
-    virtual void PositionRobots();
+    virtual void PositionRobots() = 0;
 
 };
 

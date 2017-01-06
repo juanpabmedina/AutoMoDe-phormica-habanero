@@ -1,5 +1,5 @@
 /**
-  * @file <loop-functions/example/AutoMoDeAggregationLoopFunc.h>
+  * @file <loop-functions/example/ExampleAggregationLoopFunc.h>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,8 +8,8 @@
   * @license MIT License
   */
 
-#ifndef AGGREGATION_LOOP_FUNC
-#define AGGREGATION_LOOP_FUNC
+#ifndef EXAMPLE_AGGREGATION_LOOP_FUNC
+#define EXAMPLE_AGGREGATION_LOOP_FUNC
 
 #include "../../src/core/AutoMoDeLoopFunctions.h"
 #include <argos3/core/simulator/space/space.h>
@@ -17,11 +17,11 @@
 
 using namespace argos;
 
-class AggregationLoopFunction: public AutoMoDeLoopFunctions {
+class ExampleAggregationLoopFunction: public AutoMoDeLoopFunctions {
   public:
-    AggregationLoopFunction();
-    AggregationLoopFunction(const AggregationLoopFunction& orig);
-    virtual ~AggregationLoopFunction();
+    ExampleAggregationLoopFunction();
+    ExampleAggregationLoopFunction(const ExampleAggregationLoopFunction& orig);
+    virtual ~ExampleAggregationLoopFunction();
 
     virtual void Destroy();
 
@@ -29,13 +29,13 @@ class AggregationLoopFunction: public AutoMoDeLoopFunctions {
     virtual void PostExperiment();
 
     Real GetObjectiveFunction();
+
+    virtual void PositionRobots();
   private:
     Real m_fRadius;
-    CVector2 m_cCoordSpot1;
-    CVector2 m_cCoordSpot2;
+    CVector2 m_cCoordBlackSpot;
 
-    UInt32 m_unScoreSpot1;
-    UInt32 m_unScoreSpot2;
+    UInt32 m_unScoreSpot;
     Real m_fObjectiveFunction;
 };
 

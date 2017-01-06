@@ -11,8 +11,8 @@
   <!-- ****************** -->
   <!-- * Loop functions * -->
   <!-- ****************** -->
-  <loop_functions library="../../../build/loop-functions/example/libaggregation_loopfunc.so"
-   label="aggregation_loop_functions">
+  <loop_functions library="../../../build/loop-functions/example/libexample_aggregation_loopfunc.so"
+   label="example_aggregation_loop_functions">
    <params dist_radius="1.2" number_robots="5"/>
   </loop_functions>
 
@@ -114,17 +114,6 @@
   <!-- ***************** -->
   <!-- * Visualization * -->
   <!-- ***************** -->
-  <visualization>
-   <!--
-    <qt-opengl>
-      <camera>
-        <placement idx="0"
-                   position="0,0,4.5"
-                   look_at="0,0,0"
-                   lens_focal_length="30" />
-      </camera>
-    </qt-opengl>
--->
-  </visualization>
+  <visualization/>
 
 </argos-configuration>
