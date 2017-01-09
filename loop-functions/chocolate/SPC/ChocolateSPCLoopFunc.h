@@ -19,8 +19,6 @@
 
 using namespace argos;
 
-using namespace argos;
-
 class ChocolateSPCLoopFunction : public AutoMoDeLoopFunctions {
 
    public:
