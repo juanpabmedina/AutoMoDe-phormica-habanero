@@ -24,13 +24,14 @@ class ExampleAggregationLoopFunction: public AutoMoDeLoopFunctions {
     virtual ~ExampleAggregationLoopFunction();
 
     virtual void Destroy();
+    virtual void Reset();
 
     virtual argos::CColor GetFloorColor(const argos::CVector2& c_position_on_plane);
     virtual void PostExperiment();
 
     Real GetObjectiveFunction();
 
-    virtual void PositionRobots();
+    virtual CVector3 GetRobotPosition();
   private:
     Real m_fRadius;
     CVector2 m_cCoordBlackSpot;
