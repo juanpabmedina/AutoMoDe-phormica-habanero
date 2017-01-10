@@ -66,6 +66,8 @@ void ExampleAggregationLoopFunction::PostExperiment() {
   }
 
   m_fObjectiveFunction = m_unScoreSpot / (Real) m_unNumberRobots;
+
+  LOG << m_fObjectiveFunction << std::endl;
 }
 
 Real ExampleAggregationLoopFunction::GetObjectiveFunction() {
