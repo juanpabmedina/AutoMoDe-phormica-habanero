@@ -36,9 +36,11 @@ include(${CMAKE_SOURCE_DIR}/src/cmake/ARGoSBuildChecks.cmake)
 include(${CMAKE_SOURCE_DIR}/src/cmake/ARGoSPackaging.cmake)
 
 
+include(${CMAKE_SOURCE_DIR}/src/cmake/FindPthreads.cmake)
+
+
 #
 # Compile stuff
 #
 add_subdirectory(src)
 add_subdirectory(loop-functions)
-
