@@ -34,9 +34,20 @@ ChocolateSCALoopFunction::ChocolateSCALoopFunction(const ChocolateSCALoopFunctio
 ChocolateSCALoopFunction::~ChocolateSCALoopFunction() {}
 
 /****************************************/
+
+/****************************************/
+void ChocolateSCALoopFunction::Destroy() {}
+
+/****************************************/
 /****************************************/
 
-void ChocolateSCALoopFunction::Destroy() {}
+void ChocolateSCALoopFunction::Reset() {
+  m_fObjectiveFunction = 0;
+  AutoMoDeLoopFunctions::Reset();
+}
+
+/****************************************/
+/****************************************/
 
 void ChocolateSCALoopFunction::Init(TConfigurationNode& t_tree) {
   AutoMoDeLoopFunctions::Init(t_tree);
@@ -134,46 +145,20 @@ Real ChocolateSCALoopFunction::GetObjectiveFunction() {
 /****************************************/
 /****************************************/
 
-void ChocolateSCALoopFunction::PositionRobots() {
-  Real a;
-  Real b;
+CVector3 ChocolateSCALoopFunction::GetRandomPosition() {
   Real temp;
-
-  CEPuckEntity* pcEpuck;
-  UInt32 unTrials;
-  bool bPlaced = false;
-
-  for(UInt32 i = 1; i < m_unNumberRobots + 1; ++i) {
-    std::ostringstream id;
-    id << "epuck" << i;
-    pcEpuck = new CEPuckEntity(id.str().c_str(),
-                               "automode",
-                               CVector3(0,0,0),
-                               CQuaternion().FromEulerAngles(CRadians::ZERO,CRadians::ZERO,CRadians::ZERO));
-    AddEntity(*pcEpuck);
-    // Choose position at random
-    unTrials = 0;
-    do {
-       ++unTrials;
-       a = m_pcRng->Uniform(CRange<Real>(0.0f, 1.0f));
-       b = m_pcRng->Uniform(CRange<Real>(0.0f, 1.0f));
-       // If b < a, swap them
-       if (b < a) {
-         temp = a;
-         a = b;
-         b = temp;
-       }
-       Real fPosX = b * m_fDistributionRadius * cos(2 * CRadians::PI.GetValue() * (a/b));
-       Real fPosY = b * m_fDistributionRadius * sin(2 * CRadians::PI.GetValue() * (a/b));
-       bPlaced = MoveEntity((*pcEpuck).GetEmbodiedEntity(),
-                            CVector3(fPosX, fPosY, 0),
-                            CQuaternion().FromEulerAngles(m_pcRng->Uniform(CRange<CRadians>(CRadians::ZERO,CRadians::TWO_PI)),
-                            CRadians::ZERO,CRadians::ZERO),false);
-    } while(!bPlaced && unTrials < 100);
-    if(!bPlaced) {
-       THROW_ARGOSEXCEPTION("Can't place robot #" << i);
-    }
+  Real a = m_pcRng->Uniform(CRange<Real>(0.0f, 1.0f));
+  Real  b = m_pcRng->Uniform(CRange<Real>(0.0f, 1.0f));
+  // If b < a, swap them
+  if (b < a) {
+    temp = a;
+    a = b;
+    b = temp;
   }
+  Real fPosX = b * m_fDistributionRadius * cos(2 * CRadians::PI.GetValue() * (a/b));
+  Real fPosY = b * m_fDistributionRadius * sin(2 * CRadians::PI.GetValue() * (a/b));
+
+  return CVector3(fPosX, fPosY, 0);
 }
 
 REGISTER_LOOP_FUNCTIONS(ChocolateSCALoopFunction, "chocolate_sca_loop_functions");

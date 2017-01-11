@@ -59,7 +59,7 @@ void AutoMoDeLoopFunctions::PositionRobots() {
     unTrials = 0;
     do {
        ++unTrials;
-       CVector3 cEpuckPosition = GetRobotPosition();
+       CVector3 cEpuckPosition = GetRandomPosition();
        bPlaced = MoveEntity((*pcEpuck).GetEmbodiedEntity(),
                             cEpuckPosition,
                             CQuaternion().FromEulerAngles(m_pcRng->Uniform(CRange<CRadians>(CRadians::ZERO,CRadians::TWO_PI)),
@@ -85,7 +85,7 @@ void AutoMoDeLoopFunctions::MoveRobots() {
     unTrials = 0;
     do {
        ++unTrials;
-       CVector3 cEpuckPosition = GetRobotPosition();
+       CVector3 cEpuckPosition = GetRandomPosition();
        bPlaced = MoveEntity(pcEpuck->GetEmbodiedEntity(),
                             cEpuckPosition,
                             CQuaternion().FromEulerAngles(m_pcRng->Uniform(CRange<CRadians>(CRadians::ZERO,CRadians::TWO_PI)),

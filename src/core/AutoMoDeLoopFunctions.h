@@ -38,7 +38,16 @@ class AutoMoDeLoopFunctions: public CLoopFunctions {
      */
     void RemoveRobots();
 
+    /*
+     * Method used to reallocate the robots.
+     * The position is given by the method GetRandomPosition().
+     */
     void MoveRobots();
+
+    /*
+     * Method used to create and distribute the robots.
+     * The position is given by the method GetRandomPosition().
+     */
     void PositionRobots();
 
     /*
@@ -61,10 +70,9 @@ class AutoMoDeLoopFunctions: public CLoopFunctions {
     virtual Real GetObjectiveFunction() = 0;
 
     /*
-     * Method used to distribute the robots in a circle of radius m_fDistributionRadius.
-     * This replace the original distribution function of the argos simulator.
+     * Return a random position.
      */
-    virtual CVector3 GetRobotPosition() = 0;
+    virtual CVector3 GetRandomPosition() = 0;
 
 };
 

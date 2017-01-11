@@ -21,13 +21,14 @@ class ChocolateCFALoopFunction : public AutoMoDeLoopFunctions {
       virtual ~ChocolateCFALoopFunction();
 
       virtual void Destroy();
-
+      virtual void Reset();
       virtual void PostExperiment();
+
       Real GetObjectiveFunction();
 
       virtual CColor GetFloorColor(const CVector2& c_position_on_plane);
 
-      virtual void PositionRobots();
+      virtual CVector3 GetRandomPosition();
     private:
 
       Real GetExpectedDistance();

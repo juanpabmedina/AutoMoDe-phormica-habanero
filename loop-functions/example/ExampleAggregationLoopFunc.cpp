@@ -91,7 +91,7 @@ Real ExampleAggregationLoopFunction::GetObjectiveFunction() {
 /****************************************/
 /****************************************/
 
-CVector3 ExampleAggregationLoopFunction::GetRobotPosition() {
+CVector3 ExampleAggregationLoopFunction::GetRandomPosition() {
   Real a;
   Real b;
   Real temp;

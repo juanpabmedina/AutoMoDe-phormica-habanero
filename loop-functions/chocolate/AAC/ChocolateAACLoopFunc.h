@@ -21,13 +21,15 @@ class ChocolateAACLoopFunction : public AutoMoDeLoopFunctions {
       virtual ~ChocolateAACLoopFunction();
 
       virtual void Destroy();
-
+      virtual void Reset();
       virtual void PostStep();
+
       Real GetObjectiveFunction();
 
       virtual CColor GetFloorColor(const CVector2& c_position_on_plane);
 
-      virtual void PositionRobots();
+      virtual CVector3 GetRandomPosition();
+      
     private:
       Real m_fRadius;
       CVector2 m_cCoordBlackSpot;

@@ -31,7 +31,12 @@ class ExampleAggregationLoopFunction: public AutoMoDeLoopFunctions {
 
     Real GetObjectiveFunction();
 
-    virtual CVector3 GetRobotPosition();
+    /*
+     * Returns a vector containing a random position inside a circle of radius
+     * m_fDistributionRadius and centered in (0,0).
+     */
+    virtual CVector3 GetRandomPosition();
+
   private:
     Real m_fRadius;
     CVector2 m_cCoordBlackSpot;

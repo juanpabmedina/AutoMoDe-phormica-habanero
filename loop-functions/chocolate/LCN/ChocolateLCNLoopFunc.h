@@ -28,13 +28,15 @@ class ChocolateLCNLoopFunction : public AutoMoDeLoopFunctions {
       virtual ~ChocolateLCNLoopFunction();
 
       virtual void Destroy();
-
+      virtual void Reset();
       virtual void PostExperiment();
+
       Real GetObjectiveFunction();
 
       virtual CColor GetFloorColor(const CVector2& c_position_on_plane);
 
-      virtual void PositionRobots();
+      virtual CVector3 GetRandomPosition();
+
     private:
 
       struct CNetAgent {
