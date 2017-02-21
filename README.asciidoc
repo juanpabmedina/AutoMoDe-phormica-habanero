@@ -34,6 +34,8 @@ References
 
 [bibliography]
 
-- [[[techrep]]] TODO
+- [[[techrep]]]   A. Ligot, K. Hasselmann, B. Delhaisse, L. Garattoni, G. Francesca, M. Birattari.
+  'AutoMoDe and NEAT implementations for the e-puck robot in ARGoS3'. Technical report TR/IRIDIA/2017-002.
+  IRIDIA, Université libre de Bruxelles, Belgium.
 - [[[chocolate]]] G. Francesca and M. Brambilla and A. Brutschy and L. Garattoni and R. Miletitch and G. Podevijn and A. Reina and T. Soleymani and M. Salvaro and C. Pinciroli and F. Mascia and V. Trianni and M. Birattari.
   'AutoMoDe-Chocolate: automatic design of control software for robot swarms'. Swarm Intelligence.
