@@ -6,7 +6,10 @@
 ## value on the command line).
 
 ## File that contains the description of the parameters.
-parameterFile = "./grammar.txt"
+parameterFile = "./new_grammar.txt"
+
+#File that contains the options for parameter dependencies
+dependencyFile = "./depend_config.txt"
 
 ## Directory where the programs will be run.
 execDir = "./execution-folder"
