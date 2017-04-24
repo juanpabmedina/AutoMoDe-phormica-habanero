@@ -138,7 +138,7 @@ namespace argos {
 		 * 3. Update Actuators
 		 */
 		if (m_pcWheelsActuator != NULL) {
-			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetRightWheelVelocity(), m_pcRobotState->GetLeftWheelVelocity());
+			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetLeftWheelVelocity(),m_pcRobotState->GetRightWheelVelocity());
 		}
 
 		/*
