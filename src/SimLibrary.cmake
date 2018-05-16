@@ -10,7 +10,6 @@ set(AUTOMODE_HEADERS
 	core/AutoMoDeFsmBuilder.h
 	core/AutoMoDeFsmHistory.h
 	core/AutoMoDeRobotDAO.h
-	core/AutoMoDeLoopFunctions.h
 	# Behaviours
 	modules/AutoMoDeBehaviour.h
 	modules/AutoMoDeBehaviourAntiPhototaxis.h
@@ -36,7 +35,6 @@ set(AUTOMODE_SOURCES
 	core/AutoMoDeFsmBuilder.cpp
 	core/AutoMoDeRobotDAO.cpp
 	core/AutoMoDeFsmHistory.cpp
-	core/AutoMoDeLoopFunctions.cpp
 	# Behaviours
 	modules/AutoMoDeBehaviour.cpp
 	modules/AutoMoDeBehaviourAntiPhototaxis.cpp
