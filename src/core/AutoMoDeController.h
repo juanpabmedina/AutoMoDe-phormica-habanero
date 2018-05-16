@@ -65,6 +65,8 @@ namespace argos{
 			 */
 			void SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_fine_state_machine);
 
+			void SetHistoryFlag(bool b_history_flag);
+
 		private:
 			/*
 			 * Function that contains all actuations required at the start of an experiment or during the entire experiment.

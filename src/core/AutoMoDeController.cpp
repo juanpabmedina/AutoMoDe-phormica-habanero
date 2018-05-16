@@ -155,7 +155,7 @@ namespace argos {
 	void AutoMoDeController::Reset() {
 		m_pcFiniteStateMachine->Reset();
 		m_pcRobotState->Reset();
-		// Restart actuation. 
+		// Restart actuation.
 		InitializeActuation();
 	}
 
@@ -167,6 +167,15 @@ namespace argos {
 		m_pcFiniteStateMachine->SetRobotDAO(m_pcRobotState);
 		m_pcFiniteStateMachine->Init();
 		m_bFiniteStateMachineGiven = true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	void AutoMoDeController::SetHistoryFlag(bool b_history_flag) {
+		if (b_history_flag) {
+			m_pcFiniteStateMachine->MaintainHistory();
+		}
 	}
 
 	/****************************************/
