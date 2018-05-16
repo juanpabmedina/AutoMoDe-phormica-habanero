@@ -8,10 +8,13 @@
  * @license MIT License
  */
 
- #include <cctype>
- #include <iomanip>
- #include <sstream>
- #include <string>
+#include <cctype>
+#include <iomanip>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include <argos3/core/simulator/simulator.h>
 #include <argos3/core/simulator/space/space.h>
@@ -65,6 +68,8 @@ int main(int n_argc, char** ppch_argv) {
 
 	std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
+	bool bFsmFileFound = false;
+	std::string strFsmFile;
 
 	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
 
@@ -85,22 +90,49 @@ int main(int n_argc, char** ppch_argv) {
 			}
 			nCurrentArgument++;
 		}
-		if (!bFsmControllerFound) {
-			THROW_ARGOSEXCEPTION(ExplainParameters());
+
+		nCurrentArgument = 1;
+		while(!bFsmFileFound && nCurrentArgument < n_argc) {
+			if(strcmp(ppch_argv[nCurrentArgument], "--fsm-file") == 0) {
+				bFsmFileFound = true;
+				nCurrentArgument++;
+				strFsmFile = std::string(ppch_argv[nCurrentArgument]);
+      }
 		}
 
 		AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
-		AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
 
-		std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
-		std::cout << strFiniteStateMachineURL << std::endl;
+		if (bFsmControllerFound) {
+			AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
 
-		std::string strBrowser = "firefox \"";
-		strBrowser.append(EncodeURL(strFiniteStateMachineURL));
-		strBrowser.append("\"");
+			std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
+			//std::cout << strFiniteStateMachineURL << std::endl;
 
-		system(strBrowser.c_str());
+			std::string strBrowser = "firefox \"";
+			strBrowser.append(EncodeURL(strFiniteStateMachineURL));
+			strBrowser.append("\"");
 
+			system(strBrowser.c_str());
+		}
+
+		if (bFsmFileFound) {
+			std::ifstream file(strFsmFile); // pass file name as argment
+		  std::string linebuffer;
+
+			while (file && getline(file, linebuffer)){
+				if (linebuffer.length() == 0)continue;
+				AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(linebuffer.c_str());
+
+				std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
+				//std::cout << strFiniteStateMachineURL << std::endl;
+
+				std::string strBrowser = "firefox \"";
+				strBrowser.append(EncodeURL(strFiniteStateMachineURL));
+				strBrowser.append("\"");
+
+				system(strBrowser.c_str());
+			}
+		}
 	} catch(std::exception& ex) {
     // A fatal error occurred: dispose of data, print error and exit
     LOGERR << ex.what() << std::endl;
