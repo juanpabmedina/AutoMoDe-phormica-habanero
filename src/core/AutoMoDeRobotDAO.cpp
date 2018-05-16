@@ -60,15 +60,60 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	CCI_EPuckGroundSensor::SReadings AutoMoDeRobotDAO::GetGroundInput() const{
-		return m_sGroundInput;
+	CCI_EPuckGroundSensor::SReadings AutoMoDeRobotDAO::GetGroundInput() {
+		std::deque<CCI_EPuckGroundSensor::SReadings>::iterator it;
+		UInt32 unBlackWhiteCounter[2] = {0,0};  //unBlackWhiteCounter[0] -> Black; unBlackWhiteCounter[1] -> White.
+		float fBlackThreshold = 0.03;
+		float fWhiteThreshold = 0.85;
+		for (it = m_deqGroundInput.begin(); it != m_deqGroundInput.end(); it++) {
+			if (it->Left < fBlackThreshold) {
+				unBlackWhiteCounter[0] += 1;
+			}
+			else if (it->Left > fWhiteThreshold) {
+				unBlackWhiteCounter[1] += 1;
+			}
+			if (it->Center < fBlackThreshold) {
+				unBlackWhiteCounter[0] +=1;
+			}
+			else if (it->Center > fWhiteThreshold) {
+				unBlackWhiteCounter[1] += 1;
+			}
+			if (it->Right < fBlackThreshold) {
+				unBlackWhiteCounter[0] +=1;
+			}
+			else if (it->Right > fWhiteThreshold) {
+				unBlackWhiteCounter[1] += 1;
+			}
+		}
+
+		CCI_EPuckGroundSensor::SReadings readings;
+		if (unBlackWhiteCounter[0] > 10) {
+			readings.Left = 0;
+			readings.Center = 0;
+			readings.Right = 0;
+		}
+		else if (unBlackWhiteCounter[1] > 10) {
+			readings.Left = 1;
+			readings.Center = 1;
+			readings.Right = 1;
+		}
+		else {
+			readings.Left = 0.5;
+			readings.Center = 0.5;
+			readings.Right = 0.5;
+		}
+
+		return readings;
 	}
 
 	/****************************************/
 	/****************************************/
 
 	void AutoMoDeRobotDAO::SetGroundInput(CCI_EPuckGroundSensor::SReadings s_ground_input) {
-		m_sGroundInput = s_ground_input;
+		m_deqGroundInput.push_back(s_ground_input);
+		if (m_deqGroundInput.size() > 5) {
+			m_deqGroundInput.pop_front();
+		}
 	}
 
 	/****************************************/

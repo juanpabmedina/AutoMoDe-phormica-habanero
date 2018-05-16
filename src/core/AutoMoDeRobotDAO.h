@@ -26,6 +26,8 @@
 #define AUTOMODE_ROBOT_DAO_H
 
 #include <vector>
+#include <deque>
+
 #include <argos3/core/utility/math/rng.h>
 #include <argos3/core/utility/math/vector2.h>
 #include <argos3/core/utility/logging/argos_log.h>
@@ -76,7 +78,7 @@ namespace argos {
 			/*
 			 * Getter for the ground input.
 			 */
-			CCI_EPuckGroundSensor::SReadings GetGroundInput() const;
+			CCI_EPuckGroundSensor::SReadings GetGroundInput();
 
 			/*
 			 * Setter for the ground input.
@@ -158,6 +160,11 @@ namespace argos {
 			 * The light sensors input.
 			 */
 			CCI_EPuckLightSensor::TReadings m_sLightInput;
+
+			/*
+ 			 * The ground sensors input.
+ 			 */
+			std::deque<CCI_EPuckGroundSensor::SReadings> m_deqGroundInput;
 
 			/*
 			 * The ground sensors input.
