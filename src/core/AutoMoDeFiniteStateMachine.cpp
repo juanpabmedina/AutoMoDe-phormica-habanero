@@ -325,7 +325,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeFiniteStateMachine::SetRobotDAO(AutoMoDeRobotDAO* pc_robot_DAO) {
+	void AutoMoDeFiniteStateMachine::SetRobotDAO(EpuckDAO* pc_robot_DAO) {
 		m_pcRobotDAO = pc_robot_DAO;
 	}
 
