@@ -30,7 +30,9 @@ namespace argos {
 
 	AutoMoDeController::~AutoMoDeController() {
 		delete m_pcRobotState;
-		delete m_pcFsmBuilder;
+		if (m_strFsmConfiguration.compare("") != 0 && !m_bFiniteStateMachineGiven) {
+			delete m_pcFsmBuilder;
+		}
 	}
 
 	/****************************************/
