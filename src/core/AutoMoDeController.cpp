@@ -16,7 +16,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeController::AutoMoDeController() {
-		m_pcRobotState = new ReferenceModel1Dot1();
+		m_pcRobotState = new ReferenceModel1Dot2();
 		m_unTimeStep = 0;
 		m_strFsmConfiguration = "";
 		m_bMaintainHistory = false;
@@ -30,7 +30,7 @@ namespace argos {
 
 	AutoMoDeController::~AutoMoDeController() {
 		delete m_pcRobotState;
-		if (m_strFsmConfiguration.compare("") != 0 && !m_bFiniteStateMachineGiven) {
+		if (m_strFsmConfiguration.compare("") != 0) {
 			delete m_pcFsmBuilder;
 		}
 	}
