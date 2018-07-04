@@ -52,7 +52,7 @@ namespace argos {
 		CVector2 sRabVector(0,CRadians::ZERO);
 		CVector2 sProxVector(0,CRadians::ZERO);
 		CVector2 sResultVector(0,CRadians::ZERO);
-		CCI_EPuckRangeAndBearingSensor::SReceivedPacket cRabReading = m_pcRobotDAO->GetNeighborsCenterOfMass();
+		CCI_EPuckRangeAndBearingSensor::SReceivedPacket cRabReading = m_pcRobotDAO->GetAttractionVectorToNeighbors(m_unAttractionParameter);
 
 		if (cRabReading.Range > 0.0f) {
 			sRabVector = CVector2(cRabReading.Range, cRabReading.Bearing);
