@@ -16,6 +16,8 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeBehaviourRepulsion.h
 	modules/AutoMoDeBehaviourStop.h
 	modules/AutoMoDeBehaviourExploration.h
+    modules/AutoMoDeBehaviourGoToColor.h
+    modules/AutoMoDeBehaviourGoAwayColor.h
 	# Conditions
 	modules/AutoMoDeCondition.h
 	modules/AutoMoDeConditionBlackFloor.h
@@ -23,7 +25,8 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeConditionGrayFloor.h
 	modules/AutoMoDeConditionNeighborsCount.h
 	modules/AutoMoDeConditionInvertedNeighborsCount.h
-	modules/AutoMoDeConditionFixedProbability.h)
+    modules/AutoMoDeConditionFixedProbability.h
+    modules/AutoMoDeConditionProbColor.h)
 
 # Sources
 set(AUTOMODE_SOURCES
@@ -39,6 +42,8 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeBehaviourRepulsion.cpp
 	modules/AutoMoDeBehaviourStop.cpp
 	modules/AutoMoDeBehaviourExploration.cpp
+    modules/AutoMoDeBehaviourGoToColor.cpp
+    modules/AutoMoDeBehaviourGoAwayColor.cpp
 	# Conditions
 	modules/AutoMoDeCondition.cpp
 	modules/AutoMoDeConditionBlackFloor.cpp
@@ -46,7 +51,8 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionGrayFloor.cpp
 	modules/AutoMoDeConditionNeighborsCount.cpp
 	modules/AutoMoDeConditionInvertedNeighborsCount.cpp
-	modules/AutoMoDeConditionFixedProbability.cpp)
+    modules/AutoMoDeConditionFixedProbability.cpp
+    modules/AutoMoDeConditionProbColor.cpp)
 
 add_executable(automode ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)

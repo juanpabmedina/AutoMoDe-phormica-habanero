@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourRepulsion.h"
+#include "AutoMoDeBehaviourGoAwayColor.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourRepulsion::AutoMoDeBehaviourRepulsion() {
-		m_strLabel = "Repulsion";
+    AutoMoDeBehaviourGoAwayColor::AutoMoDeBehaviourGoAwayColor() {
+        m_strLabel = "GoAwayColor";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourRepulsion::AutoMoDeBehaviourRepulsion(AutoMoDeBehaviourRepulsion* pc_behaviour) {
+    AutoMoDeBehaviourGoAwayColor::AutoMoDeBehaviourGoAwayColor(AutoMoDeBehaviourGoAwayColor* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,34 +36,37 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourRepulsion::~AutoMoDeBehaviourRepulsion() {}
+    AutoMoDeBehaviourGoAwayColor::~AutoMoDeBehaviourGoAwayColor() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourRepulsion* AutoMoDeBehaviourRepulsion::Clone() {
-		return new AutoMoDeBehaviourRepulsion(this);
+    AutoMoDeBehaviourGoAwayColor* AutoMoDeBehaviourGoAwayColor::Clone() {
+        return new AutoMoDeBehaviourGoAwayColor(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourRepulsion::ControlStep() {
-		CVector2 sRabVector(0,CRadians::ZERO);
-		CVector2 sProxVector(0,CRadians::ZERO);
+    void AutoMoDeBehaviourGoAwayColor::ControlStep() {
+        CCI_EPuckOmnidirectionalCameraSensor::SReadings sReadings = m_pcRobotDAO->GetCameraInput();
+        CCI_EPuckOmnidirectionalCameraSensor::TBlobList::iterator it;
+        CVector2 sColVectorSum(0,CRadians::ZERO);
+		CVector2 sProxVectorSum(0,CRadians::ZERO);
 		CVector2 sResultVector(0,CRadians::ZERO);
-		CCI_EPuckRangeAndBearingSensor::SReceivedPacket cRabReading = m_pcRobotDAO->GetAttractionVectorToNeighbors(m_unRepulsionParameter);
 
-		if (cRabReading.Range > 0.0f) {
-			sRabVector = CVector2(cRabReading.Range, cRabReading.Bearing);
+        for (it = sReadings.BlobList.begin(); it != sReadings.BlobList.end(); it++) {
+            if ((*it)->Color == m_cColorReceiverParameter  && (*it)->Distance >= 6.0) {
+                sColVectorSum += CVector2(1 / (((*it)->Distance) + 1), (*it)->Angle);
+            }
 		}
 
-		sProxVector = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
-		sResultVector = -m_unRepulsionParameter*sRabVector - 5*sProxVector;
+        sProxVectorSum = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
 
-		if (sResultVector.Length() < 0.1) {
-			sResultVector = CVector2(1, CRadians::ZERO);
-		}
+        if (sColVectorSum.Length() != 0)
+            sResultVector = -CVector2(m_unRepulsionParameter, sColVectorSum.Angle().SignedNormalize()) - 5*sProxVectorSum;
+        else
+            sResultVector = CVector2(m_unRepulsionParameter, sColVectorSum.Angle().SignedNormalize()) - 5*sProxVectorSum;
 
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
         m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
@@ -74,8 +77,8 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourRepulsion::Init() {
-		std::map<std::string, Real>::iterator it = m_mapParameters.find("rep");
+    void AutoMoDeBehaviourGoAwayColor::Init() {
+        std::map<std::string, Real>::iterator it = m_mapParameters.find("vel");
 		if (it != m_mapParameters.end()) {
 			m_unRepulsionParameter = it->second;
 		} else {
@@ -89,12 +92,19 @@ namespace argos {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
         }
+        it = m_mapParameters.find("clr");
+        if (it != m_mapParameters.end()) {
+            m_cColorReceiverParameter = GetColorParameter(it->second, false);
+        } else {
+            LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+            THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourRepulsion::Reset() {
+    void AutoMoDeBehaviourGoAwayColor::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -102,7 +112,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourRepulsion::ResumeStep() {
+    void AutoMoDeBehaviourGoAwayColor::ResumeStep() {
 		m_bOperational = true;
 	}
 }

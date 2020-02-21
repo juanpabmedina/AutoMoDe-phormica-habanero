@@ -28,6 +28,9 @@ namespace argos {
 
 
 			virtual AutoMoDeBehaviourStop* Clone();
+
+        private:
+            CColor m_cColorEmiterParameter;
 	};
 }
 

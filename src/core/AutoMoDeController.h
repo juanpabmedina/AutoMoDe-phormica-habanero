@@ -15,7 +15,7 @@
 #include <argos3/core/control_interface/ci_controller.h>
 
 #include <argos3/demiurge/epuck-dao/EpuckDAO.h>
-#include <argos3/demiurge/epuck-dao/ReferenceModel1Dot2.h>
+#include <argos3/demiurge/epuck-dao/ReferenceModel3Dot0.h>
 
 
 #include "./AutoMoDeFiniteStateMachine.h"
@@ -154,7 +154,7 @@ namespace argos{
 			/*
 			 * Pointer to the robot light sensor.
 			 */
-			CCI_EPuckLightSensor* m_pcLightSensor;
+            CCI_EPuckLightSensor* m_pcLightSensor;
 
 			/*
 			 * Pointer to the robot ground sensor.

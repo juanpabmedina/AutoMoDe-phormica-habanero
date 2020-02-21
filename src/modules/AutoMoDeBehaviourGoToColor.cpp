@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourAttraction.cpp>
+  * @file <src/modules/AutoMoDeBehaviourAttractionColor.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourAttraction.h"
+#include "AutoMoDeBehaviourGoToColor.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction::AutoMoDeBehaviourAttraction() {
-		m_strLabel = "Attraction";
+    AutoMoDeBehaviourGoToColor::AutoMoDeBehaviourGoToColor() {
+        m_strLabel = "GoToColor";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction::AutoMoDeBehaviourAttraction(AutoMoDeBehaviourAttraction* pc_behaviour) {
+    AutoMoDeBehaviourGoToColor::AutoMoDeBehaviourGoToColor(AutoMoDeBehaviourGoToColor* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,34 +36,35 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction::~AutoMoDeBehaviourAttraction() {}
+    AutoMoDeBehaviourGoToColor::~AutoMoDeBehaviourGoToColor() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction* AutoMoDeBehaviourAttraction::Clone() {
-		return new AutoMoDeBehaviourAttraction(this);   // todo: check without *
+    AutoMoDeBehaviourGoToColor* AutoMoDeBehaviourGoToColor::Clone() {
+        return new AutoMoDeBehaviourGoToColor(this);   // todo: check without *
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::ControlStep() {
-		CVector2 sRabVector(0,CRadians::ZERO);
-		CVector2 sProxVector(0,CRadians::ZERO);
+    void AutoMoDeBehaviourGoToColor::ControlStep() {
+        CCI_EPuckOmnidirectionalCameraSensor::SReadings sReadings = m_pcRobotDAO->GetCameraInput();
+        CCI_EPuckOmnidirectionalCameraSensor::TBlobList::iterator it;
+        CVector2 sColVectorSum(0,CRadians::ZERO);
+		CVector2 sProxVectorSum(0,CRadians::ZERO);
 		CVector2 sResultVector(0,CRadians::ZERO);
-		CCI_EPuckRangeAndBearingSensor::SReceivedPacket cRabReading = m_pcRobotDAO->GetAttractionVectorToNeighbors(m_unAttractionParameter);
 
-		if (cRabReading.Range > 0.0f) {
-			sRabVector = CVector2(cRabReading.Range, cRabReading.Bearing);
-		}
+        for (it = sReadings.BlobList.begin(); it != sReadings.BlobList.end(); it++) {
+            if ((*it)->Color == m_cColorReceiverParameter && (*it)->Distance >= 6.0) {
+                sColVectorSum += CVector2(1 / (((*it)->Distance)+1), (*it)->Angle);
+            }
+            // TODO Check sColVectorSum function
+        }
 
-		sProxVector = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
-		sResultVector = sRabVector - 6*sProxVector;
+        sProxVectorSum = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
 
-		if (sResultVector.Length() < 0.1) {
-			sResultVector = CVector2(1, CRadians::ZERO);
-		}
+        sResultVector = CVector2(m_unAttractionParameter, sColVectorSum.Angle().SignedNormalize()) - 6*sProxVectorSum;
 
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
         m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
@@ -74,8 +75,8 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::Init() {
-		std::map<std::string, Real>::iterator it = m_mapParameters.find("att");
+    void AutoMoDeBehaviourGoToColor::Init() {
+        std::map<std::string, Real>::iterator it = m_mapParameters.find("vel");
 		if (it != m_mapParameters.end()) {
 			m_unAttractionParameter = it->second;
 		} else {
@@ -89,12 +90,19 @@ namespace argos {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
         }
+        it = m_mapParameters.find("clr");
+        if (it != m_mapParameters.end()) {
+            m_cColorReceiverParameter = GetColorParameter(it->second, false);
+        } else {
+            LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+            THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::Reset() {
+    void AutoMoDeBehaviourGoToColor::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -102,7 +110,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::ResumeStep() {
+    void AutoMoDeBehaviourGoToColor::ResumeStep() {
 		m_bOperational = true;
 	}
 }

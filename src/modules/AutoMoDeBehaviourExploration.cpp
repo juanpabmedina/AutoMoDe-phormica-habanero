@@ -60,6 +60,13 @@ namespace argos {
 			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
+        it = m_mapParameters.find("cle");
+        if (it != m_mapParameters.end()) {
+            m_cColorEmiterParameter = GetColorParameter(it->second, true);
+        } else {
+            LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+            THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
 	}
 
 	/****************************************/
@@ -99,6 +106,7 @@ namespace argos {
 				break;
 			}
 		}
+        m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
 		m_bLocked = false;
 	}
 

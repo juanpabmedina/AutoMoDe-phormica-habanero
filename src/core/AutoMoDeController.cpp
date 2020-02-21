@@ -16,7 +16,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeController::AutoMoDeController() {
-		m_pcRobotState = new ReferenceModel1Dot2();
+        m_pcRobotState = new ReferenceModel3Dot0();
 		m_unTimeStep = 0;
 		m_strFsmConfiguration = "";
 		m_bMaintainHistory = false;
@@ -85,6 +85,10 @@ namespace argos {
 			LOGERR<<"Error while initializing a Sensor!\n";
 		}
 
+        if(m_pcCameraSensor != NULL){
+            m_pcCameraSensor->Enable();
+        }
+
 		try{
 			m_pcWheelsActuator = GetActuator<CCI_EPuckWheelsActuator>("epuck_wheels");
 			m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
@@ -123,6 +127,10 @@ namespace argos {
 			const CCI_EPuckProximitySensor::TReadings& readings = m_pcProximitySensor->GetReadings();
 			m_pcRobotState->SetProximityInput(readings);
 		}
+        if(m_pcCameraSensor != NULL){
+            const CCI_EPuckOmnidirectionalCameraSensor::SReadings& readings = m_pcCameraSensor->GetReadings();
+            m_pcRobotState->SetCameraInput(readings);
+        }
 
 		/*
 		 * 2. Execute step of FSM
@@ -135,6 +143,10 @@ namespace argos {
 		if (m_pcWheelsActuator != NULL) {
 			m_pcWheelsActuator->SetLinearVelocity(m_pcRobotState->GetLeftWheelVelocity(),m_pcRobotState->GetRightWheelVelocity());
 		}
+        if (m_pcLEDsActuator != NULL) {
+            //m_pcLEDsActuator->SetColors(m_pcRobotState->GetLEDsColor());
+            m_pcLEDsActuator->SetColor(2,m_pcRobotState->GetLEDsColor());
+        }
 
 		/*
 		 * 4. Update variables and sensors

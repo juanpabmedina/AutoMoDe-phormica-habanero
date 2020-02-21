@@ -26,6 +26,8 @@
 #include "../modules/AutoMoDeBehaviourPhototaxis.h"
 #include "../modules/AutoMoDeBehaviourRepulsion.h"
 #include "../modules/AutoMoDeBehaviourStop.h"
+#include "../modules/AutoMoDeBehaviourGoToColor.h"
+#include "../modules/AutoMoDeBehaviourGoAwayColor.h"
 #include "../modules/AutoMoDeCondition.h"
 #include "../modules/AutoMoDeConditionBlackFloor.h"
 #include "../modules/AutoMoDeConditionGrayFloor.h"
@@ -33,6 +35,7 @@
 #include "../modules/AutoMoDeConditionFixedProbability.h"
 #include "../modules/AutoMoDeConditionNeighborsCount.h"
 #include "../modules/AutoMoDeConditionInvertedNeighborsCount.h"
+#include "../modules/AutoMoDeConditionProbColor.h"
 
 #include <string>
 #include <ctime>
