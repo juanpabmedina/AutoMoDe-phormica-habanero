@@ -29,7 +29,8 @@ namespace argos {
 
 		private:
 			UInt8 m_unAttractionParameter;
-            CColor m_cColorEmiterParameter;
+      CColor m_cColorEmiterParameter;
+			size_t m_bGroundLEDsParameter;
 	};
 }
 

@@ -67,6 +67,7 @@ namespace argos {
 
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
         m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
+				m_pcRobotDAO->SetGroundLEDsState(m_bGroundLEDsParameter);
 
 		m_bLocked = false;
 	}
@@ -85,6 +86,14 @@ namespace argos {
         it = m_mapParameters.find("cle");
         if (it != m_mapParameters.end()) {
             m_cColorEmiterParameter = GetColorParameter(it->second, true);
+        } else {
+            LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+            THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
+
+				it = m_mapParameters.find("phe");
+        if (it != m_mapParameters.end()) {
+            m_bGroundLEDsParameter = (size_t)(it->second);
         } else {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");

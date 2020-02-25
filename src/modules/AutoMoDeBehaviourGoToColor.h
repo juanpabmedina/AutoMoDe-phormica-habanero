@@ -32,6 +32,7 @@ namespace argos {
             CColor m_cColorEmiterParameter;
             CColor m_cColorReceiverParameter;
             Real m_unAttractionParameter;
+            size_t m_bGroundLEDsParameter;
 	};
 }
 

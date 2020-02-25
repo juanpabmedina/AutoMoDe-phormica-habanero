@@ -31,6 +31,7 @@ namespace argos {
 
         private:
             CColor m_cColorEmiterParameter;
+						size_t m_bGroundLEDsParameter;
 	};
 }
 

@@ -93,6 +93,7 @@ namespace argos {
 			m_pcWheelsActuator = GetActuator<CCI_EPuckWheelsActuator>("epuck_wheels");
 			m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
 			m_pcLEDsActuator = GetActuator<CCI_EPuckRGBLEDsActuator>("epuck_rgb_leds");
+			m_pcGroundLEDsActuator = GetActuator<CCI_EPuckGroundLEDsActuator>("epuck_ground_leds");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
 		}
@@ -146,6 +147,10 @@ namespace argos {
         if (m_pcLEDsActuator != NULL) {
             //m_pcLEDsActuator->SetColors(m_pcRobotState->GetLEDsColor());
             m_pcLEDsActuator->SetColor(2,m_pcRobotState->GetLEDsColor());
+        }
+        if (m_pcGroundLEDsActuator != NULL) {
+            //m_pcLEDsActuator->SetColors(m_pcRobotState->GetLEDsColor());
+            m_pcGroundLEDsActuator->SwitchLEDs(m_pcRobotState->GetGroundLEDsState());
         }
 
 		/*

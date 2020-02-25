@@ -174,6 +174,8 @@ namespace argos {
              * Data transform for color of the omnidirectional camera and LEDs.
              */
             CColor GetColorParameter(const UInt32& un_value, const bool& b_emiter);
+            
+
 	};
 }
 

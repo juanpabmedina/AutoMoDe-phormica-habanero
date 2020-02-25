@@ -55,4 +55,5 @@ set(AUTOMODE_SOURCES
     modules/AutoMoDeConditionProbColor.cpp)
 
 add_executable(automode ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
-target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)
+target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck argos3_demiurge_epuck_dao
+argos3plugin_${ARGOS_BUILD_FOR}_genericvirtualsensorsandactuators)
