@@ -56,8 +56,13 @@ namespace argos {
 		CVector2 sResultVector(0,CRadians::ZERO);
 
         for (it = sReadings.BlobList.begin(); it != sReadings.BlobList.end(); it++) {
-            if ((*it)->Color == m_cColorReceiverParameter  && (*it)->Distance >= 6.0) {
-                sColVectorSum += CVector2(1 / (((*it)->Distance) + 1), (*it)->Angle);
+            if ((*it)->Color == m_cColorReceiverParameter  && (*it)->Distance >= 4.5) {
+                if ((*it)->Angle.SignedNormalize().GetValue() >= 0 && (*it)->Angle.SignedNormalize().GetValue() <= m_unFOVParameter) {
+                    sColVectorSum += CVector2(1 / (((*it)->Distance) + 1), (*it)->Angle);
+                }
+                else if ((*it)->Angle.SignedNormalize().GetValue() < 0 && (*it)->Angle.SignedNormalize().GetValue() >= -m_unFOVParameter) {
+                    sColVectorSum += CVector2(1 / (((*it)->Distance) + 1), (*it)->Angle);
+                }
             }
 		}
 
@@ -103,6 +108,13 @@ namespace argos {
         it = m_mapParameters.find("phe");
         if (it != m_mapParameters.end()) {
             m_bGroundLEDsParameter = (size_t)(it->second);
+        } else {
+            LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+            THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
+        it = m_mapParameters.find("fov");
+        if (it != m_mapParameters.end()) {
+            m_unFOVParameter = (it->second);
         } else {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
