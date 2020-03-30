@@ -141,11 +141,11 @@ namespace argos{
 			 * Pointer to the robot RGB LEDs actuator.
 			 */
 			CCI_EPuckRGBLEDsActuator* m_pcLEDsActuator;
-			
+
 			/*
 			 * Pointer to the ground LEDs actuator.
 			 */
-            CCI_EPuckGroundLEDsActuator* m_pcGroundLEDsActuator;
+      CCI_EPuckGroundLEDsActuator* m_pcGroundLEDsActuator;
 
 			/*
 			 * Pointer to the robot proximity sensor.
@@ -160,7 +160,7 @@ namespace argos{
 			/*
 			 * Pointer to the robot light sensor.
 			 */
-            CCI_EPuckLightSensor* m_pcLightSensor;
+      CCI_EPuckLightSensor* m_pcLightSensor;
 
 			/*
 			 * Pointer to the robot ground sensor.

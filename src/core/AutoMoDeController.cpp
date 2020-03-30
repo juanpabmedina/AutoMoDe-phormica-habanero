@@ -94,6 +94,10 @@ namespace argos {
 			m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
 			m_pcLEDsActuator = GetActuator<CCI_EPuckRGBLEDsActuator>("epuck_rgb_leds");
 			m_pcGroundLEDsActuator = GetActuator<CCI_EPuckGroundLEDsActuator>("epuck_ground_leds");
+			if (m_pcGroundLEDsActuator != NULL) {
+					/* Set PWM of ground LEDs */
+					m_pcGroundLEDsActuator->SetPWM(m_pcRobotState->GetGroundLEDsPWM());
+			}
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
 		}

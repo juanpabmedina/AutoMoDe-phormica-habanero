@@ -33,6 +33,7 @@ namespace argos {
             Real m_unRepulsionParameter;
             Real m_unFOVParameter;
             size_t m_bGroundLEDsParameter;
+            UInt8 m_GroundLEDsPWMParameter;
 	};
 }
 
