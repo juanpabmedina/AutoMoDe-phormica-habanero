@@ -106,6 +106,12 @@ namespace argos {
 		 * Starts actuation.
 		 */
 		 InitializeActuation();
+
+		 /*
+ 		 * Waits for ENTER to start the controller
+ 		 */
+		 LOG << "Press ENTER to start the execution" << std::endl;;
+		 std::cin.ignore();
 	}
 
 	/****************************************/
@@ -208,6 +214,8 @@ namespace argos {
 		/*
 		 * Constantly send range-and-bearing messages containing the robot integer identifier.
 		 */
+		 LOG << "Initializing Actuation" << std::endl;
+
 		if (m_pcRabActuator != NULL) {
 			UInt8 data[4];
 			data[0] = m_unRobotID;
@@ -216,6 +224,8 @@ namespace argos {
 			data[3] = 0;
 			m_pcRabActuator->SetData(data);
 		}
+
+		LOG << "Actuation well initialized" << std::endl;
 	}
 
 	REGISTER_CONTROLLER(AutoMoDeController, "automode_controller");
