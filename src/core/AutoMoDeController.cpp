@@ -94,10 +94,6 @@ namespace argos {
 			m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
 			m_pcLEDsActuator = GetActuator<CCI_EPuckRGBLEDsActuator>("epuck_rgb_leds");
 			m_pcGroundLEDsActuator = GetActuator<CCI_EPuckGroundLEDsActuator>("epuck_ground_leds");
-			if (m_pcGroundLEDsActuator != NULL) {
-					/* Set PWM of ground LEDs */
-					m_pcGroundLEDsActuator->SetPWM(m_pcRobotState->GetGroundLEDsPWM());
-			}
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
 		}
@@ -110,7 +106,7 @@ namespace argos {
 		 /*
  		 * Waits for ENTER to start the controller
  		 */
-		 LOG << "Press ENTER to start the execution" << std::endl;;
+		 LOG << "Press ENTER to start the execution" << std::endl;
 		 std::cin.ignore();
 	}
 
@@ -214,8 +210,6 @@ namespace argos {
 		/*
 		 * Constantly send range-and-bearing messages containing the robot integer identifier.
 		 */
-		 LOG << "Initializing Actuation" << std::endl;
-
 		if (m_pcRabActuator != NULL) {
 			UInt8 data[4];
 			data[0] = m_unRobotID;
@@ -224,8 +218,6 @@ namespace argos {
 			data[3] = 0;
 			m_pcRabActuator->SetData(data);
 		}
-
-		LOG << "Actuation well initialized" << std::endl;
 	}
 
 	REGISTER_CONTROLLER(AutoMoDeController, "automode_controller");

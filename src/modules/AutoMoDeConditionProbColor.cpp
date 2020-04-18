@@ -55,6 +55,13 @@
             LOGERR << "[FATAL] Missing parameter for the following condition:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
         }
+        it = m_mapParameters.find("f");
+        if (it != m_mapParameters.end()) {
+            m_unFOVParameter = (it->second);
+        } else {
+            LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+            THROW_ARGOSEXCEPTION("Missing Parameter");
+        }
     }
 
   /****************************************/
@@ -73,9 +80,15 @@
         bool bColorPerceived = false;
 
         for (it = sReadings.BlobList.begin(); it != sReadings.BlobList.end(); it++) {
-            if ((*it)->Color == m_cColorParameter && (*it)->Distance >= 6.0) {
-                bColorPerceived = true;
-                break;
+            if ((*it)->Color == m_cColorParameter && (*it)->Distance >= 4.5) {
+              if ((*it)->Angle.SignedNormalize().GetValue() >= 0 && (*it)->Angle.SignedNormalize().GetValue() <= m_unFOVParameter) {
+                  bColorPerceived = true;
+                  break;
+              }
+              else if ((*it)->Angle.SignedNormalize().GetValue() < 0 && (*it)->Angle.SignedNormalize().GetValue() >= -m_unFOVParameter) {
+                  bColorPerceived = true;
+                 break;
+              }
             }
         }
 

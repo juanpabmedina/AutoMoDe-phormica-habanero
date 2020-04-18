@@ -113,7 +113,7 @@ namespace argos {
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);
 
 		// Checking for parameters
-        std::string vecPossibleParameters[] = {"rwm", "att", "rep", "cle", "clr", "vel", "phe", "fov", "pwm"};
+        std::string vecPossibleParameters[] = {"rwm", "att", "rep", "cle", "clr", "vel", "phe", "fov"};
 		UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 		for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 			std::string strCurrentParameter = vecPossibleParameters[i];
@@ -211,7 +211,7 @@ namespace argos {
 
 
 			// Checking for parameters
-            std::string vecPossibleParameters[] = {"p", "w", "l"};
+            std::string vecPossibleParameters[] = {"p", "w", "l", "f"};
 			UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 			for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 				std::string strCurrentParameter = vecPossibleParameters[i];

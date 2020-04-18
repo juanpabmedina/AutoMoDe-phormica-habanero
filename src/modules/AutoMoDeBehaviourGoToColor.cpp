@@ -109,14 +109,6 @@ namespace argos {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
         }
-        it = m_mapParameters.find("pwm");
-        if (it != m_mapParameters.end()) {
-          m_GroundLEDsPWMParameter = (UInt8)(it->second);
-          m_pcRobotDAO->SetGroundLEDsPWM(m_GroundLEDsPWMParameter);
-        } else {
-            LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
-            THROW_ARGOSEXCEPTION("Missing Parameter");
-        }
         it = m_mapParameters.find("fov");
         if (it != m_mapParameters.end()) {
             m_unFOVParameter = (it->second);

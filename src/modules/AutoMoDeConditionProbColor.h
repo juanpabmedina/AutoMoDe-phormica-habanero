@@ -28,8 +28,9 @@ namespace argos {
 
 		private:
             CColor m_cColorParameter;
-			Real m_fProbability;
+			      Real m_fProbability;
             Real m_fDistance;
+            Real m_unFOVParameter;
 	};
 }
 
