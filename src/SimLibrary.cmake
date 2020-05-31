@@ -18,6 +18,7 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeBehaviourExploration.h
     modules/AutoMoDeBehaviourGoToColor.h
     modules/AutoMoDeBehaviourGoAwayColor.h
+		modules/AutoMoDeBehaviourWaggle.h
 	# Conditions
 	modules/AutoMoDeCondition.h
 	modules/AutoMoDeConditionBlackFloor.h
@@ -44,6 +45,7 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeBehaviourExploration.cpp
     modules/AutoMoDeBehaviourGoToColor.cpp
     modules/AutoMoDeBehaviourGoAwayColor.cpp
+		modules/AutoMoDeBehaviourWaggle.cpp
 	# Conditions
 	modules/AutoMoDeCondition.cpp
 	modules/AutoMoDeConditionBlackFloor.cpp

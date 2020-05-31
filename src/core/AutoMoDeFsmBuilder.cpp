@@ -102,12 +102,15 @@ namespace argos {
 			case 5:
 				cNewBehaviour = new AutoMoDeBehaviourRepulsion();
 				break;
-            case 8:
-                cNewBehaviour = new AutoMoDeBehaviourGoToColor();
-                break;
-            case 9:
-                cNewBehaviour = new AutoMoDeBehaviourGoAwayColor();
-                break;
+      case 8:
+        cNewBehaviour = new AutoMoDeBehaviourGoToColor();
+        break;
+      case 9:
+        cNewBehaviour = new AutoMoDeBehaviourGoAwayColor();
+        break;
+			case 6:
+			  cNewBehaviour = new AutoMoDeBehaviourWaggle();
+				break;
 		}
 		cNewBehaviour->SetIndex(unBehaviourIndex);
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);

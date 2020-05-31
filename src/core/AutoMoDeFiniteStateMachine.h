@@ -28,6 +28,7 @@
 #include "../modules/AutoMoDeBehaviourStop.h"
 #include "../modules/AutoMoDeBehaviourGoToColor.h"
 #include "../modules/AutoMoDeBehaviourGoAwayColor.h"
+#include "../modules/AutoMoDeBehaviourWaggle.h"
 #include "../modules/AutoMoDeCondition.h"
 #include "../modules/AutoMoDeConditionBlackFloor.h"
 #include "../modules/AutoMoDeConditionGrayFloor.h"
