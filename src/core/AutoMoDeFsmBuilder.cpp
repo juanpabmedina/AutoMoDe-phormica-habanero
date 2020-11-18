@@ -90,18 +90,18 @@ namespace argos {
 			case 1:
 				cNewBehaviour = new AutoMoDeBehaviourStop();
 				break;
-			case 2:
-				cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
-				break;
-			case 3:
-				cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
-				break;
-			case 4:
-				cNewBehaviour = new AutoMoDeBehaviourAttraction();
-				break;
-			case 5:
-				cNewBehaviour = new AutoMoDeBehaviourRepulsion();
-				break;
+			// case 2:
+			// 	cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
+			// 	break;
+			// case 3:
+			// 	cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
+			// 	break;
+			// case 4:
+			// 	cNewBehaviour = new AutoMoDeBehaviourAttraction();
+			// 	break;
+			// case 5:
+			// 	cNewBehaviour = new AutoMoDeBehaviourRepulsion();
+			// 	break;
       case 8:
         cNewBehaviour = new AutoMoDeBehaviourGoToColor();
         break;
@@ -111,6 +111,12 @@ namespace argos {
 			case 6:
 			  cNewBehaviour = new AutoMoDeBehaviourWaggle();
 				break;
+			case 10:
+				  cNewBehaviour = new AutoMoDeBehaviourGoToPheromone();
+					break;
+			case 11:
+				  cNewBehaviour = new AutoMoDeBehaviourAvoidPheromone();
+					break;
 		}
 		cNewBehaviour->SetIndex(unBehaviourIndex);
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);
@@ -195,17 +201,20 @@ namespace argos {
 					cNewCondition = new AutoMoDeConditionWhiteFloor();
 					break;
 				case 3:
-					cNewCondition = new AutoMoDeConditionNeighborsCount();
-					break;
-				case 4:
-					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
-					break;
+				// 	cNewCondition = new AutoMoDeConditionNeighborsCount();
+				// 	break;
+				// case 4:
+				// 	cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+				// 	break;
 				case 5:
 					cNewCondition = new AutoMoDeConditionFixedProbability();
 					break;
-                case 7:
-                    cNewCondition = new AutoMoDeConditionProbColor();
-                    break;
+        case 7:
+          cNewCondition = new AutoMoDeConditionProbColor();
+          break;
+				case 8:
+	        cNewCondition = new AutoMoDeConditionPheromoneDetected();
+	        break;
 			}
 
 			cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);

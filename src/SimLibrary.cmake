@@ -10,24 +10,22 @@ set(AUTOMODE_HEADERS
 	core/AutoMoDeFsmHistory.h
 	# Behaviours
 	modules/AutoMoDeBehaviour.h
-	modules/AutoMoDeBehaviourAntiPhototaxis.h
-	modules/AutoMoDeBehaviourPhototaxis.h
-	modules/AutoMoDeBehaviourAttraction.h
-	modules/AutoMoDeBehaviourRepulsion.h
 	modules/AutoMoDeBehaviourStop.h
 	modules/AutoMoDeBehaviourExploration.h
-    modules/AutoMoDeBehaviourGoToColor.h
-    modules/AutoMoDeBehaviourGoAwayColor.h
-		modules/AutoMoDeBehaviourWaggle.h
+  modules/AutoMoDeBehaviourGoToColor.h
+  modules/AutoMoDeBehaviourGoAwayColor.h
+	modules/AutoMoDeBehaviourWaggle.h
+	modules/AutoMoDeBehaviourGoToPheromone.h
+	modules/AutoMoDeBehaviourAvoidPheromone.h
 	# Conditions
 	modules/AutoMoDeCondition.h
 	modules/AutoMoDeConditionBlackFloor.h
 	modules/AutoMoDeConditionWhiteFloor.h
 	modules/AutoMoDeConditionGrayFloor.h
-	modules/AutoMoDeConditionNeighborsCount.h
-	modules/AutoMoDeConditionInvertedNeighborsCount.h
-    modules/AutoMoDeConditionFixedProbability.h
-    modules/AutoMoDeConditionProbColor.h)
+  modules/AutoMoDeConditionFixedProbability.h
+  modules/AutoMoDeConditionProbColor.h
+	modules/AutoMoDeConditionPheromoneDetected.h)
+
 
 # Sources
 set(AUTOMODE_SOURCES
@@ -37,24 +35,21 @@ set(AUTOMODE_SOURCES
 	core/AutoMoDeFsmHistory.cpp
 	# Behaviours
 	modules/AutoMoDeBehaviour.cpp
-	modules/AutoMoDeBehaviourAntiPhototaxis.cpp
-	modules/AutoMoDeBehaviourPhototaxis.cpp
-	modules/AutoMoDeBehaviourAttraction.cpp
-	modules/AutoMoDeBehaviourRepulsion.cpp
 	modules/AutoMoDeBehaviourStop.cpp
 	modules/AutoMoDeBehaviourExploration.cpp
-    modules/AutoMoDeBehaviourGoToColor.cpp
-    modules/AutoMoDeBehaviourGoAwayColor.cpp
-		modules/AutoMoDeBehaviourWaggle.cpp
+  modules/AutoMoDeBehaviourGoToColor.cpp
+  modules/AutoMoDeBehaviourGoAwayColor.cpp
+	modules/AutoMoDeBehaviourWaggle.cpp
+	modules/AutoMoDeBehaviourGoToPheromone.cpp
+	modules/AutoMoDeBehaviourAvoidPheromone.cpp
 	# Conditions
 	modules/AutoMoDeCondition.cpp
 	modules/AutoMoDeConditionBlackFloor.cpp
 	modules/AutoMoDeConditionWhiteFloor.cpp
 	modules/AutoMoDeConditionGrayFloor.cpp
-	modules/AutoMoDeConditionNeighborsCount.cpp
-	modules/AutoMoDeConditionInvertedNeighborsCount.cpp
-    modules/AutoMoDeConditionFixedProbability.cpp
-    modules/AutoMoDeConditionProbColor.cpp)
+  modules/AutoMoDeConditionFixedProbability.cpp
+  modules/AutoMoDeConditionProbColor.cpp
+	modules/AutoMoDeConditionPheromoneDetected.cpp)
 
 
 add_library(automode SHARED ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
