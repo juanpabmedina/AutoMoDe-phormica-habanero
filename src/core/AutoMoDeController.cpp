@@ -38,7 +38,8 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeController::Init(TConfigurationNode& t_node) {
+    void AutoMoDeController::Init(TConfigurationNode& t_node) {
+        printf("AutoMoDeController::Init\n");
 		// Parsing parameters
 		try {
 			GetNodeAttributeOrDefault(t_node, "fsm-config", m_strFsmConfiguration, m_strFsmConfiguration);
@@ -77,13 +78,13 @@ namespace argos {
 		 */
 		try{
 			m_pcProximitySensor = GetSensor<CCI_EPuckProximitySensor>("epuck_proximity");
-			m_pcLightSensor = GetSensor<CCI_EPuckLightSensor>("epuck_light");
+            m_pcLightSensor = GetSensor<CCI_EPuckLightSensor>("epuck_light");
 			m_pcGroundSensor = GetSensor<CCI_EPuckGroundSensor>("epuck_ground");
-			 m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
+             m_pcRabSensor = GetSensor<CCI_EPuckRangeAndBearingSensor>("epuck_range_and_bearing");
 			 m_pcCameraSensor = GetSensor<CCI_EPuckOmnidirectionalCameraSensor>("epuck_omnidirectional_camera");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing a Sensor!\n";
-		}
+        }
 
         if(m_pcCameraSensor != NULL){
             m_pcCameraSensor->Enable();
@@ -91,12 +92,12 @@ namespace argos {
 
 		try{
 			m_pcWheelsActuator = GetActuator<CCI_EPuckWheelsActuator>("epuck_wheels");
-			m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
+            m_pcRabActuator = GetActuator<CCI_EPuckRangeAndBearingActuator>("epuck_range_and_bearing");
 			m_pcLEDsActuator = GetActuator<CCI_EPuckRGBLEDsActuator>("epuck_rgb_leds");
-			m_pcGroundLEDsActuator = GetActuator<CCI_EPuckGroundLEDsActuator>("epuck_ground_leds");
+            //m_pcGroundLEDsActuator = GetActuator<CCI_EPuckGroundLEDsActuator>("epuck_ground_leds");
 		} catch (CARGoSException ex) {
 			LOGERR<<"Error while initializing an Actuator!\n";
-		}
+        }
 
 		/*
 		 * Starts actuation.
@@ -104,10 +105,11 @@ namespace argos {
 		 InitializeActuation();
 
 		 /*
- 		 * Waits for ENTER to start the controller
+         * Waits for ENTER to start the controller - JUST FOR REAL ROBOTS!!!!!!!!
  		 */
-		 LOG << "Press ENTER to start the execution" << std::endl;
-		 std::cin.ignore();
+         //LOG << "Press ENTER to start the execution" << std::endl;
+         //std::cin.ignore();
+
 	}
 
 	/****************************************/
