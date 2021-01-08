@@ -115,6 +115,7 @@ namespace argos {
 		}
         m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
         m_pcRobotDAO->SetGroundLEDsState(m_bGroundLEDsParameter);
+
 		m_bLocked = false;
 	}
 
