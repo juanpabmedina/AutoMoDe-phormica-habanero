@@ -102,21 +102,21 @@ namespace argos {
 			// case 5:
 			// 	cNewBehaviour = new AutoMoDeBehaviourRepulsion();
 			// 	break;
-      case 8:
-        cNewBehaviour = new AutoMoDeBehaviourGoToColor();
-        break;
-      case 9:
-        cNewBehaviour = new AutoMoDeBehaviourGoAwayColor();
-        break;
-			case 6:
-			  cNewBehaviour = new AutoMoDeBehaviourWaggle();
+            case 2: // before, 8
+                cNewBehaviour = new AutoMoDeBehaviourGoToColor();
+                break;
+            case 3: // before, 9
+                cNewBehaviour = new AutoMoDeBehaviourGoAwayColor();
+                break;
+            case 4: // before, 6
+                cNewBehaviour = new AutoMoDeBehaviourWaggle();
 				break;
-			case 10:
-				  cNewBehaviour = new AutoMoDeBehaviourGoToPheromone();
-					break;
-			case 11:
-				  cNewBehaviour = new AutoMoDeBehaviourAvoidPheromone();
-					break;
+            case 5: // before, 10
+                cNewBehaviour = new AutoMoDeBehaviourGoToPheromone();
+                break;
+            case 6: // before, 11
+                cNewBehaviour = new AutoMoDeBehaviourAvoidPheromone();
+                break;
 		}
 		cNewBehaviour->SetIndex(unBehaviourIndex);
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);
@@ -206,15 +206,15 @@ namespace argos {
 				// case 4:
 				// 	cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
 				// 	break;
-				case 5:
+        case 4: // before, 5
 					cNewCondition = new AutoMoDeConditionFixedProbability();
 					break;
-        case 7:
-          cNewCondition = new AutoMoDeConditionProbColor();
-          break;
-				case 8:
-	        cNewCondition = new AutoMoDeConditionPheromoneDetected();
-	        break;
+        case 5: // before, 7
+            cNewCondition = new AutoMoDeConditionProbColor();
+            break;
+        case 6: // before, 8
+            cNewCondition = new AutoMoDeConditionPheromoneDetected();
+            break;
 			}
 
 			cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);

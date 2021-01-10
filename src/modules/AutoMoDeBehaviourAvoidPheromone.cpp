@@ -101,7 +101,7 @@ namespace argos {
         // it = m_mapParameters.find("clr");
         // if (it != m_mapParameters.end()) {
         //     m_cColorReceiverParameter = GetColorParameter(it->second, false);
-              m_cColorReceiverParameter = GetColorParameter(5, false); //Magenta color
+              m_cColorReceiverParameter = GetColorParameter(6, false); //Magenta color
         // } else {
         //     LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
         //     THROW_ARGOSEXCEPTION("Missing Parameter");
@@ -109,6 +109,15 @@ namespace argos {
         it = m_mapParameters.find("phe");
         if (it != m_mapParameters.end()) {
             m_bGroundLEDsParameter = (size_t)(it->second);
+
+            if (m_bGroundLEDsParameter == 1) {
+              m_bGroundLEDsParameter = 3;
+            } else if (m_bGroundLEDsParameter == 2){
+              m_bGroundLEDsParameter = 9;
+            } else {
+              m_bGroundLEDsParameter = 0;
+            }
+
         } else {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
@@ -116,6 +125,13 @@ namespace argos {
         it = m_mapParameters.find("fov");
         if (it != m_mapParameters.end()) {
             m_unFOVParameter = (it->second);
+
+            if (m_unFOVParameter == 0) {
+              m_unFOVParameter = 0.26; // directional field of view of 30 degree
+            } else {
+              m_unFOVParameter = 3.14; // Omni directional view of 360 degree
+            }
+            
         } else {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");

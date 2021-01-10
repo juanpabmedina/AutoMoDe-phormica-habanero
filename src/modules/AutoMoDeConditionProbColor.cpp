@@ -58,6 +58,13 @@
         it = m_mapParameters.find("f");
         if (it != m_mapParameters.end()) {
             m_unFOVParameter = (it->second);
+
+            if (m_unFOVParameter == 0) {
+              m_unFOVParameter = 0.26; // directional field of view of 30 degree
+            } else {
+              m_unFOVParameter = 3.14; // Omni directional view of 360 degree
+            }
+            
         } else {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
@@ -81,6 +88,7 @@
 
         for (it = sReadings.BlobList.begin(); it != sReadings.BlobList.end(); it++) {
             if ((*it)->Color == m_cColorParameter && (*it)->Distance >= 4.5    &&  (*it)->Distance <= 25) {
+                //LOG << "Distance Block: " << (*it)->Distance << std::endl;
               if ((*it)->Angle.SignedNormalize().GetValue() >= 0 && (*it)->Angle.SignedNormalize().GetValue() <= m_unFOVParameter) {
                   bColorPerceived = true;
                   break;

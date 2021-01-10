@@ -180,10 +180,10 @@ namespace argos {
                 cColorParameter = CColor(255,255,0);
                 break;
             case 5:
-                cColorParameter = CColor(255,0,255);
+                cColorParameter = CColor(0,255,255); // before (255,0,255)
                 break;
             case 6:
-                cColorParameter = CColor(0,255,255);
+                cColorParameter = CColor(255,0,255); // before (0,255,255)
                 break;
             default:
                 cColorParameter = CColor::BLACK;
@@ -207,10 +207,10 @@ namespace argos {
                 cColorParameter = CColor::YELLOW;
                 break;
             case 5:
-                cColorParameter = CColor::MAGENTA;
+                cColorParameter = CColor::CYAN;  // before MAGENTA
                 break;
             case 6:
-                cColorParameter = CColor::CYAN;
+                cColorParameter = CColor::MAGENTA;  // before CYAN
                 break;
             default:
                 cColorParameter = CColor::BLACK;

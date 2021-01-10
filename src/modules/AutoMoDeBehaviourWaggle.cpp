@@ -67,8 +67,9 @@ namespace argos {
 
 	void AutoMoDeBehaviourWaggle::Init() {
 
-				m_bRotationDirectionParameter = true;
+        m_bRotationDirectionParameter = true;
 
+        /*
         std::map<std::string, Real>::iterator it = m_mapParameters.find("cle");
         if (it != m_mapParameters.end()) {
             m_cColorEmiterParameter = GetColorParameter(it->second, true);
@@ -76,9 +77,20 @@ namespace argos {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
         }
-				it = m_mapParameters.find("phe");
+        */
+
+        std::map<std::string, Real>::iterator it = m_mapParameters.find("phe");
         if (it != m_mapParameters.end()) {
             m_bGroundLEDsParameter = (size_t)(it->second);
+
+						if (m_bGroundLEDsParameter == 1) {
+              m_bGroundLEDsParameter = 3;
+            } else if (m_bGroundLEDsParameter == 2){
+              m_bGroundLEDsParameter = 9;
+            } else {
+              m_bGroundLEDsParameter = 0;
+            }
+						
         } else {
             LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
             THROW_ARGOSEXCEPTION("Missing Parameter");
