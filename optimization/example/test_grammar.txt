@@ -1,0 +1,109 @@
+NumStates   "--nstates "   i (1,4)
+S0     "--s0 "  c   (0,1,2,3,4,5,6) | as.numeric(NumStates)>0 
+RWM0   "--rwm0 "  i (1,100) | as.numeric(S0)==0
+FOV0   "--fov0 "  c (0,1) | as.numeric(S0) %in% c(2,3,5,6)
+VEL0   "--vel0 "  c (1.0) | as.numeric(S0) %in% c(2,3,5,6)
+CLR0   "--clr0 "  c (2,3) | as.numeric(S0) %in% c(2,3)
+PHE0   "--phe0 "  c (0,1,2) | as.numeric(S0) %in% c(0,1,2,3,4,5,6)
+NumConnections0 "--n0 " i (1,4) | as.numeric(NumStates)>1
+N0x0  "--n0x0 " i   (0,3) | as.numeric(NumConnections0)>0 
+C0x0  "--c0x0 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections0)>0 
+P0x0  "--p0x0 " r   (0,1) | as.numeric(C0x0) %in% c(0,1,2,3,4,5,6) 
+F0x0  "--f0x0 " c   (0,1) | as.numeric(C0x0) %in% c(5,6) 
+L0x0  "--l0x0 " c   (2,3) | as.numeric(C0x0)==5 
+N0x1  "--n0x1 " i   (0,3) | as.numeric(NumConnections0)>1 
+C0x1  "--c0x1 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections0)>1 
+P0x1  "--p0x1 " r   (0,1) | as.numeric(C0x1) %in% c(0,1,2,3,4,5,6) 
+F0x1  "--f0x1 " c   (0,1) | as.numeric(C0x1) %in% c(5,6) 
+L0x1  "--l0x1 " c   (2,3) | as.numeric(C0x1)==5 
+N0x2  "--n0x2 " i   (0,3) | as.numeric(NumConnections0)>2 
+C0x2  "--c0x2 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections0)>2 
+P0x2  "--p0x2 " r   (0,1) | as.numeric(C0x2) %in% c(0,1,2,3,4,5,6) 
+F0x2  "--f0x2 " c   (0,1) | as.numeric(C0x2) %in% c(5,6) 
+L0x2  "--l0x2 " c   (2,3) | as.numeric(C0x2)==5 
+N0x3  "--n0x3 " i   (0,3) | as.numeric(NumConnections0)>3 
+C0x3  "--c0x3 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections0)>3 
+P0x3  "--p0x3 " r   (0,1) | as.numeric(C0x3) %in% c(0,1,2,3,4,5,6) 
+F0x3  "--f0x3 " c   (0,1) | as.numeric(C0x3) %in% c(5,6) 
+L0x3  "--l0x3 " c   (2,3) | as.numeric(C0x3)==5 
+S1     "--s1 "  c   (0,1,2,3,4,5,6) | as.numeric(NumStates)>1 
+RWM1   "--rwm1 "  i (1,100) | as.numeric(S1)==0
+FOV1   "--fov1 "  c (0,1) | as.numeric(S1) %in% c(2,3,5,6)
+VEL1   "--vel1 "  c (1.0) | as.numeric(S1) %in% c(2,3,5,6)
+CLR1   "--clr1 "  c (2,3) | as.numeric(S1) %in% c(2,3)
+PHE1   "--phe1 "  c (0,1,2) | as.numeric(S1) %in% c(0,1,2,3,4,5,6)
+NumConnections1 "--n1 " i (1,4) | as.numeric(NumStates)>1
+N1x0  "--n1x0 " i   (0,3) | as.numeric(NumConnections1)>0 
+C1x0  "--c1x0 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections1)>0 
+P1x0  "--p1x0 " r   (0,1) | as.numeric(C1x0) %in% c(0,1,2,3,4,5,6) 
+F1x0  "--f1x0 " c   (0,1) | as.numeric(C1x0) %in% c(5,6) 
+L1x0  "--l1x0 " c   (2,3) | as.numeric(C1x0)==5 
+N1x1  "--n1x1 " i   (0,3) | as.numeric(NumConnections1)>1 
+C1x1  "--c1x1 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections1)>1 
+P1x1  "--p1x1 " r   (0,1) | as.numeric(C1x1) %in% c(0,1,2,3,4,5,6) 
+F1x1  "--f1x1 " c   (0,1) | as.numeric(C1x1) %in% c(5,6) 
+L1x1  "--l1x1 " c   (2,3) | as.numeric(C1x1)==5 
+N1x2  "--n1x2 " i   (0,3) | as.numeric(NumConnections1)>2 
+C1x2  "--c1x2 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections1)>2 
+P1x2  "--p1x2 " r   (0,1) | as.numeric(C1x2) %in% c(0,1,2,3,4,5,6) 
+F1x2  "--f1x2 " c   (0,1) | as.numeric(C1x2) %in% c(5,6) 
+L1x2  "--l1x2 " c   (2,3) | as.numeric(C1x2)==5 
+N1x3  "--n1x3 " i   (0,3) | as.numeric(NumConnections1)>3 
+C1x3  "--c1x3 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections1)>3 
+P1x3  "--p1x3 " r   (0,1) | as.numeric(C1x3) %in% c(0,1,2,3,4,5,6) 
+F1x3  "--f1x3 " c   (0,1) | as.numeric(C1x3) %in% c(5,6) 
+L1x3  "--l1x3 " c   (2,3) | as.numeric(C1x3)==5 
+S2     "--s2 "  c   (0,1,2,3,4,5,6) | as.numeric(NumStates)>2 
+RWM2   "--rwm2 "  i (1,100) | as.numeric(S2)==0
+FOV2   "--fov2 "  c (0,1) | as.numeric(S2) %in% c(2,3,5,6)
+VEL2   "--vel2 "  c (1.0) | as.numeric(S2) %in% c(2,3,5,6)
+CLR2   "--clr2 "  c (2,3) | as.numeric(S2) %in% c(2,3)
+PHE2   "--phe2 "  c (0,1,2) | as.numeric(S2) %in% c(0,1,2,3,4,5,6)
+NumConnections2 "--n2 " i (1,4) | as.numeric(NumStates)>2
+N2x0  "--n2x0 " i   (0,3) | as.numeric(NumConnections2)>0 
+C2x0  "--c2x0 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections2)>0 
+P2x0  "--p2x0 " r   (0,1) | as.numeric(C2x0) %in% c(0,1,2,3,4,5,6) 
+F2x0  "--f2x0 " c   (0,1) | as.numeric(C2x0) %in% c(5,6) 
+L2x0  "--l2x0 " c   (2,3) | as.numeric(C2x0)==5 
+N2x1  "--n2x1 " i   (0,3) | as.numeric(NumConnections2)>1 
+C2x1  "--c2x1 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections2)>1 
+P2x1  "--p2x1 " r   (0,1) | as.numeric(C2x1) %in% c(0,1,2,3,4,5,6) 
+F2x1  "--f2x1 " c   (0,1) | as.numeric(C2x1) %in% c(5,6) 
+L2x1  "--l2x1 " c   (2,3) | as.numeric(C2x1)==5 
+N2x2  "--n2x2 " i   (0,3) | as.numeric(NumConnections2)>2 
+C2x2  "--c2x2 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections2)>2 
+P2x2  "--p2x2 " r   (0,1) | as.numeric(C2x2) %in% c(0,1,2,3,4,5,6) 
+F2x2  "--f2x2 " c   (0,1) | as.numeric(C2x2) %in% c(5,6) 
+L2x2  "--l2x2 " c   (2,3) | as.numeric(C2x2)==5 
+N2x3  "--n2x3 " i   (0,3) | as.numeric(NumConnections2)>3 
+C2x3  "--c2x3 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections2)>3 
+P2x3  "--p2x3 " r   (0,1) | as.numeric(C2x3) %in% c(0,1,2,3,4,5,6) 
+F2x3  "--f2x3 " c   (0,1) | as.numeric(C2x3) %in% c(5,6) 
+L2x3  "--l2x3 " c   (2,3) | as.numeric(C2x3)==5 
+S3     "--s3 "  c   (0,1,2,3,4,5,6) | as.numeric(NumStates)>3 
+RWM3   "--rwm3 "  i (1,100) | as.numeric(S3)==0
+FOV3   "--fov3 "  c (0,1) | as.numeric(S3) %in% c(2,3,5,6)
+VEL3   "--vel3 "  c (1.0) | as.numeric(S3) %in% c(2,3,5,6)
+CLR3   "--clr3 "  c (2,3) | as.numeric(S3) %in% c(2,3)
+PHE3   "--phe3 "  c (0,1,2) | as.numeric(S3) %in% c(0,1,2,3,4,5,6)
+NumConnections3 "--n3 " i (1,4) | as.numeric(NumStates)>3
+N3x0  "--n3x0 " i   (0,3) | as.numeric(NumConnections3)>0 
+C3x0  "--c3x0 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections3)>0 
+P3x0  "--p3x0 " r   (0,1) | as.numeric(C3x0) %in% c(0,1,2,3,4,5,6) 
+F3x0  "--f3x0 " c   (0,1) | as.numeric(C3x0) %in% c(5,6) 
+L3x0  "--l3x0 " c   (2,3) | as.numeric(C3x0)==5 
+N3x1  "--n3x1 " i   (0,3) | as.numeric(NumConnections3)>1 
+C3x1  "--c3x1 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections3)>1 
+P3x1  "--p3x1 " r   (0,1) | as.numeric(C3x1) %in% c(0,1,2,3,4,5,6) 
+F3x1  "--f3x1 " c   (0,1) | as.numeric(C3x1) %in% c(5,6) 
+L3x1  "--l3x1 " c   (2,3) | as.numeric(C3x1)==5 
+N3x2  "--n3x2 " i   (0,3) | as.numeric(NumConnections3)>2 
+C3x2  "--c3x2 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections3)>2 
+P3x2  "--p3x2 " r   (0,1) | as.numeric(C3x2) %in% c(0,1,2,3,4,5,6) 
+F3x2  "--f3x2 " c   (0,1) | as.numeric(C3x2) %in% c(5,6) 
+L3x2  "--l3x2 " c   (2,3) | as.numeric(C3x2)==5 
+N3x3  "--n3x3 " i   (0,3) | as.numeric(NumConnections3)>3 
+C3x3  "--c3x3 " c   (0,1,2,3,4,5,6) | as.numeric(NumConnections3)>3 
+P3x3  "--p3x3 " r   (0,1) | as.numeric(C3x3) %in% c(0,1,2,3,4,5,6) 
+F3x3  "--f3x3 " c   (0,1) | as.numeric(C3x3) %in% c(5,6) 
+L3x3  "--l3x3 " c   (2,3) | as.numeric(C3x3)==5 

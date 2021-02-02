@@ -14,28 +14,28 @@ function print_syntax() {
 function write_state() {
   INDEX=$1
   NB_TRANS=$2
-  echo "S$INDEX     \"--s$INDEX \"  c   (0,1,2,3,4,5) | as.numeric(NumStates)>$INDEX " >> ${TXT_FILE}
+  echo "S$INDEX     \"--s$INDEX \"  c   (0,1,2,3,4,5,6) | as.numeric(NumStates)>$INDEX " >> ${TXT_FILE}
   echo "RWM$INDEX   \"--rwm$INDEX \"  i (1,100) | as.numeric(S$INDEX)==0" >> ${TXT_FILE}
-  echo "ATT$INDEX   \"--att$INDEX \"  r (1,5) | as.numeric(S$INDEX)==4" >> ${TXT_FILE}
-  echo "REP$INDEX   \"--rep$INDEX \"  r (1,5) | as.numeric(S$INDEX)==5" >> ${TXT_FILE}
+  echo "FOV$INDEX   \"--fov$INDEX \"  c (0,1) | as.numeric(S$INDEX) %in% c(2,3,5,6)" >> ${TXT_FILE}
+  echo "VEL$INDEX   \"--vel$INDEX \"  c (1.0) | as.numeric(S$INDEX) %in% c(2,3,5,6)" >> ${TXT_FILE}
+  echo "CLR$INDEX   \"--clr$INDEX \"  c (2,3) | as.numeric(S$INDEX) %in% c(2,3)" >> ${TXT_FILE}
+  echo "PHE$INDEX   \"--phe$INDEX \"  c (0,1,2) | as.numeric(S$INDEX) %in% c(0,1,2,3,4,5,6)" >> ${TXT_FILE}
   if [ ${INDEX} == 0 ]; then
-    echo "NumConnections$INDEX \"--n$INDEX \" i (1,$NB_TRANS) | as.numeric(NumStates)>1" >> ${TXT_FILE}
+    echo "NumConnections$INDEX \"--n$INDEX \" i (1,4) | as.numeric(NumStates)>1" >> ${TXT_FILE}
   else
-    echo "NumConnections$INDEX \"--n$INDEX \" i (1,$NB_TRANS) | as.numeric(NumStates)>${INDEX}" >> ${TXT_FILE}
+    echo "NumConnections$INDEX \"--n$INDEX \" i (1,4) | as.numeric(NumStates)>${INDEX}" >> ${TXT_FILE}
   fi
 }
 
 function write_connection() {
   STATE=$1
   CONNECTION=$2
-  create_range STATE
+create_range STATE
   echo "N${STATE}x$CONNECTION  \"--n${STATE}x$CONNECTION \" i   (0,3) | as.numeric(NumConnections$STATE)>$CONNECTION " >> ${TXT_FILE}
-  echo "C${STATE}x$CONNECTION  \"--c${STATE}x$CONNECTION \" c   (0,1,2,3,4,5) | as.numeric(NumConnections$STATE)>$CONNECTION " >> ${TXT_FILE}
-  echo "P${STATE}x$CONNECTION  \"--p${STATE}x$CONNECTION \" r   (0,1) | as.numeric(C${STATE}x$CONNECTION) %in% c(0,1,2,5) " >> ${TXT_FILE}
-  echo "B${STATE}x$CONNECTION  \"--p${STATE}x$CONNECTION \" i   (1,10) | as.numeric(C${STATE}x$CONNECTION)==3 " >> ${TXT_FILE}
-  echo "W${STATE}x$CONNECTION  \"--w${STATE}x$CONNECTION \" r   (0,20) | as.numeric(C${STATE}x$CONNECTION)==3 " >> ${TXT_FILE}
-  echo "BI${STATE}x$CONNECTION  \"--p${STATE}x$CONNECTION \" i   (1,10) | as.numeric(C${STATE}x$CONNECTION)==4 " >> ${TXT_FILE}
-  echo "WI${STATE}x$CONNECTION  \"--w${STATE}x$CONNECTION \" r   (0,20) | as.numeric(C${STATE}x$CONNECTION)==4 " >> ${TXT_FILE}
+  echo "C${STATE}x$CONNECTION  \"--c${STATE}x$CONNECTION \" c   (0,1,2,3,4,5,6) | as.numeric(NumConnections$STATE)>$CONNECTION " >> ${TXT_FILE}
+  echo "P${STATE}x$CONNECTION  \"--p${STATE}x$CONNECTION \" r   (0,1) | as.numeric(C${STATE}x$CONNECTION) %in% c(0,1,2,3,4,5,6) " >> ${TXT_FILE}
+  echo "F${STATE}x$CONNECTION  \"--f${STATE}x$CONNECTION \" c   (0,1) | as.numeric(C${STATE}x$CONNECTION) %in% c(5,6) " >> ${TXT_FILE}
+  echo "L${STATE}x$CONNECTION  \"--l${STATE}x$CONNECTION \" c   (2,3) | as.numeric(C${STATE}x$CONNECTION)==5 " >> ${TXT_FILE}
 }
 
 function create_range() {
@@ -50,7 +50,6 @@ function create_range() {
   RANGE=${RANGE::-1}
   RANGE="${RANGE})"
 }
-
 
 if [ $# -lt 3 ]; then
     print_syntax
@@ -67,7 +66,7 @@ truncate -s 0 $TXT_FILE
 echo "NumStates   \"--nstates \"   i (1,$1)" >> $TXT_FILE
 for STATE in $(seq 0 $MAX_NBR_STATES)
 do
-  write_state $STATE $2
+  write_state $STATE
   for CONNECTION in $(seq 0 $MAX_NBR_CONNECTIONS)
   do
     write_connection $STATE $CONNECTION
