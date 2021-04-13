@@ -88,7 +88,7 @@
         bool bColorPerceived = false;
 
         for (it = sReadings.BlobList.begin(); it != sReadings.BlobList.end(); it++) {
-            if ((*it)->Color == m_cColorParameter && (*it)->Distance >= 4.5    &&  (*it)->Distance <= 25) {
+            if ((*it)->Color == m_cColorParameter && (*it)->Distance >= 4.5    &&  (*it)->Distance <= 30) {
                 //LOG << "Distance Pheromone: " << (*it)->Distance << std::endl;
               if ((*it)->Angle.SignedNormalize().GetValue() >= 0 && (*it)->Angle.SignedNormalize().GetValue() <= m_unFOVParameter) {
                   bColorPerceived = true;
