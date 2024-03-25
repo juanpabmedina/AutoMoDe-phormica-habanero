@@ -17,6 +17,12 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeBehaviourWaggle.h
 	modules/AutoMoDeBehaviourGoToPheromone.h
 	modules/AutoMoDeBehaviourAvoidPheromone.h
+
+	modules/AutoMoDeBehaviourTuttiExploration.h
+	modules/AutoMoDeBehaviourTuttiGoToColor.h
+	modules/AutoMoDeBehaviourTuttiGoAwayColor.h
+	modules/AutoMoDeBehaviourTuttiWaggle.h
+	modules/AutoMoDeBehaviourTuttiStop.h
 	# Conditions
 	modules/AutoMoDeCondition.h
 	modules/AutoMoDeConditionBlackFloor.h
@@ -45,6 +51,13 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeBehaviourWaggle.cpp
 	modules/AutoMoDeBehaviourGoToPheromone.cpp
 	modules/AutoMoDeBehaviourAvoidPheromone.cpp
+
+	modules/AutoMoDeBehaviourTuttiExploration.cpp
+	modules/AutoMoDeBehaviourTuttiGoToColor.cpp
+	modules/AutoMoDeBehaviourTuttiGoAwayColor.cpp
+	modules/AutoMoDeBehaviourTuttiWaggle.cpp
+	modules/AutoMoDeBehaviourTuttiStop.cpp
+
 	# Conditions
 	modules/AutoMoDeCondition.cpp
 	modules/AutoMoDeConditionBlackFloor.cpp

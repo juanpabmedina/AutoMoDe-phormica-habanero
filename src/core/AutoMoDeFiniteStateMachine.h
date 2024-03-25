@@ -41,6 +41,12 @@
 #include "../modules/AutoMoDeConditionProbColor.h"
 #include "../modules/AutoMoDeConditionPheromoneDetected.h"
 
+#include "../modules/AutoMoDeBehaviourTuttiExploration.h"
+#include "../modules/AutoMoDeBehaviourTuttiGoToColor.h"
+#include "../modules/AutoMoDeBehaviourTuttiGoAwayColor.h"
+#include "../modules/AutoMoDeBehaviourTuttiWaggle.h"
+#include "../modules/AutoMoDeBehaviourTuttiStop.h"
+
 #include <string>
 #include <ctime>
 #include <algorithm>

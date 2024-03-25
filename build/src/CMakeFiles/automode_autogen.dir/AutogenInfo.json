@@ -1,0 +1,290 @@
+{
+	"BUILD_DIR" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src/automode_autogen",
+	"CMAKE_BINARY_DIR" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src",
+	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
+	"CMAKE_SOURCE_DIR" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero",
+	"HEADERS" : 
+	[
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeController.h",
+			"Mu",
+			"TAC5DWH4SE/moc_AutoMoDeController.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeFiniteStateMachine.h",
+			"Mu",
+			"TAC5DWH4SE/moc_AutoMoDeFiniteStateMachine.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeFsmBuilder.h",
+			"Mu",
+			"TAC5DWH4SE/moc_AutoMoDeFsmBuilder.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeFsmHistory.h",
+			"Mu",
+			"TAC5DWH4SE/moc_AutoMoDeFsmHistory.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviour.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviour.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourAvoidPheromone.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourAvoidPheromone.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourExploration.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourExploration.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourGoAwayColor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourGoAwayColor.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourGoToColor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourGoToColor.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourGoToPheromone.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourGoToPheromone.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourStop.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourStop.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiExploration.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourTuttiExploration.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiGoAwayColor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourTuttiGoAwayColor.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiGoToColor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourTuttiGoToColor.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiStop.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourTuttiStop.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiWaggle.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourTuttiWaggle.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourWaggle.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeBehaviourWaggle.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeCondition.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeCondition.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionBlackFloor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeConditionBlackFloor.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionFixedProbability.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeConditionFixedProbability.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionGrayFloor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeConditionGrayFloor.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionPheromoneDetected.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeConditionPheromoneDetected.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionProbColor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeConditionProbColor.cpp"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionWhiteFloor.h",
+			"Mu",
+			"OKIHRWMZEG/moc_AutoMoDeConditionWhiteFloor.cpp"
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src/automode_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src/automode_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"ARGOS_simulator_BUILD",
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_WIDGETS_LIB",
+		"automode_EXPORTS"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src",
+		"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src",
+		"/home/robotmaster/argos3-installation/habanero/argos3-dist/include",
+		"/usr/include/lua5.2",
+		"/usr/include/x86_64-linux-gnu/qt5",
+		"/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
+		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
+		"/usr/include/x86_64-linux-gnu/qt5/QtCore",
+		"/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++",
+		"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero",
+		"/usr/include/c++/9",
+		"/usr/include/x86_64-linux-gnu/c++/9",
+		"/usr/include/c++/9/backward",
+		"/usr/lib/gcc/x86_64-linux-gnu/9/include",
+		"/usr/local/include",
+		"/usr/include/x86_64-linux-gnu",
+		"/usr/include"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : true,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/c++",
+		"-dM",
+		"-E",
+		"-c",
+		"/usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src/automode_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 6,
+	"PARSE_CACHE_FILE" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src/CMakeFiles/automode_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
+	"QT_UIC_EXECUTABLE" : "",
+	"QT_VERSION_MAJOR" : 5,
+	"SETTINGS_FILE" : "/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/build/src/CMakeFiles/automode_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeController.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeFiniteStateMachine.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeFsmBuilder.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/core/AutoMoDeFsmHistory.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviour.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourAvoidPheromone.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourExploration.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourGoAwayColor.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourGoToColor.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourGoToPheromone.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourStop.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiExploration.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiGoAwayColor.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiGoToColor.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiStop.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourTuttiWaggle.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeBehaviourWaggle.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeCondition.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionBlackFloor.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionFixedProbability.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionGrayFloor.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionPheromoneDetected.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionProbColor.cpp",
+			"Mu"
+		],
+		[
+			"/home/robotmaster/argos3-installation/habanero/AutoMoDe-habanero/src/modules/AutoMoDeConditionWhiteFloor.cpp",
+			"Mu"
+		]
+	],
+	"VERBOSITY" : 0
+}
